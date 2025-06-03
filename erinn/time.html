@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>에린 시간 위젯</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/MabinogiClassic/MabinogiClassic.css" type="text/css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #181e24;
+      color: #e7e7e7;
+      font-family: 'Mabinogi Classic', 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .erinn-time {
+      font-size: 2.4rem;
+      font-weight: bold;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .label {
+      font-size: 1.1rem;
+      color: #FFCC00;
+      margin-bottom: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="label">에린 시간</div>
+  <div class="erinn-time" id="erinnTime">--:--</div>
+  <script>
+    function updateErinnTime() {
+      // 1. 한국 시간(KST) 기준 현재 시각
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const kst = new Date(utc + 9 * 60 * 60 * 1000);
+
+      // 2. 오늘 0시(KST) 기준 경과 ms
+      const midnight = new Date(kst.getFullYear(), kst.getMonth(), kst.getDate());
+      const realMs = kst.getTime() - midnight.getTime();
+
+      // 3. erinn 시간 계산 (36분 = 1일 → 1ms → 40ms)
+      const totalErinnMinutes = Math.floor((realMs * 40) / 60000) % (24 * 60);
+      const hours = Math.floor(totalErinnMinutes / 60);
+      const minutes = totalErinnMinutes % 60;
+
+      // 4. 2자리 수 포맷팅
+      const hh = hours.toString().padStart(2, '0');
+      const mm = minutes.toString().padStart(2, '0');
+      document.getElementById('erinnTime').textContent = `${hh}:${mm}`;
+    }
+
+    updateErinnTime();
+    setInterval(updateErinnTime, 500);
+  </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>아르카나 계산기</title>
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #191919;
+                font-family: "Pretendard", sans-serif;
+                color: #f4f4f4;
+            }
+            .calculator {
+                background: #222;
+                padding: 40px 50px;
+                border-radius: 12px;
+                box-shadow: 0 0 25px rgba(0, 0, 0, 0.45);
+                max-width: 360px;
+                width: 100%;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 1rem;
+            }
+            input,
+            button {
+                width: 100%;
+                padding: 12px 14px;
+                font-size: 1rem;
+                border: 1px solid #555;
+                border-radius: 6px;
+            }
+            input {
+                background: #333;
+                color: #eee;
+                margin-bottom: 18px;
+            }
+            button {
+                font-weight: 700;
+                cursor: pointer;
+                color: #000;
+                background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+                transition: transform 0.18s ease, box-shadow 0.18s ease;
+                border: none;
+            }
+            button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+            }
+
+            #result {
+                margin-top: 24px;
+                font-size: 1.05rem;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="calculator">
+            <input type="number" id="xp" min="0" placeholder="현재 누적 아르카나 경험치" />
+            <button onclick="calc()">계산</button>
+
+            <div id="result"></div>
+        </div>
+
+        <script>
+            const arcanaCumXP = [
+                0,
+                600,
+                1206,
+                1818,
+                2436,
+                3060,
+                3690,
+                4326,
+                4968,
+                5616,
+                6270,
+                6930,
+                7596,
+                8268,
+                9042,
+                9772,
+                10512,
+                11266,
+                12035,
+                12819,
+                13627,
+                14450,
+                15312,
+                16192,
+                17098,
+                18031,
+                18991,
+                19979,
+                20996,
+                22043,
+                23131,
+                24262,
+                25438,
+                26661,
+                27932,
+                29253,
+                30626,
+                32053,
+                33537,
+                35080,
+                36700,
+                38401,
+                40187,
+                42062,
+                44030,
+                46096,
+                48265,
+                50542,
+                52932,
+                55441,
+            ];
+            const XP_PER_LEVELUP = 15;
+            const LEVELS_PER_POTION = 199;
+            document.getElementById("xp").addEventListener("keydown", (e) => {
+                if (e.key === "Enter") calc();
+            });
+
+            function calc() {
+                const cur = Number(document.getElementById("xp").value);
+                const out = document.getElementById("result");
+                if (isNaN(cur) || cur < 0) {
+                    out.textContent = "0 이상의 숫자 입력!";
+                    return;
+                }
+
+                const goal = arcanaCumXP[arcanaCumXP.length - 1];
+                if (cur >= goal) {
+                    out.textContent = "이미 50레벨이에용!";
+                    return;
+                }
+
+                const xpNeed = goal - cur;
+                const levelUps = Math.ceil(xpNeed / XP_PER_LEVELUP);
+                const potions = Math.ceil(levelUps / LEVELS_PER_POTION);
+
+                out.innerHTML =
+                    `<strong>50레벨까지 필요한...</strong><br>` +
+                    `아르카나 경험치 : <strong>${xpNeed.toLocaleString()} exp</strong><br>` +
+                    `레벨업 : <strong>${levelUps.toLocaleString()} 회</strong><br>` +
+                    `환생의 비약 : <strong>${potions.toLocaleString()} 개</strong>`;
+            }
+        </script>
+    </body>
+</html>

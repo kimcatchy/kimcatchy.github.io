@@ -2,7 +2,7 @@
 title: Hugo 블로그 시작
 description: Hugo 블로그 시작
 slug: hugo-start
-date: 2025-09-16 21:00:00+0000
+date: 2025-09-16 21:00:00+9000
 #image: cover.jpg
 categories:
     - Daily

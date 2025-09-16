@@ -12,3 +12,16 @@ body, .article-title {
 body, .article-page {
     font-family: 'Noto Sans KR', sans-serif;
 }
+
+/* 한글 줄바꿈 최적화 */
+.article-content {
+    word-break: keep-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* 추가적으로 본문 전체에 적용 */
+body {
+    word-break: keep-all;
+    word-wrap: break-word;
+}

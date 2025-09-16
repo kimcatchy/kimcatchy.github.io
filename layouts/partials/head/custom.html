@@ -1,3 +1,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // embed-link-box를 찾아서 문단 끝으로 이동
+    const embedBoxes = document.querySelectorAll('.embed-link-box');
+    
+    embedBoxes.forEach(function(box) {
+        const paragraph = box.closest('p');
+        if (paragraph) {
+            // 문단 다음에 embed box 삽입
+            paragraph.parentNode.insertBefore(box, paragraph.nextSibling);
+        }
+    });
+});
+</script>

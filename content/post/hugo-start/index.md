@@ -1,6 +1,6 @@
 ---
 title: Hugo 블로그 시작
-description: Hugo 블로그 시작
+description: 또 블로그를 옮긴 나..
 slug: hugo-start
 date: 2025-09-16 21:00:00+0900
 #image: cover.jpg
@@ -50,7 +50,7 @@ Notion도 익숙하지 않을 때는 굳이 이걸 사용해야하나.. 싶었�
 
 그래서 일단 nolog로 블로그에서 먼저 사용해보고.. 비슷한 방식으로 다른 것들도 notion으로 모두 해결하는 게 목표다..!
 
-# Hugo를 선택한 이유
+## Hugo를 선택한 이유
 
 뭐 깃허브에서 공식 지원하는 Jekyll도 있고 Gatsby, Hexo 등등 쓸 건 많았는데, 그냥 지금 적용한 Hugo 테마가 마음에 들어서 선택했다.
 

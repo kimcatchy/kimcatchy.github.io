@@ -1,6 +1,6 @@
 ---
-title: Example Category
-description: A description of this category
+title: CheatSheet
+description: 자주 쓰는 코드 & 명령어
 image:
 
 # Badge style

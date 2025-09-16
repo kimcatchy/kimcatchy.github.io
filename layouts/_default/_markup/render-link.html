@@ -1,13 +1,16 @@
 {{- $u := urls.Parse .Destination -}}
 {{- if $u.IsAbs -}}
-  <div class="embed-link">
-    <a href="{{ .Destination | safeURL }}" target="_blank" rel="noopener">
-      <div class="embed-content">
-        <h4>{{ .Text }}</h4>
-        <p>{{ .Destination }}</p>
-      </div>
-    </a>
+<!-- 기존 링크 유지 -->
+<a href="{{ .Destination | safeURL }}" target="_blank" rel="noopener">{{ .Text }}</a>
+
+<!-- 아래에 embed box 추가 -->
+<div class="embed-link-box">
+  <div class="embed-content">
+    <div class="embed-title">{{ .Text }}</div>
+    <div class="embed-url">{{ .Destination }}</div>
   </div>
+</div>
 {{- else -}}
-  <a href="{{ .Destination | safeURL }}">{{ .Text }}</a>
+<!-- 내부 링크는 기본 처리 -->
+<a href="{{ .Destination | safeURL }}">{{ .Text }}</a>
 {{- end -}}

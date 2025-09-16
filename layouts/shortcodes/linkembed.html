@@ -1,0 +1,8 @@
+<a href="{{ .Get "url" }}" target="_blank" rel="noopener">{{ .Get "text" }}</a>
+
+<div class="embed-link-box" data-url="{{ .Get "url" }}" data-text="{{ .Get "text" }}">
+  <div class="embed-content">
+    <div class="embed-title">{{ .Get "text" }}</div>
+    <div class="embed-url">{{ .Get "url" }}</div>
+  </div>
+</div>

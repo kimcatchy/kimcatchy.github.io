@@ -185,17 +185,6 @@ $codeblock-max-height: 25em;
 
 ## MacOS-style Code Blocks
 - 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
-- `~/assets/scss/partials/layout/article.scss` 추가하고 아래 내용 작성
-```scss
-.highlight {
-    background-color: var(--pre-background-color);
-    padding: var(--card-padding);
-    position: relative;
-    border-radius: 10px;
-    max-width: 100% !important;
-    margin: 0 !important;
-    box-shadow: var(--shadow-l1) !important;
-```
 - `~/static/img/code-header.svg` 추가하고 아래 내용 작성
 ```SVG
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"  x="0px" y="0px" width="450px" height="130px">
@@ -208,6 +197,15 @@ $codeblock-max-height: 25em;
 ```scss
 // Add MacOS style to the top of code blocks
 .article-content {
+    .highlight {
+        background-color: var(--pre-background-color);
+        padding: var(--card-padding);
+        position: relative;
+        border-radius: 10px;
+        max-width: 100% !important;
+        margin: 0 !important;
+        box-shadow: var(--shadow-l1) !important;
+    }
     .highlight:before {
         content: "";
         display: block;

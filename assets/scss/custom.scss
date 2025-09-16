@@ -128,6 +128,15 @@ $codeblock-max-height: 25em;
 
 // Add MacOS style to the top of code blocks
 .article-content {
+    .highlight {
+        background-color: var(--pre-background-color);
+        padding: var(--card-padding);
+        position: relative;
+        border-radius: 10px;
+        max-width: 100% !important;
+        margin: 0 !important;
+        box-shadow: var(--shadow-l1) !important;
+    }
     .highlight:before {
         content: "";
         display: block;

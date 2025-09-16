@@ -1,3 +1,7 @@
+/* =========================== */
+/* 폰트 설정 */
+/* =========================== */
+
 // 본문 폰트
 body, .article-content {
     font-family: 'Noto Sans KR', sans-serif;
@@ -26,7 +30,9 @@ body {
     word-wrap: break-word;
 }
 
+/* =========================== */
 /* 링크 embed */
+/* =========================== */
 .embed-link-box {
   display: block;
   margin: 24px 0;
@@ -35,23 +41,7 @@ body {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  
-  // 라이트 모드 (포스트 배경과 구분)
-  [data-scheme="light"] & {
-    background-color: #f1f5f9; // 연한 회색
-    border: 1px solid #cbd5e1;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    
-    &:hover {
-      background-color: #e2e8f0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transform: translateY(-1px);
-    }
-  }
-  
-  // 다크 모드 (포스트 배경과 구분)
-  [data-scheme="dark"] & {
-    background-color: #374151; // 진한 회색
+    background-color: #374151;
     border: 1px solid #4b5563;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     
@@ -60,7 +50,6 @@ body {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
       transform: translateY(-1px);
     }
-  }
 }
 
 .embed-content {

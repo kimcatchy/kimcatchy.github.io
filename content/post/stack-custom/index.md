@@ -167,6 +167,61 @@ $codeblock-max-height: 25em;
 }
 ```
 
+## Reduce Code Block Font Size
+- 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
+- `~/assets/scss/custom.scss`에 아래 내용 추가
+```
+/* Left column (line numbers) */
+.chroma .lntd, .chroma .lntd pre, .chroma .ln {
+    font-size: 14px;
+    font-family: var(--code-font-family);
+}
+/* Right column (code) */
+.chroma code, .chroma pre {
+    font-size: 14px;
+    font-family: var(--code-font-family);
+}
+```
+
+## MacOS-style Code Blocks
+- 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
+- `~/assets/scss/partials/layout/article.scss` 추가하고 아래 내용 작성
+```
+.highlight {
+    background-color: var(--pre-background-color);
+    padding: var(--card-padding);
+    position: relative;
+    border-radius: 10px;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-shadow: var(--shadow-l1) !important;
+```
+- `~/static/img/code-header.svg` 추가하고 아래 내용 작성
+```
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"  x="0px" y="0px" width="450px" height="130px">
+    <ellipse cx="65" cy="65" rx="50" ry="52" stroke="rgb(220,60,54)" stroke-width="2" fill="rgb(237,108,96)"/>
+    <ellipse cx="225" cy="65" rx="50" ry="52"  stroke="rgb(218,151,33)" stroke-width="2" fill="rgb(247,193,81)"/>
+    <ellipse cx="385" cy="65" rx="50" ry="52"  stroke="rgb(27,161,37)" stroke-width="2" fill="rgb(100,200,86)"/>
+</svg>
+```
+- `~/assets/scss/custom.scss`에 아래 내용 추가
+```
+// Add MacOS style to the top of code blocks
+.article-content {
+    .highlight:before {
+        content: "";
+        display: block;
+        background: url(/img/code-header.svg);
+        height: 25px;
+        width: 100%;
+        background-size: 52px;
+        background-repeat: no-repeat;
+        margin-top: -10px;
+        margin-bottom: 0;
+    }
+}
+```
+
 ## Show Icon After External Links
 - 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
 - `~/layouts/_default/_markup/render-link.html` 추가하고 아래 내용 작성

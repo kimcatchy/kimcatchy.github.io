@@ -1,8 +1,6 @@
-<a href="{{ .Get "url" }}" target="_blank" rel="noopener">{{ .Get "text" }}</a>
-
-<div class="embed-link-box" data-url="{{ .Get "url" }}" data-text="{{ .Get "text" }}">
+<!-- 기존 링크 텍스트 제거하고 전체 박스를 링크로 만들기 -->
+<a href="{{ .Get "url" }}" target="_blank" rel="noopener" class="embed-link-box">
   <div class="embed-content">
-    <div class="embed-title">{{ .Get "text" }}</div>
     <div class="embed-url">{{ .Get "url" }}</div>
   </div>
-</div>
+</a>

@@ -1,0 +1,61 @@
+# i18n/ko.yaml
+# 인터페이스 텍스트를 영어로 유지
+toggleMenu:
+    other: Toggle Menu
+darkMode:
+    other: Dark Mode
+list:
+    page:
+        one: "{{ .Count }} page"
+        other: "{{ .Count }} pages"
+    section:
+        other: Section
+    subsection:
+        one: Subsection
+        other: Subsections
+
+article:
+    back:
+        other: 뒤로가기
+    tableOfContents:
+        other: 목차
+    relatedContent:
+        other: 관련 글
+    lastUpdatedOn:
+        other: "마지막 수정: "
+    readingTime:
+        one: "{{ .Count }} minute read"
+        other: "{{ .Count }} minute read"
+
+notFound:
+    title:
+        other: Not Found
+    subtitle:
+        other: 페이지를 찾을 수 없습니다.
+
+widget:
+    archives:
+        title:
+            other: Archives
+        more:
+            other: More
+    tagCloud:
+        title:
+            other: Tags
+    categoriesCloud:
+        title:
+            other: Categories
+  
+search:
+    title:
+        other: 검색
+    placeholder:
+        other: 검색어를 입력하세요...
+    resultTitle:
+        other: "#PAGES_COUNT pages (#TIME_SECONDS seconds)"
+  
+footer:
+    builtWith:
+        other: Built with {{ .Generator }}
+    designedBy:
+        other: Theme {{ .Theme }} designed by {{ .DesignedBy }}

@@ -1,0 +1,13 @@
+{{- $u := urls.Parse .Destination -}}
+{{- if $u.IsAbs -}}
+  <div class="embed-link">
+    <a href="{{ .Destination | safeURL }}" target="_blank" rel="noopener">
+      <div class="embed-content">
+        <h4>{{ .Text }}</h4>
+        <p>{{ .Destination }}</p>
+      </div>
+    </a>
+  </div>
+{{- else -}}
+  <a href="{{ .Destination | safeURL }}">{{ .Text }}</a>
+{{- end -}}

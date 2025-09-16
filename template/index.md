@@ -2,7 +2,7 @@
 title: 제목
 description: 설명
 slug: sl-ug
-date: 2025-09-16 00:00:00+0000
+date: 2025-09-16 00:00:00+0900
 #image: cover.jpg
 categories:
     - ExampleCategory

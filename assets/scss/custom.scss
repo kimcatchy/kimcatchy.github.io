@@ -69,14 +69,7 @@ body {
   font-size: 1.1rem;
   margin: 0;
   overflow-wrap: break-word;
-  
-  [data-scheme="light"] & {
-    color: #475569;
-  }
-  
-  [data-scheme="dark"] & {
     color: #d1d5db;
-  }
 }
 
 // =============================

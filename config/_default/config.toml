@@ -16,3 +16,8 @@ disqusShortname = "hugo-theme-stack"
 
 [pagination]
 pagerSize = 5
+
+[module]
+  [[module.mounts]]
+    source = "erinn"
+    target = "static/erinn"

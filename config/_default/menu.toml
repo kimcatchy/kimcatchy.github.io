@@ -16,9 +16,16 @@ url = "https://github.com/kimcatchy"
 icon = "brand-github"
 
 [[social]]
-identifier = "twitter"
-name = "Twitter"
-url = "https://twitter.com"
+identifier = "gitlab"
+name = "GitLab"
+url = "https://gitlab.com/kimcatchy"
 
 [social.params]
-icon = "brand-twitter"
+icon = "brand-gitlab"
+
+[[main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+[main.params]
+icon = "user"

@@ -13,13 +13,13 @@ tags:
 
 ## Font & Line Break
 - `~/layouts/partials/head/custom.html` 추가하고 아래 내용 작성
-```
+```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 ```
 - `~/assets/scss/custom.scss`에 아래 내용 추가
-```
+```scss
 // 본문 폰트
 body, .article-content {
     font-family: 'Noto Sans KR', sans-serif;
@@ -51,7 +51,7 @@ body {
 
 ## Link Embed Shortcode
 - `~/layouts/shortcodes/linkembed.html` 추가하고 아래 내용 작성
-```
+```html
 <!-- 기존 링크 텍스트 제거하고 전체 박스를 링크로 만들기 -->
 <a href="{{ .Get "url" }}" target="_blank" rel="noopener" class="embed-link-box">
   <div class="embed-content">
@@ -60,7 +60,7 @@ body {
 </a>
 ```
 - `~/assets/scss/custom.scss`에 아래 내용 추가
-```
+```scss
 /* 링크 embed */
 .embed-link-box {
   display: block;
@@ -129,7 +129,7 @@ body {
 ## Custom Height for Code Blocks with Global Scrollbar
 - 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
 - `~/assets/scss/custom.scss`에 아래 내용 추가
-```
+```scss
 // =============================
 // Code Blocks
 // =============================
@@ -170,7 +170,7 @@ $codeblock-max-height: 25em;
 ## Reduce Code Block Font Size
 - 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
 - `~/assets/scss/custom.scss`에 아래 내용 추가
-```
+```scss
 /* Left column (line numbers) */
 .chroma .lntd, .chroma .lntd pre, .chroma .ln {
     font-size: 14px;
@@ -186,7 +186,7 @@ $codeblock-max-height: 25em;
 ## MacOS-style Code Blocks
 - 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
 - `~/assets/scss/partials/layout/article.scss` 추가하고 아래 내용 작성
-```
+```scss
 .highlight {
     background-color: var(--pre-background-color);
     padding: var(--card-padding);
@@ -197,7 +197,7 @@ $codeblock-max-height: 25em;
     box-shadow: var(--shadow-l1) !important;
 ```
 - `~/static/img/code-header.svg` 추가하고 아래 내용 작성
-```
+```SVG
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"  x="0px" y="0px" width="450px" height="130px">
     <ellipse cx="65" cy="65" rx="50" ry="52" stroke="rgb(220,60,54)" stroke-width="2" fill="rgb(237,108,96)"/>
     <ellipse cx="225" cy="65" rx="50" ry="52"  stroke="rgb(218,151,33)" stroke-width="2" fill="rgb(247,193,81)"/>
@@ -205,7 +205,7 @@ $codeblock-max-height: 25em;
 </svg>
 ```
 - `~/assets/scss/custom.scss`에 아래 내용 추가
-```
+```scss
 // Add MacOS style to the top of code blocks
 .article-content {
     .highlight:before {
@@ -225,7 +225,7 @@ $codeblock-max-height: 25em;
 ## Show Icon After External Links
 - 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
 - `~/layouts/_default/_markup/render-link.html` 추가하고 아래 내용 작성
-```
+```html
 <a class="link" href="{{ .Destination | safeURL }}" {{ with .Title}} title="{{ . }}"
     {{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener"
     {{ end }}>{{ .Text | safeHTML }}</a>
@@ -242,7 +242,7 @@ $codeblock-max-height: 25em;
 ## Back-to-Top Button
 - 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
 - `~/layouts/partials/footer/components/script.html` 추가하고 아래 내용 작성
-```
+```html
 <!-- Add back to top button -->
 <script>
     function backToTop() {
@@ -276,7 +276,7 @@ $codeblock-max-height: 25em;
 </script>
 ```
 - `~/layouts/partials/footer/custom.html` 추가하고 아래 내용 작성
-```
+```html
 <!-- Add back to top button -->
 <a href="#" id="back-to-top" title="Back to top"></a>
 
@@ -360,7 +360,7 @@ $codeblock-max-height: 25em;
 
 ## Top Loading Progress Bar
 - `~/layouts/partials/footer/custom.html`에 아래 내용 추가
-```
+```html
 <!-- Top Loading Progress Bar -->
 <script
     src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js"

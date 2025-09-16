@@ -4,15 +4,21 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // embed-link-box를 찾아서 문단 끝으로 이동
+    console.log('Script loaded'); // 디버깅용
+    
     const embedBoxes = document.querySelectorAll('.embed-link-box');
+    console.log('Found embed boxes:', embedBoxes.length); // 디버깅용
     
     embedBoxes.forEach(function(box) {
         const paragraph = box.closest('p');
+        console.log('Found paragraph:', paragraph); // 디버깅용
+        
         if (paragraph) {
-            // 문단 다음에 embed box 삽입
+            // 문단 바로 다음에 embed box 이동
             paragraph.parentNode.insertBefore(box, paragraph.nextSibling);
+            console.log('Moved box'); // 디버깅용
         }
     });
 });
 </script>
+

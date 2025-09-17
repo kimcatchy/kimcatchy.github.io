@@ -244,12 +244,21 @@ $codeblock-max-height: 25em;
     margin-bottom: 0;
 }
 
-/* Copy 버튼 위치 수정 - copyCodeButton 클래스 */
+/* Copy 버튼 - 기존처럼 호버시에만 표시 */
 .code-block-wrapper .copyCodeButton {
     position: absolute !important;
-    top: 50px !important; /* 헤더 아래 적절한 위치 */
-    right: 15px !important;
+    top: 10px !important; /* 헤더와 겹치지 않는 적절한 위치 */
+    right: 10px !important;
     z-index: 20 !important;
+    
+    /* 기본적으로 숨김 */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    
+    /* 부드러운 전환 효과 */
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+    
+    /* 기본 스타일 유지 */
     background-color: var(--card-background) !important;
     border: 1px solid var(--card-border) !important;
     border-radius: 6px !important;
@@ -258,14 +267,18 @@ $codeblock-max-height: 25em;
     font-weight: 500 !important;
     color: var(--body-text-color) !important;
     cursor: pointer !important;
-    transition: all 0.2s ease !important;
-    opacity: 0.8 !important;
 }
 
+/* 코드 블록에 호버시에만 Copy 버튼 표시 */
+.code-block-wrapper:hover .copyCodeButton {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Copy 버튼 호버 효과 */
 .code-block-wrapper .copyCodeButton:hover {
     background-color: var(--accent-color) !important;
     color: white !important;
-    opacity: 1 !important;
     transform: translateY(-1px) !important;
 }
 

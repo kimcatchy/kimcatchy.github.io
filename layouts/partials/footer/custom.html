@@ -85,16 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// NProgress (안전한 버전)
+<!-- NProgress (개선된 버전) -->
 (function() {
-    // NProgress 스크립트를 동적으로 로드
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js';
     script.integrity = 'sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg';
     script.crossOrigin = 'anonymous';
     
     script.onload = function() {
-        // NProgress CSS 동적 로드
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = 'https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css';
@@ -102,19 +100,65 @@ document.addEventListener('DOMContentLoaded', function() {
         link.crossOrigin = 'anonymous';
         document.head.appendChild(link);
         
-        // NProgress 시작
         if (typeof NProgress !== 'undefined') {
-            NProgress.start();
+            let progressStarted = false;
+            let progressCompleted = false;
             
-            if (document.readyState === 'interactive') {
-                NProgress.inc(0.8);
-            } else if (document.readyState === 'complete') {
-                NProgress.done();
-            } else {
-                document.addEventListener('readystatechange', function() {
-                    if (document.readyState === 'interactive') NProgress.inc(0.8);
-                    if (document.readyState === 'complete') NProgress.done();
-                });
+            function startProgress() {
+                if (!progressStarted) {
+                    NProgress.start();
+                    progressStarted = true;
+                    progressCompleted = false;
+                }
+            }
+            
+            function completeProgress() {
+                if (progressStarted && !progressCompleted) {
+                    NProgress.done();
+                    progressCompleted = true;
+                    progressStarted = false;
+                }
+            }
+            
+            // 즉시 시작
+            if (document.readyState === 'loading') {
+                startProgress();
+            }
+            
+            // 다양한 완료 조건 체크
+            function checkAndComplete() {
+                if (document.readyState === 'complete') {
+                    completeProgress();
+                    return true;
+                }
+                return false;
+            }
+            
+            // readyState 변경 감지
+            document.addEventListener('readystatechange', function() {
+                if (document.readyState === 'interactive') {
+                    if (progressStarted) NProgress.inc(0.8);
+                } else if (document.readyState === 'complete') {
+                    setTimeout(completeProgress, 100); // 약간의 지연
+                }
+            });
+            
+            // 추가 완료 조건들
+            window.addEventListener('load', function() {
+                setTimeout(completeProgress, 200);
+            });
+            
+            // 강제 완료 타이머 (백업)
+            setTimeout(function() {
+                if (!progressCompleted) {
+                    console.log('NProgress 강제 완료');
+                    completeProgress();
+                }
+            }, 10000); // 10초 후 강제 완료
+            
+            // 페이지가 이미 로드된 경우
+            if (document.readyState === 'complete') {
+                setTimeout(completeProgress, 100);
             }
         }
     };

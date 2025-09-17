@@ -286,21 +286,7 @@ $codeblock-max-height: 25em;
     transform: translateY(-1px) !important;
 }
 
-/* 코드 내용 영역이 Copy 버튼과 겹치지 않도록 우측 여백 확보 */
-.code-block-content {
-    padding-right: 80px !important; /* Copy 버튼 공간 확보 */
-}
-
 /* 코드 블록 우측 여백 추가 - 수평 스크롤 시 여백 확보 */
 .code-block-content .highlight pre {
     padding-right: 2em !important; /* 코드 끝에 여백 추가 */
-}
-
-.code-block-content .lntable {
-    padding-right: 1.5em; /* 라인 넘버가 있는 경우도 여백 추가 */
-}
-
-/* 코드 내용 자체에 여백 추가 */
-.code-block-content .highlight code {
-    padding-right: 1.5em !important;
 }

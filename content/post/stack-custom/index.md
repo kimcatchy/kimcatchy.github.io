@@ -129,7 +129,6 @@ body {
 {{< linkembed url="https://kimcatchy.github.io" text="nolog" >}}
 
 ## Collapsible Section Shortcode
-- 출처: [Add collapsible section in hugo](https://stackoverflow.com/questions/71691219/add-collapsible-section-in-hugo)
 - `~/layouts/shortcodes/details.html` 생성 후 아래 내용 작성
 ```html
 <details>
@@ -142,65 +141,12 @@ body {
 쮜지직
 {{< /details >}}
 
-## Custom Height for Code Blocks with Global Scrollbar
-- 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
-- `~/assets/scss/custom.scss`에 아래 내용 추가
-```scss
-// =============================
-// Code Blocks
-// =============================
-/* Custom variable, modify the height here as needed */
-$codeblock-max-height: 25em;
-
-/* ① Set the outermost .highlight as the “only” scrollable container */
-.highlight {
-  max-height: $codeblock-max-height;
-  overflow: auto;                 /* Controls both X and Y directions */
-  -webkit-overflow-scrolling: touch; /* Inertia scrolling on mobile */
-}
-
-/* ② Disable internal pre/code scrollbars (to avoid double scrollbars) */
-.highlight pre,
-.highlight code,
-.highlight .chroma {
-  overflow: visible !important;   /* Override Stack’s overflow-x:auto on pre */
-}
-
-/* ③ Make the line number table auto-expand with content width to enable X scroll on wide blocks */
-.lntable {
-  display: inline-table;          /* Keeps table property, allows content-dependent width */
-  min-width: max-content;
-  border-spacing: 0;
-}
-
-/* ④ Disable auto-wrapping, long lines are handled by horizontal scrolling */
-.lntd:last-child code,
-.highlight code {
-  white-space: pre;               /* No line breaks */
-}
-.lntd:first-child {
-  user-select: none; // Prevent selecting line numbers
-}
-```
-
-## Reduce Code Block Font Size
-- 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
-- `~/assets/scss/custom.scss`에 아래 내용 추가
-```scss
-/* Left column (line numbers) */
-.chroma .lntd, .chroma .lntd pre, .chroma .ln {
-    font-size: 14px;
-    font-family: var(--code-font-family);
-}
-/* Right column (code) */
-.chroma code, .chroma pre {
-    font-size: 14px;
-    font-family: var(--code-font-family);
-}
-```
-
-## MacOS-style Code Blocks
-- 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
+## Modified MacOS Style Code Blocks
+- 적용한 기능
+  - Custom Height for Code Blocks with Global Scrollbar
+  - Reduce Code Block Font Size
+  - MacOS-style Code Blocks
+  - Show Language on Code Block Header
 - `~/static/img/code-header.svg` 추가하고 아래 내용 작성
 ```SVG
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"  x="0px" y="0px" width="450px" height="130px">
@@ -209,20 +155,146 @@ $codeblock-max-height: 25em;
     <ellipse cx="385" cy="65" rx="50" ry="52"  stroke="rgb(27,161,37)" stroke-width="2" fill="rgb(100,200,86)"/>
 </svg>
 ```
+- `~/layouts/_default/_markup/render-codeblock.html` 추가하고 아래 내용 작성
+```html
+{{ $lang := .Type | default "text" }}
+{{ $result := transform.HighlightCodeBlock . }}
+
+<div class="code-block-wrapper">
+  <!-- 언어 라벨 표시 -->
+  <div class="code-block-header">
+    <div class="code-block-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <div class="code-block-language">{{ $lang }}</div>
+  </div>
+  
+  <!-- 실제 코드 블록 -->
+  <div class="code-block-content">
+    {{ $result.Wrapped }}
+  </div>
+</div>
+```
 - `~/assets/scss/custom.scss`에 아래 내용 추가
 ```scss
-// Add MacOS style to the top of code blocks
-.article-content {
+/* ============================= */
+/* 코드 블록 설정 */
+/* ============================= */
+/* 최대 높이 변수 설정 */
+$codeblock-max-height: 25em;
+
+/* 코드 블록 래퍼 */
+.code-block-wrapper {
+    background-color: var(--pre-background-color);
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-l1);
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    display: block;
+    clear: both;
+}
+
+/* Mac 스타일 헤더 + 언어 라벨 */
+.code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background-color: var(--card-background-selected);
+    border-bottom: 2px solid var(--accent-color);
+    min-height: 40px;
+    border-radius: 10px 10px 0 0;
+}
+
+.code-block-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+}
+
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27ca3f; }
+
+.code-block-language {
+    color: var(--accent-color);
+    font-family: var(--code-font-family);
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    opacity: 0.9;
+}
+
+/* 코드 내용 영역 */
+.code-block-content {
+    position: relative;
+    overflow: auto;
+    max-height: $codeblock-max-height;
+    -webkit-overflow-scrolling: touch;
+    
     .highlight {
-        background-color: var(--pre-background-color);
-        padding: var(--card-padding);
-        position: relative;
-        border-radius: 10px;
-        max-width: 100% !important;
         margin: 0 !important;
-        box-shadow: var(--shadow-l1) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+        padding: var(--card-padding) !important;
     }
-    .highlight:before {
+}
+
+/* 기존 .highlight:before 비활성화 */
+.article-content .code-block-wrapper .highlight:before {
+    display: none !important;
+}
+
+/* 기존 코드 블록 스타일 */
+.highlight {
+    max-height: $codeblock-max-height;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.highlight pre,
+.highlight code,
+.highlight .chroma {
+    overflow: visible !important;
+}
+
+.lntable {
+    display: inline-table;
+    min-width: max-content;
+    border-spacing: 0;
+}
+
+.lntd:last-child code,
+.highlight code {
+    white-space: pre;
+}
+
+.lntd:first-child {
+    user-select: none;
+}
+
+/* 기존 .highlight 스타일 */
+.article-content .highlight {
+    background-color: var(--pre-background-color);
+    padding: var(--card-padding);
+    position: relative;
+    border-radius: 10px;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-shadow: var(--shadow-l1) !important;
+    
+    &:before {
         content: "";
         display: block;
         background: url(/img/code-header.svg);
@@ -234,10 +306,24 @@ $codeblock-max-height: 25em;
         margin-bottom: 0;
     }
 }
+
+/* 좌측 폰트 설정 (ln) */
+.chroma .lntd,
+.chroma .lntd pre,
+.chroma .ln {
+    font-size: 14px;
+    font-family: var(--code-font-family);
+}
+
+/* 우측 폰트 설정 (code) */
+.chroma code,
+.chroma pre {
+    font-size: 14px;
+    font-family: var(--code-font-family);
+}
 ```
 
 ## Show Icon After External Links
-- 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
 - `~/layouts/_default/_markup/render-link.html` 추가하고 아래 내용 작성
 ```html
 <a class="link" href="{{ .Destination | safeURL }}" {{ with .Title}} title="{{ . }}"
@@ -253,66 +339,34 @@ $codeblock-max-height: 25em;
 {{ end }}
 ```
 
-## Back-to-Top Button
-- 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
-- `~/layouts/partials/footer/components/script.html` 추가하고 아래 내용 작성
-```html
-<!-- Add back to top button -->
-<script>
-    function backToTop() {
-    document.documentElement.scrollIntoView({
-        behavior: 'smooth',
-    })
-    }
-
-    window.onload = function () {
-    let scrollTop =
-        this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop > 0) {
-        totopBtn.style.display = 'inline'
-    } else {
-        totopBtn.style.display = 'none'
-    }
-    }
-
-    window.onscroll = function () {
-    let scrollTop =
-        this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop < 200) {
-        totopBtn.style.display = 'none'
-    } else {
-        totopBtn.style.display = 'inline'
-        totopBtn.addEventListener('click', backToTop, false)
-    }
-    }
-</script>
-```
+## Modified Stack Theme UI
+- 적용한 기능
+  - Back-to-Top Button
+  - Top Loading Progress Bar
+- 참고한 블로그 글처럼 script.html 사용 시 기존 script.html이 override 돼서 오류 발생
 - `~/layouts/partials/footer/custom.html` 추가하고 아래 내용 작성
 ```html
-<!-- Add back to top button -->
+<!-- Back to Top Button -->
 <a href="#" id="back-to-top" title="Back to top"></a>
 
-<!-- Back to top button CSS -->
+<!-- Back to Top Button Styles -->
 <style>
 #back-to-top {
     display: none;
     position: fixed;
     bottom: 5px;
     right: 15px;
-    width: 40px; /* Reduced size */
-    height: 40px; /* Reduced size */
-    border-radius: 50%; /* Circular button for modern look */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background-color: var(--body-background);
     box-shadow: var(--shadow-l2);
-    font-size: 20px; /* Adjusted for smaller button */
+    font-size: 20px;
     text-align: center;
-    line-height: 38px; /* Center align arrow */
+    line-height: 38px;
     cursor: pointer;
-    transition:
-    transform 0.3s ease,
-    background-color 0.3s ease; /* Added smooth interaction */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 999;
 }
 
 #back-to-top:before {
@@ -320,78 +374,148 @@ $codeblock-max-height: 25em;
     display: inline-block;
     position: relative;
     transform: rotate(135deg);
-    height: 8px; /* Reduced size */
-    width: 8px; /* Reduced size */
+    height: 8px;
+    width: 8px;
     border-width: 0 0 2px 2px;
-    border-color: var(--back-to-top-color);
+    border-color: var(--accent-color);
     border-style: solid;
 }
 
 #back-to-top:hover {
-    transform: scale(1.1); /* Slightly larger on hover */
-    background-color: var(--accent-background); /* Optional hover effect */
+    transform: scale(1.1);
+    background-color: var(--accent-background);
 }
 
-#back-to-top:hover:before {
-    border-color: var(--accent-color); /* Change arrow color on hover */
-}
-
-/* Responsive styles */
+/* 반응형 스타일 */
 @media screen and (max-width: 768px) {
     #back-to-top {
-    bottom: 5px;
-    right: var(--container-padding);
-    width: 30px; /* Slightly smaller for mobile */
-    height: 30px;
-    font-size: 16px;
-    line-height: 32px;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    #back-to-top {
-    bottom: 10px;
-    right: 20px;
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    #back-to-top {
-    bottom: 15px;
-    right: 25px;
-    }
-}
-
-@media screen and (min-width: 1536px) {
-    #back-to-top {
-    bottom: 15px;
-    right: 25px;
-    /* visibility: hidden; */
+        bottom: 5px;
+        right: var(--container-padding);
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        line-height: 32px;
     }
 }
 </style>
-```
 
-## Top Loading Progress Bar
-- `~/layouts/partials/footer/custom.html`에 아래 내용 추가
-```html
-<!-- Top Loading Progress Bar -->
-<script
-    src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js"
-    integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg"
-    crossorigin="anonymous"
-></script>
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css"
-    integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE"
-    crossorigin="anonymous"
-/>
+<!-- Back to Top + NProgress Script -->
 <script>
-    NProgress.start();
-    document.addEventListener("readystatechange", () => {
-        if (document.readyState === "interactive") NProgress.inc(0.8);
-        if (document.readyState === "complete") NProgress.done();
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    // Back to Top 기능
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    function backToTop() {
+        document.documentElement.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+    
+    function updateBackToTopVisibility() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        if (scrollTop > 200) {
+            backToTopBtn.style.display = 'inline';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    }
+    
+    // 이벤트 리스너는 한 번만 등록
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            backToTop();
+        });
+        
+        window.addEventListener('scroll', updateBackToTopVisibility);
+        updateBackToTopVisibility(); // 초기 상태 설정
+    }
+});
+
+<!-- NProgress -->
+(function() {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js';
+    script.integrity = 'sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg';
+    script.crossOrigin = 'anonymous';
+    
+    script.onload = function() {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css';
+        link.integrity = 'sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE';
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+        
+        if (typeof NProgress !== 'undefined') {
+            let progressStarted = false;
+            let progressCompleted = false;
+            
+            function startProgress() {
+                if (!progressStarted) {
+                    NProgress.start();
+                    progressStarted = true;
+                    progressCompleted = false;
+                }
+            }
+            
+            function completeProgress() {
+                if (progressStarted && !progressCompleted) {
+                    NProgress.done();
+                    progressCompleted = true;
+                    progressStarted = false;
+                }
+            }
+            
+            // 즉시 시작
+            if (document.readyState === 'loading') {
+                startProgress();
+            }
+            
+            // 다양한 완료 조건 체크
+            function checkAndComplete() {
+                if (document.readyState === 'complete') {
+                    completeProgress();
+                    return true;
+                }
+                return false;
+            }
+            
+            // readyState 변경 감지
+            document.addEventListener('readystatechange', function() {
+                if (document.readyState === 'interactive') {
+                    if (progressStarted) NProgress.inc(0.8);
+                } else if (document.readyState === 'complete') {
+                    setTimeout(completeProgress, 100); // 약간의 지연
+                }
+            });
+            
+            // 추가 완료 조건들
+            window.addEventListener('load', function() {
+                setTimeout(completeProgress, 200);
+            });
+            
+            // 강제 완료 타이머 (백업)
+            setTimeout(function() {
+                if (!progressCompleted) {
+                    console.log('NProgress 강제 완료');
+                    completeProgress();
+                }
+            }, 10000); // 10초 후 강제 완료
+            
+            // 페이지가 이미 로드된 경우
+            if (document.readyState === 'complete') {
+                setTimeout(completeProgress, 100);
+            }
+        }
+    };
+    
+    document.head.appendChild(script);
+})();
 </script>
 ```
+
+## References
+- [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)
+- [Add collapsible section in hugo](https://stackoverflow.com/questions/71691219/add-collapsible-section-in-hugo)

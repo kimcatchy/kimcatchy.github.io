@@ -1,0 +1,19 @@
+{{ $lang := .Type | default "text" }}
+{{ $result := transform.HighlightCodeBlock . }}
+
+<div class="code-block-wrapper">
+  <!-- 언어 라벨 표시 -->
+  <div class="code-block-header">
+    <div class="code-block-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <div class="code-block-language">{{ $lang }}</div>
+  </div>
+  
+  <!-- 실제 코드 블록 -->
+  <div class="code-block-content">
+    {{ $result.Wrapped }}
+  </div>
+</div>

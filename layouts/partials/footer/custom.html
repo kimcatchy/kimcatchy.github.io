@@ -54,26 +54,6 @@
 <!-- Back to Top + NProgress JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const codeBlocks = document.querySelectorAll('.highlight');
-    
-    codeBlocks.forEach(function(block) {
-        // 언어 클래스에서 언어 정보 추출
-        const classList = block.classList;
-        let language = '';
-        
-        for (let className of classList) {
-            if (className.startsWith('language-')) {
-                language = className.replace('language-', '');
-                break;
-            }
-        }
-        
-        // 언어 정보가 있으면 data-lang 속성 추가
-        if (language) {
-            block.setAttribute('data-lang', language);
-        }
-    });
-    
     // Back to Top 기능
     const backToTopBtn = document.getElementById('back-to-top');
     

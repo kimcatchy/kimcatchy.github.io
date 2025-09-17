@@ -106,25 +106,37 @@ $codeblock-max-height: 25em;
 
 /* 코드 블록 전체 래퍼 */
 .code-block-wrapper {
-    background-color: var(--pre-background-color);
-    border-radius: 10px;
-    margin: 20px 0;
-    box-shadow: var(--shadow-l1);
-    overflow: visible; /* 스크롤바가 잘리지 않도록 */
-    width: 100%; /* max-width 대신 width 사용 */
+    background-color: var(--pre-background-color) !important;
+    border-radius: 10px !important;
+    margin: 20px 0 !important;
+    box-shadow: var(--shadow-l1) !important;
+    overflow: hidden !important; /* visible에서 hidden으로 변경 */
+    width: 100% !important;
     position: relative !important;
+    
+    /* 추가 스타일 강화 */
+    display: block !important;
+    clear: both !important;
+}
+
+/* 고정 padding 제거 - 불필요한 스크롤바 방지 */
+.code-block-content {
+    position: relative !important;
+    overflow: auto !important; /* 내용 영역에서 스크롤 처리 */
+    max-height: $codeblock-max-height !important;
+    -webkit-overflow-scrolling: touch !important;
 }
 
 /* 코드 블록 헤더 (MacOS 스타일 + 언어 라벨) */
 .code-block-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* 양 끝 정렬 */
-    padding: 10px 16px;
-    background-color: var(--card-background-selected); /* 더 구분되는 색상 */
-    border-bottom: 2px solid var(--accent-color); /* 테두리 강화 */
-    min-height: 40px;
-    border-radius: 10px 10px 0 0; /* 상단만 둥글게 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 16px !important;
+    background-color: var(--card-background-selected) !important;
+    border-bottom: 2px solid var(--accent-color) !important;
+    min-height: 40px !important;
+    border-radius: 10px 10px 0 0 !important;
 }
 
 /* MacOS 스타일 점들 (왼쪽) */
@@ -166,8 +178,8 @@ $codeblock-max-height: 25em;
 /* Copy 버튼 - 스크롤과 무관하게 코드 블록 우측 상단 고정 */
 .code-block-wrapper .copyCodeButton {
     position: absolute !important;
-    top: 50px !important; /* 헤더 바로 아래 */
-    right: 15px !important;
+    top: 8px !important; /* 헤더 내부로 위치 조정 */
+    right: 12px !important;
     z-index: 100 !important;
     
     /* 기본적으로 숨김 */
@@ -177,19 +189,19 @@ $codeblock-max-height: 25em;
     /* 부드러운 전환 효과 */
     transition: opacity 0.3s ease, visibility 0.3s ease !important;
     
-    /* 반투명 배경으로 코드와 겹쳐도 자연스럽게 */
-    background-color: rgba(0, 0, 0, 0.8) !important;
+    /* 반투명 배경 */
+    background-color: rgba(0, 0, 0, 0.7) !important;
     border: none !important;
-    border-radius: 6px !important;
-    padding: 8px 12px !important;
-    font-size: 12px !important;
+    border-radius: 4px !important;
+    padding: 4px 8px !important;
+    font-size: 11px !important;
     font-weight: 600 !important;
     color: white !important;
     cursor: pointer !important;
     
-    /* 블러 효과로 더 자연스럽게 */
-    backdrop-filter: blur(4px) !important;
-    -webkit-backdrop-filter: blur(4px) !important;
+    /* 블러 효과 */
+    backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important;
 }
 
 /* 코드 블록 래퍼에 호버시 Copy 버튼 표시 */
@@ -205,27 +217,9 @@ $codeblock-max-height: 25em;
     transform: translateY(-1px) scale(1.05) !important;
 }
 
-/* 고정 padding 제거 - 불필요한 스크롤바 방지 */
-.code-block-content {
-    padding-right: 0 !important; /* 고정 여백 제거 */
-}
-
 /* 코드 블록 우측 여백은 기본값만 유지 */
 .code-block-content .highlight pre {
     padding-right: 1em !important; /* 최소한의 여백만 */
-}
-
-/* 다크/라이트 모드별 Copy 버튼 스타일링 */
-[data-scheme="light"] .code-block-wrapper .copyCodeButton {
-    background-color: rgba(255, 255, 255, 0.9) !important;
-    color: #333 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-}
-
-[data-scheme="dark"] .code-block-wrapper .copyCodeButton {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    color: white !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Copy 버튼이 코드와 겹쳤을 때 가독성 향상 */

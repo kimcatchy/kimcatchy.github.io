@@ -112,7 +112,7 @@ $codeblock-max-height: 25em;
     box-shadow: var(--shadow-l1);
     overflow: visible; /* 스크롤바가 잘리지 않도록 */
     width: 100%; /* max-width 대신 width 사용 */
-    position: relative;
+    position: relative !important;
 }
 
 /* 코드 블록 헤더 (MacOS 스타일 + 언어 라벨) */
@@ -164,10 +164,6 @@ $codeblock-max-height: 25em;
 }
 
 /* Copy 버튼 - 스크롤과 무관하게 코드 블록 우측 상단 고정 */
-.code-block-wrapper {
-    position: relative !important;
-}
-
 .code-block-wrapper .copyCodeButton {
     position: absolute !important;
     top: 50px !important; /* 헤더 바로 아래 */

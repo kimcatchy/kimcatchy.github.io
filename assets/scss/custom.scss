@@ -245,11 +245,12 @@ $codeblock-max-height: 25em;
 }
 
 /* Copy 버튼 - 기존처럼 호버시에만 표시 */
+/* 스크롤과 무관하게 코드 블록 우측 상단 고정 */
 .code-block-wrapper .copyCodeButton {
     position: absolute !important;
-    top: 10px !important; /* 헤더와 겹치지 않는 적절한 위치 */
-    right: 10px !important;
-    z-index: 20 !important;
+    top: 50px !important; /* 헤더 바로 아래 */
+    right: 15px !important; /* 래퍼 기준 우측 여백 */
+    z-index: 100 !important; /* 다른 요소들보다 위에 */
     
     /* 기본적으로 숨김 */
     opacity: 0 !important;
@@ -258,7 +259,7 @@ $codeblock-max-height: 25em;
     /* 부드러운 전환 효과 */
     transition: opacity 0.3s ease, visibility 0.3s ease !important;
     
-    /* 기본 스타일 유지 */
+    /* 스타일링 */
     background-color: var(--card-background) !important;
     border: 1px solid var(--card-border) !important;
     border-radius: 6px !important;
@@ -267,9 +268,12 @@ $codeblock-max-height: 25em;
     font-weight: 500 !important;
     color: var(--body-text-color) !important;
     cursor: pointer !important;
+    
+    /* 스크롤에 영향받지 않도록 고정 */
+    transform: none !important;
 }
 
-/* 코드 블록에 호버시에만 Copy 버튼 표시 */
+/* 코드 블록 래퍼에 호버시 Copy 버튼 표시 */
 .code-block-wrapper:hover .copyCodeButton {
     opacity: 1 !important;
     visibility: visible !important;
@@ -280,6 +284,11 @@ $codeblock-max-height: 25em;
     background-color: var(--accent-color) !important;
     color: white !important;
     transform: translateY(-1px) !important;
+}
+
+/* 코드 내용 영역이 Copy 버튼과 겹치지 않도록 우측 여백 확보 */
+.code-block-content {
+    padding-right: 80px !important; /* Copy 버튼 공간 확보 */
 }
 
 /* 코드 블록 우측 여백 추가 - 수평 스크롤 시 여백 확보 */

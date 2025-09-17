@@ -126,9 +126,6 @@ body {
 }
 ```
 - 사용 시 아래와 같이 사용
-```html
-{{< linkembed url="https://kimcatchy.github.io" text="nolog" >}}
-```
 
 ## Collapsible Section Shortcode
 - 출처: [Add collapsible section in hugo](https://stackoverflow.com/questions/71691219/add-collapsible-section-in-hugo)
@@ -140,11 +137,6 @@ body {
 </details>
 ```
 - 사용 시 아래와 같이 사용, title을 입력하지 않으면 default인 '더 보기'로 출력
-```html
-{{< details title="더 보기" >}}
-쮜지직
-{{< /details >}}
-```
 
 ## Custom Height for Code Blocks with Global Scrollbar
 - 출처: [Hugo Stack Theme Customization](https://blog.lucaslifes.com/p/hugo-stack-theme-customization/)

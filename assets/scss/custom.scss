@@ -244,21 +244,41 @@ $codeblock-max-height: 25em;
     margin-bottom: 0;
 }
 
-/* 복사 버튼을 헤더로 */
-.header-copy-btn {
-    background-color: transparent;
-    border: 1px solid var(--accent-color);
-    border-radius: 4px;
-    color: var(--accent-color);
-    padding: 4px 8px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-left: auto;
+/* Copy 버튼 위치 수정 - copyCodeButton 클래스 */
+.code-block-wrapper .copyCodeButton {
+    position: absolute !important;
+    top: 50px !important; /* 헤더 아래 적절한 위치 */
+    right: 15px !important;
+    z-index: 20 !important;
+    background-color: var(--card-background) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 6px !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: var(--body-text-color) !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    opacity: 0.8 !important;
 }
 
-.header-copy-btn:hover {
-    background-color: var(--accent-color);
-    color: white;
+.code-block-wrapper .copyCodeButton:hover {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    opacity: 1 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* 코드 블록 우측 여백 추가 - 수평 스크롤 시 여백 확보 */
+.code-block-content .highlight pre {
+    padding-right: 2em !important; /* 코드 끝에 여백 추가 */
+}
+
+.code-block-content .lntable {
+    padding-right: 1.5em; /* 라인 넘버가 있는 경우도 여백 추가 */
+}
+
+/* 코드 내용 자체에 여백 추가 */
+.code-block-content .highlight code {
+    padding-right: 1.5em !important;
 }

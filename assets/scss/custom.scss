@@ -100,40 +100,44 @@ body {
 /* =========================== */
 /* 코드 블록 설정 */
 /* =========================== */
-/* Custom variable, modify the height here as needed */
+
+/* 코드 블록 최대 높이 변수 설정 */
 $codeblock-max-height: 25em;
-/* ① Set the outermost .highlight as the “only” scrollable container */
+
+/* 메인 스크롤 컨테이너로 .highlight 설정 */
 .highlight {
     max-height: $codeblock-max-height;
-    overflow: auto;
-    /* Controls both X and Y directions */
-    -webkit-overflow-scrolling: touch;
-    /* Inertia scrolling on mobile */
+    overflow: auto; /* X, Y 방향 모두 제어 */
+    -webkit-overflow-scrolling: touch; /* 모바일 관성 스크롤 */
+    position: relative; /* 언어 라벨 위치 기준점 */
 }
-/* ② Disable internal pre/code scrollbars (to avoid double scrollbars) */
+
+/* 내부 pre/code 스크롤바 비활성화 (이중 스크롤바 방지) */
 .highlight pre,
 .highlight code,
 .highlight .chroma {
-    overflow: visible !important;
-    /* Override Stack’s overflow-x:auto on pre */
+    overflow: visible !important; /* Stack 기본 overflow-x:auto 오버라이드 */
 }
-/* ③ Make the line number table auto-expand with content width to enable X scroll on wide blocks */
+
+/* 라인 넘버 테이블을 콘텐츠 너비에 맞게 자동 확장 (넓은 코드 블록에서 X 스크롤 활성화) */
 .lntable {
-    display: inline-table;
-    /* Keeps table property, allows content-dependent width */
+    display: inline-table; /* 테이블 속성 유지, 콘텐츠 종속 너비 허용 */
     min-width: max-content;
     border-spacing: 0;
 }
-/* ④ Disable auto-wrapping, long lines are handled by horizontal scrolling */
+
+/* 자동 줄바꿈 비활성화 - 긴 줄은 수평 스크롤로 처리 */
 .lntd:last-child code,
 .highlight code {
-    white-space: pre;
-    /* No line breaks */
+    white-space: pre; /* 줄바꿈 없음 */
 }
+
+/* 라인 넘버 선택 방지 */
 .lntd:first-child {
-    user-select: none; // Prevent selecting line numbers
+    user-select: none;
 }
-// Add MacOS style to the top of code blocks
+
+/* 코드 블록 상단에 MacOS 스타일 추가 */
 .article-content {
     .highlight {
         background-color: var(--pre-background-color);
@@ -144,6 +148,8 @@ $codeblock-max-height: 25em;
         margin: 0 !important;
         box-shadow: var(--shadow-l1) !important;
     }
+    
+    /* 기존 MacOS 스타일 헤더 */
     .highlight:before {
         content: "";
         display: block;
@@ -156,14 +162,55 @@ $codeblock-max-height: 25em;
         margin-bottom: 0;
     }
 }
-/* Left column (line numbers) */
+
+/* 언어 라벨 표시 - 코드 블록 우측 상단 */
+.highlight:after {
+    content: attr(data-lang);
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border);
+    font-family: var(--code-font-family);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    user-select: none;
+    z-index: 10;
+    opacity: 0.9;
+    
+    /* 다크/라이트 모드별 색상 */
+    [data-scheme="light"] & {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #6366f1;
+        border-color: #e5e7eb;
+    }
+    
+    [data-scheme="dark"] & {
+        background-color: rgba(55, 65, 81, 0.9);
+        color: #818cf8;
+        border-color: #4b5563;
+    }
+}
+
+/* 언어 라벨이 있는 코드 블록의 우측 여백 확보 */
+.highlight[data-lang] {
+    padding-right: calc(var(--card-padding) + 60px) !important;
+}
+
+/* 왼쪽 컬럼 (라인 넘버) 폰트 설정 */
 .chroma .lntd,
 .chroma .lntd pre,
 .chroma .ln {
     font-size: 14px;
     font-family: var(--code-font-family);
 }
-/* Right column (code) */
+
+/* 오른쪽 컬럼 (코드) 폰트 설정 */
 .chroma code,
 .chroma pre {
     font-size: 14px;

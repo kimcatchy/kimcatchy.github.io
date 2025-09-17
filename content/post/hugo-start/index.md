@@ -24,7 +24,6 @@ categories:
 
 그래서 알아보던 중 마침 나와 똑같은 생각을 한 사람이 있었는데.. 노션의 글을 GitHub 기반 블로그에 포스팅하는 [nolog](https://github.com/Sharknia/nolog)라는 걸 발견했다. 해당 repo의 README를 보면 아래의 내용이 있다 ㅋㅋ
 
-{{< linkembed url="https://github.com/Sharknia/nolog" text="nolog" >}}
 
 > 노션으로 공부를 하는 개발자가 있습니다. 일을 하면서일수도 있고, 따로 짬을 내어 공부를 하면서일수도 있습니다. 그러다가 한 번 쯤은 생각하게 됩니다. 노션으로 한 공부나 작업 기록이 블로그에 자동으로 업로드된다면 좋을텐데!
 

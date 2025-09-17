@@ -115,6 +115,60 @@ $codeblock-max-height: 25em;
     position: relative;
 }
 
+/* Copy 버튼 스타일링 및 위치 조정 */
+.code-block-wrapper .copy-to-clipboard,
+.code-block-content .copy-to-clipboard {
+    position: absolute;
+    top: 50px; /* 헤더 아래로 이동 */
+    right: 15px;
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    color: var(--body-text-color);
+    padding: 6px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    opacity: 0.7;
+}
+
+.code-block-wrapper .copy-to-clipboard:hover,
+.code-block-content .copy-to-clipboard:hover {
+    background-color: var(--card-background-selected);
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+/* Stack 테마의 기본 Copy 버튼 클래스들도 대응 */
+.code-block-wrapper button[data-clipboard-text],
+.code-block-wrapper .highlight-copy-btn,
+.code-block-wrapper .copy-code-button {
+    position: absolute;
+    top: 50px; /* 헤더 높이만큼 아래로 */
+    right: 15px;
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    color: var(--body-text-color);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    opacity: 0.8;
+}
+
+.code-block-wrapper button[data-clipboard-text]:hover,
+.code-block-wrapper .highlight-copy-btn:hover,
+.code-block-wrapper .copy-code-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
 /* 코드 블록 헤더 (MacOS 스타일 + 언어 라벨) */
 .code-block-header {
     display: flex;

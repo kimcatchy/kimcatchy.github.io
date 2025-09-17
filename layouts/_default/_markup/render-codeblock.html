@@ -10,6 +10,10 @@
       <span class="dot green"></span>
     </div>
     <div class="code-block-language">{{ $lang }}</div>
+    <!-- Copy 버튼을 헤더에 직접 추가 -->
+    <button class="header-copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-block-wrapper').querySelector('code').innerText)">
+      Copy
+    </button>
   </div>
   
   <!-- 실제 코드 블록 -->

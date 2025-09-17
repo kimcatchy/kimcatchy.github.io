@@ -1,0 +1,124 @@
+<!-- Back to Top Button -->
+<a href="#" id="back-to-top" title="Back to top"></a>
+
+<!-- Back to Top Button Styles -->
+<style>
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 5px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--body-background);
+    box-shadow: var(--shadow-l2);
+    font-size: 20px;
+    text-align: center;
+    line-height: 38px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 999;
+}
+
+#back-to-top:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    transform: rotate(135deg);
+    height: 8px;
+    width: 8px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--accent-color);
+    border-style: solid;
+}
+
+#back-to-top:hover {
+    transform: scale(1.1);
+    background-color: var(--accent-background);
+}
+
+/* 반응형 스타일 */
+@media screen and (max-width: 768px) {
+    #back-to-top {
+        bottom: 5px;
+        right: var(--container-padding);
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        line-height: 32px;
+    }
+}
+</style>
+
+<!-- Back to Top + NProgress JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Back to Top 기능
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    function backToTop() {
+        document.documentElement.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+    
+    function updateBackToTopVisibility() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        if (scrollTop > 200) {
+            backToTopBtn.style.display = 'inline';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    }
+    
+    // 이벤트 리스너는 한 번만 등록
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            backToTop();
+        });
+        
+        window.addEventListener('scroll', updateBackToTopVisibility);
+        updateBackToTopVisibility(); // 초기 상태 설정
+    }
+});
+
+// NProgress (안전한 버전)
+(function() {
+    // NProgress 스크립트를 동적으로 로드
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js';
+    script.integrity = 'sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg';
+    script.crossOrigin = 'anonymous';
+    
+    script.onload = function() {
+        // NProgress CSS 동적 로드
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css';
+        link.integrity = 'sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE';
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+        
+        // NProgress 시작
+        if (typeof NProgress !== 'undefined') {
+            NProgress.start();
+            
+            if (document.readyState === 'interactive') {
+                NProgress.inc(0.8);
+            } else if (document.readyState === 'complete') {
+                NProgress.done();
+            } else {
+                document.addEventListener('readystatechange', function() {
+                    if (document.readyState === 'interactive') NProgress.inc(0.8);
+                    if (document.readyState === 'complete') NProgress.done();
+                });
+            }
+        }
+    };
+    
+    document.head.appendChild(script);
+})();
+</script>

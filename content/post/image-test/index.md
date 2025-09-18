@@ -1,0 +1,18 @@
+---
+IDX: "2"
+slug: "image-test"
+tags:
+  - Notion
+description: "이미지 테스트 용 포스트"
+categories: ["Web"]
+update: "2025-09-18T05:26:00.000Z"
+상태: "Ready"
+title: "이미지 테스트"
+---
+
+
+![](image1.png)
+### 이미지 테스트
+
+테스트테스트
+

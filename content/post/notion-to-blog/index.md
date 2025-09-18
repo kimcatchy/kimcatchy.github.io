@@ -7,18 +7,18 @@ tags:
 description: "nolog를 통한 자동 포스팅"
 categories:
   - Web
-update: "2025-09-18 21:51:00+0900"
+update: "2025-09-18 22:02:00+0900"
 date: "2025-09-18 20:58:00+0900"
 상태: "Ready"
 title: "Notion to Blog"
 ---
-### 노션과 블로그의 연동
+## 노션과 블로그의 연동
 
 엊그제 Hugo와 Stack theme을 통해 Github Pages로 블로그를 만들었다. 하지만 노션에 적은 걸 다시 vscode를 켜고 마크다운 파일로 작성하고.. 태그로 이미지를 첨부하고.. 커밋하고 푸시해서 적용을 하는 과정은 너무나도 귀찮다! 글을 쓰는 게 귀찮으면 글 쓰기가 싫어진다!
 
 그래서 [**nolog**](https://github.com/Sharknia/nolog)를 통해 노션과 블로그를 연동하기로 했다. 기본적인 적용 방법은 해당 repo의 README에 있으니 생략하고, 몇 가지 수정한 것만 기록용으로 적어본다.
 
-### 노션 템플릿 수정
+## 노션 템플릿 수정
 
 ![](image1.png)
 우선 템플릿을 현재 사용 중인 Hugo에 맞춰 속성을 추가/삭제했다.
@@ -29,7 +29,7 @@ title: "Notion to Blog"
 
 - 선택 유형인 series 속성을 categories로 변경하고 유형을 다중 선택으로 변경
 
-### 페이지 URL 수정
+## 페이지 URL 수정
 
 ```typescript
         // 페이지 URL을 생성합니다.
@@ -40,7 +40,7 @@ title: "Notion to Blog"
 
 pageUrl에서 slug를 사용할 수 있게 수정했다. 기존에는 pageTitle을 통해 pageUrl이 결정됐는데, slug를 추가했으니 기존 코드는 지웠다. 여기서 알아서 subDir을 생성해주니까 SAVE\_SUB\_DIR 변수는 추가하면 안된다.
 
-### 데이터 추출 함수 수정
+## 데이터 추출 함수 수정
 
 ```typescript
 case 'last_edited_time':
@@ -79,7 +79,7 @@ case 'created_time':
 
 파일의 아래 쪽에는 formatDateForBlog 함수를 작성했다. 기존의 `2025-09-18T05:26:00.000Z` 같은 ISOString 형식에서 `2025-09-17 07:00:00+0900` 형식으로 출력이 되게 변경했다.
 
-### categories 다중 선택 처리
+## categories 다중 선택 처리
 
 ```typescript
     private formatMarkdownMetadata(): string {
@@ -110,7 +110,7 @@ case 'created_time':
 
 `categories`도 `tags`처럼 frontmatter에서 배열을 리스트로 변경해서 출력하도록 수정했다.
 
-### 워크플로우 파일 수정
+## 워크플로우 파일 수정
 
 ```yaml
 on:
@@ -137,7 +137,7 @@ on:
 
 `git remote set-url origin` 부분의 마지막에 `notion-to-markdown.git`으로 되어있어서 repo명이 다르다. `nolog.git`으로 바꿔주면 정상적으로 작동한다.
 
-### 결과
+## 결과
 
 ```markdown
 ---
@@ -163,5 +163,5 @@ title: "이미지 테스트"
 
 frontmatter의 순서가 뒤죽박죽인 건 좀 불편하지만.. 어차피 이제 마크다운 파일을 직접 열진 않으니까 아무튼 좋았쓰!
 
-지금 글을 쓰면서 확인해보니 노션의 h2 태그가 마크다운 변환 과정에서 h3로 변환되는 거 같은데, 이건 나중에 다시 확인하기로..
+지금 글을 쓰면서 확인해보니 노션의 h2 태그가 마크다운 변환 과정에서 h3로 변환되는 거 같은데, 아마 노션에서는 h1 태그를 그냥 쓰는 경우가 많아서 SEO 및 접근성 때문에 이렇게 하신 것 같다. 나는 노션에서도 h1 태그를 쓰지 않기 때문에.. 수정을 할 지 노션에서는 h1을 쓸 지 고민을 좀 해봐야겠다..
 

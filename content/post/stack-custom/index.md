@@ -127,7 +127,7 @@ body {
 ```
 - 사용 시 아래와 같이 사용
 ```markdown
-{{< linkembed url="https://kimcatchy.github.io" text="nolog" >}}
+{{</* linkembed url="https://kimcatchy.github.io" text="nolog" */>}}
 ```
 {{< linkembed url="https://kimcatchy.github.io" text="nolog" >}}
 
@@ -142,9 +142,9 @@ body {
 - 사용 시 아래와 같이 사용, title을 입력하지 않으면 default인 '더 보기'로 출력
 
 ```markdown
-{{< details title="더 보기" >}}
+{{</* details title="더 보기" */>}}
 쮜지직
-{{< /details >}}
+{{</* /details */>}}
 ```
 {{< details title="더 보기" >}}
 쮜지직

@@ -5,7 +5,8 @@ tags:
   - Notion
 description: "이미지 테스트 용 포스트"
 categories: ["Web"]
-update: "2025-09-18T05:26:00.000Z"
+update: "2025-09-18 17:35:00+0900"
+date: "2025-09-18 14:22:00+0900"
 상태: "Ready"
 title: "이미지 테스트"
 ---

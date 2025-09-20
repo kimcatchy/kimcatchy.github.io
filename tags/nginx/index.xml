@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on BURROW</title><link>https://kimcatchy.github.io/tags/nginx/</link><description>Recent content in Nginx on BURROW</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><lastBuildDate>Fri, 19 Sep 2025 23:51:00 +0900</lastBuildDate><atom:link href="https://kimcatchy.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>Cloudflare Registrar 도메인 이전</title><link>https://kimcatchy.github.io/p/cloudflare-registrar-domain-transfer/</link><pubDate>Fri, 19 Sep 2025 23:51:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/cloudflare-registrar-domain-transfer/</guid><description>&lt;h2 id="cloudflare-dns-설정"&gt;Cloudflare DNS 설정
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cloudflare 대시보드의 DNS 탭에서 주소에 대해 A 레코드를 추가하고 서버 IP를 가리키도록 설정&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;네임서버가 Cloudflare로 이미 설정돼 있지 않다면, Cloudflare Registrar에서 Cloudflare 네임서버로 변경 후 5~10분 정도 기다리면 됨&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="origin-pulls-활성화"&gt;Origin Pulls 활성화
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SSL/TLS &amp;gt; 개요(Overview) 탭에서 암호화 모드를 Full (strict) 로 변경&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cloudflare가 Origin CA로 발급된 인증서를 신뢰하도록 강제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SSL/TLS &amp;gt; Origin Server 탭에서 PEM/KEY 파일 발급 후 &lt;code&gt;/etc/nginx/key/&lt;/code&gt; 디렉터리에 저장&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Authenticated Origin Pulls 활성화&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="nginx설정"&gt;Nginx 설정
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/etc/nginx/sites-available/&lt;/code&gt; 디렉터리에서 기존에 사용하던 설정 파일 복사&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이전할 주소로 파일명 변경 후 파일 내용의 기존 주소를 새 주소로 변경&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/etc/nginx/sites-enabled/&lt;/code&gt; 디렉터리에 심볼릭 링크로 연결&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo ln -s /etc/nginx/sites-available/yourdomain.com /etc/nginx/sites-enabled/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;설정 파일 문법 검사 후 문제 없으면 nginx 리로드&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo nginx -t
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo systemctl reload nginx&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>Nginx 로그 특정 경로 제외</title><link>https://kimcatchy.github.io/p/nginx-exclude-path/</link><pubDate>Fri, 19 Sep 2025 03:16:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/nginx-exclude-path/</guid><description>&lt;h2 id="특정-경로파일-유형-제외"&gt;특정 경로(파일 유형) 제외
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;jpg나 png 같은 정적 파일까지 모두 로그에 남기다 보니 로그를 파악하기가 어려움&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;조금 더 쉽게 로그를 확인하기 위해 특정 확장자의 파일들을 로그에서 제외&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="제외할-파일-유형-설정"&gt;제외할 파일 유형 설정
+&lt;/h3&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Log Exception - file&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;map &lt;span class="nv"&gt;$request_uri&lt;/span&gt; &lt;span class="nv"&gt;$except_file&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ~*&lt;span class="se"&gt;\.&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;ico&lt;span class="p"&gt;|&lt;/span&gt;css&lt;span class="p"&gt;|&lt;/span&gt;js&lt;span class="p"&gt;|&lt;/span&gt;gif&lt;span class="p"&gt;|&lt;/span&gt;jpg&lt;span class="p"&gt;|&lt;/span&gt;jpeg&lt;span class="p"&gt;|&lt;/span&gt;png&lt;span class="p"&gt;|&lt;/span&gt;svg&lt;span class="p"&gt;|&lt;/span&gt;woff&lt;span class="p"&gt;|&lt;/span&gt;ttf&lt;span class="p"&gt;|&lt;/span&gt;eot&lt;span class="o"&gt;)&lt;/span&gt;$ 0&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; default 1&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;nginx 설정 파일(default 등)의 하단에 아래의 내용을 추가&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;로그에 기록할 확장자는 지우고 더 제외할 확장자가 있다면 추가로 입력&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="제외할-로그-설정"&gt;제외할 로그 설정
+&lt;/h3&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;$logging&lt;/span&gt; 1&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt; &lt;span class="nv"&gt;$except_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;$logging&lt;/span&gt; 0&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; access_log /var/log/nginx/도메인.access.log combined &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$logging&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; error_log /var/log/nginx/도메인.error.log&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;기본으로 logging이라는 변수를 1로 설정해주고, except_file이 0일 경우에는 logging도 0으로 변경&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;logging이 0일 경우에는 access.log에 로그를 기록하지 않음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;파일 확장자로만 제외한다면 logging 부분을 없애고 if=$except_file;로 끝내도 되지만, 위와 같이 설정할 경우 다른 제외 조건들과 연계하기가 쉬움&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Nginx Custom Error Page</title><link>https://kimcatchy.github.io/p/nginx-custom-error-page/</link><pubDate>Fri, 19 Sep 2025 02:55:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/nginx-custom-error-page/</guid><description>&lt;h2 id="설정하는-이유"&gt;설정하는 이유
+&lt;/h2&gt;&lt;p&gt;사이트 내에 존재하지 않는 경로에 접속할 경우 일반적으로 NodeBB같은 CMS에서는 페이지가 존재하지 않는다는 내용을 출력한다. 하지만 CMS 외부에 접속 가능한 경로를 지정해뒀을 때, 해당 경로에 없는 파일로의 접속을 시도하거나 오류가 나면 nginx에서 응답 코드를 출력한다.&lt;/p&gt;
+&lt;p&gt;이 글은 21년도에 작성한 글을 티스토리에서 해당 블로그로 옮긴 것인데, 과거의 나는 이런 응답 코드도 서버 공격자에게는 정보가 될 수 있기 때문에 모두 404로 통합하는 것이 좋고, 기왕이면 응답 코드 페이지를 따로 설정해서 서버에 대한 정보(nginx)를 알려주지 않는 것이 좋다고 생각했다..&lt;/p&gt;
+&lt;p&gt;근데 저 당시에는 내 사이트에 자꾸 이상한 로그를 남기는 사람들이 있어서 그랬고, 오히려 요새는 Cloudflare를 쓴 뒤로 딱히 신경 안 쓰고 있다 ㅋㅋ&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;404.html 같은 에러 페이지를 만들어 Nginx에 매핑하면, 불필요한 서버 정보 노출을 줄이면서 일관된 화면 제공&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;error_page&lt;/code&gt; 지시어로 특정 상태 코드(e.g. 404, 500 등)에 원하는 페이지를 연결하고, &lt;code&gt;internal&lt;/code&gt;로 직접 접근을 막으면 깔끔하고 안전&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="설정-방법"&gt;설정 방법
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;커스텀 에러 페이지(e.g. 404.html)를 준비해 사이트 문서 루트(또는 지정 경로)에 배치&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;서버 블록에 &lt;code&gt;error_page&lt;/code&gt;를 추가해 코드→페이지 매핑을 설정하고, 해당 페이지 &lt;code&gt;location&lt;/code&gt;에 &lt;code&gt;internal&lt;/code&gt; 적용&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;설정 테스트와 적용은 &lt;code&gt;nginx -t&lt;/code&gt;, &lt;code&gt;systemctl reload nginx&lt;/code&gt; 순으로 진행&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="예시"&gt;예시
+&lt;/h3&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 상태 코드는 유지하고, 페이지는 커스텀으로 통일&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;server &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 루트/기본 설정&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; root /var/www/site&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 대표 에러 매핑(404 유지, 5xx 유지)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; error_page &lt;span class="m"&gt;404&lt;/span&gt; /404.html&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; error_page &lt;span class="m"&gt;500&lt;/span&gt; &lt;span class="m"&gt;502&lt;/span&gt; &lt;span class="m"&gt;503&lt;/span&gt; &lt;span class="m"&gt;504&lt;/span&gt; /50x.html&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 직접 접근 차단&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;location&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; /404.html &lt;span class="o"&gt;{&lt;/span&gt; internal&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;location&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; /50x.html &lt;span class="o"&gt;{&lt;/span&gt; internal&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 보안 노출 최소화를 위해 주요 에러를 404로 통일&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;server &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; root /var/www/site&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 400/401/403/404/5xx 모두 404 상태 + 같은 페이지로 통일&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; error_page &lt;span class="m"&gt;400&lt;/span&gt; &lt;span class="m"&gt;401&lt;/span&gt; &lt;span class="m"&gt;403&lt;/span&gt; &lt;span class="m"&gt;404&lt;/span&gt; &lt;span class="m"&gt;500&lt;/span&gt; &lt;span class="m"&gt;502&lt;/span&gt; &lt;span class="m"&gt;503&lt;/span&gt; &lt;span class="nv"&gt;504&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;404&lt;/span&gt; /404.html&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;location&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; /404.html &lt;span class="o"&gt;{&lt;/span&gt; internal&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;=&lt;/code&gt;는 상태코드를 바꿈 (e.g. &lt;code&gt;=404&lt;/code&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;반면 단순 &lt;code&gt;error_page 404 /404.html;&lt;/code&gt;은 404 상태를 유지&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;=&lt;/code&gt;만 쓰고 코드 미지정 시 백엔드/정적 처리 결과 코드가 그대로 나가 200으로 응답이 될 수 있으니, 통일하려면 &lt;code&gt;=404&lt;/code&gt; 같이 명시&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;error_page&lt;/code&gt;는 내부 redirect이므로 메서드는 GET으로 변경되며, 에러 페이지는 &lt;code&gt;internal&lt;/code&gt;로 외부 직접 접근을 막는 것이 좋다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="주요-응답-코드"&gt;주요 응답 코드
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1xx (정보): 요청을 받았으며 프로세스를 계속한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2xx (성공): 요청을 성공적으로 받았으며 인식했고 수용하였다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3xx (리다이렉션): 요청 완료를 위해 추가 작업 조치가 필요하다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4xx (클라이언트 오류): 요청의 문법이 잘못되었거나 요청을 처리할 수 없다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;400(잘못된 요청): 서버가 요청의 구문을 인식하지 못했다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;401(권한 없음): 이 요청은 인증이 필요하다. 서버는 로그인이 필요한 페이지에 대해 이 요청을 제공할 수 있다. 상태 코드 이름이 권한 없음(Unauthorized)으로 되어 있지만 실제 뜻은 인증 안됨(Unauthenticated)에 더 가깝다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;403(Forbidden, 금지됨): 서버가 요청을 거부하고 있다. 예를 들자면, 사용자가 리소스에 대한 필요 권한을 갖고 있지 않다. (401은 인증 실패, 403은 인가 실패라고 볼 수 있음)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;404(Not Found, 찾을 수 없음): 서버가 요청한 페이지(Resource)를 찾을 수 없다. 예를 들어 서버에 존재하지 않는 페이지에 대한 요청이 있을 경우 서버는 이 코드를 제공한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5xx (서버 오류): 서버가 명백히 유효한 요청에 대해 충족을 실패했다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;500(내부 서버 오류): 서버에 오류가 발생하여 요청을 수행할 수 없다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;502 (Bad Gateway, 불량 게이트웨이): 서버가 게이트웨이나 프록시 역할을 하고 있거나 또는 업스트림 서버에서 잘못된 응답을 받았다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;503(서비스를 사용할 수 없음): 서버가 오버로드되었거나 유지관리를 위해 다운되었기 때문에 현재 서버를 사용할 수 없다. 이는 대개 일시적인 상태이다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;504(게이트웨이 시간초과): 서버가 게이트웨이나 프록시 역할을 하고 있거나 또는 업스트림 서버에서 제때 요청을 받지 못했다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

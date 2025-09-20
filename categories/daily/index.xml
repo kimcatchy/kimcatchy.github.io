@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Daily on BURROW</title><link>https://kimcatchy.github.io/categories/daily/</link><description>Recent content in Daily on BURROW</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><lastBuildDate>Tue, 16 Sep 2025 21:00:00 +0900</lastBuildDate><atom:link href="https://kimcatchy.github.io/categories/daily/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo 블로그 시작</title><link>https://kimcatchy.github.io/p/hugo-start/</link><pubDate>Tue, 16 Sep 2025 21:00:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/hugo-start/</guid><description>&lt;h2 id="블로그를-이전하는-이유"&gt;블로그를 이전하는 이유
+&lt;/h2&gt;&lt;p&gt;돌고돌고돌고돌고 또 돌아서 결국 다시 Github Pages로 블로그를 생성했다. 어릴 때 웹 개발에 대해 아무것도 모를 때는 네이버 블로그와 티스토리를 썼는데, 웹 개발에 관심을 갖게 되면서 Github Pages로 블로그를 만들려 시도는.. 했었지만 실패했다..&lt;/p&gt;
+&lt;p&gt;결국 티스토리를 꽤 오랜 시간 사용하다가 웹 개발에 관심을 갖게 되면서 node.js를 접하게 되고, Ghost로도 블로그를 운영했던 적이 있다. 하지만 당시에는 블로그를 생성은 했지만 딱히 작성할 컨텐츠가 없었고, 슬슬 도메인도 만료되면서 다시 또 티스토리로 글을 옮겼다.&lt;/p&gt;
+&lt;p&gt;굳이 잘 사용하던 티스토리를 놔두고 Github Pages로 또또또 옮길 필요가 있을까 싶겠지만, 이 모든 게 다 Notion 때문이다. Notion도 익숙하지 않을 때는 &amp;lsquo;굳이 이걸 사용해야하나..&amp;rsquo; 싶었는데, 익숙해지니 문서를 작성하고 정리할 때는 Notion만 한 게 없더라! 결국 개인적으로 작성할 문서들은 Notion에, 일부 문서들은 티스토리 블로그에도 추가로 작성하면서 든 생각이 있는데..&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;굳이 노션에 작성한 걸 다시 티스토리에 작성해야 되나?&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;노션은 마크다운 문법을 사용하고 티스토리는 wysiwyg 에디터를 사용하는데, 이걸 또 바꿔서 작성하자니 귀찮은 점이 한둘이 아니다.&lt;/p&gt;
+&lt;h2 id="nolog"&gt;nolog
+&lt;/h2&gt;&lt;p&gt;그래서 알아보던 중 마침 나와 똑같은 생각을 한 사람이 있었는데.. 노션의 글을 GitHub 기반 블로그에 포스팅하는 &lt;a class="link" href="https://github.com/Sharknia/nolog" target="_blank" rel="noopener"
+&gt;nolog&lt;/a&gt;
+&lt;span style="white-space: nowrap;"&gt;&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg"&gt;
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" /&gt;
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor"&gt;
+&lt;/svg&gt;&lt;/span&gt;
+라는 걸 발견했다. 해당 repo의 README를 보면 아래의 내용이 있다 ㅋㅋ&lt;/p&gt;
+&lt;a href="https://github.com/Sharknia/nolog" target="_blank" rel="noopener" class="embed-link-box"&gt;
+&lt;div class="embed-content"&gt;
+&lt;div class="embed-url"&gt;https://github.com/Sharknia/nolog&lt;/div&gt;
+&lt;/div&gt;
+&lt;/a&gt;
+&lt;blockquote&gt;
+&lt;p&gt;노션으로 공부를 하는 개발자가 있습니다. 일을 하면서일수도 있고, 따로 짬을 내어 공부를 하면서일수도 있습니다. 그러다가 한 번 쯤은 생각하게 됩니다. 노션으로 한 공부나 작업 기록이 블로그에 자동으로 업로드된다면 좋을텐데!&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;저 역시 마찬가지입니다. 저는 귀찮은 일이 너무 귀찮습니다. 공부나 블로그나 어차피 한 번에 할 수 있는거 아닌가? 공부만 하면 포스팅이 되면 안되나? 왜 똑같은 일을 두 번 세 번 해야 하는걸까?&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;현재 운영 중인 서비스들의 docs 페이지 글을 작성하면서 마크다운 문서들을 편집할 일이 많이 생겼다. 마크다운 문법이야 디스코드를 오래 사용해와서 이미 익숙하지만, docs 페이지를 만들며 MKDocs를 처음 써봤는데 프론트매터를 작성하는게 왜 이렇게도 귀찮은 것인지!!!&lt;/p&gt;
+&lt;p&gt;결국 Pages CMS를 통해 어느 정도는 자동화를 시켜뒀지만, 이것도 결국 문서를 작성할 때 웹 환경에서 작성해야 된다는 점은 변하지 않는다. 그래서 일단 nolog로 블로그에서 먼저 사용해보고.. 비슷한 방식으로 다른 것들도 notion으로 모두 해결하는 게 목표다..!&lt;/p&gt;
+&lt;h2 id="hugo"&gt;Hugo
+&lt;/h2&gt;&lt;p&gt;뭐 깃허브에서 공식 지원하는 Jekyll도 있고 Gatsby, Hexo 등등 쓸 건 많았는데, 그냥 지금 적용한 Hugo 테마가 마음에 들어서 선택했다. node.js를 몇 년 째 잘 써먹고 있어서 Hexo를 써볼까 싶기도 했고, Gatsby가 React 기반이라 React를 연습할 겸 써볼까 싶기도 했는데, CSS 만지기도 귀찮고 그냥 눈에 보이는 게 Hugo였다..&lt;/p&gt;
+&lt;p&gt;처음 써보는 거라 이것저것 귀찮은 게 많은 거 같은데 얼른 세팅 해두고 딸깍 한 번으로 글을 포스팅할 수 있는 날이 오길 바란다!!!&lt;/p&gt;</description></item></channel></rss>

@@ -7,7 +7,7 @@ tags:
 description: "자료구조"
 categories:
   - Study
-update: "2025-09-20 00:14:00+0900"
+update: "2025-09-20 01:16:00+0900"
 date: "2025-09-19 23:37:00+0900"
 상태: "Ready"
 title: "가중치 그래프의 표현 & 최소비용"
@@ -43,18 +43,18 @@ weight = 	[[None, 29, ... , None],
 					[29, None, ... , 15],
         		...
         	[None, 15, ... , None]]
-graph = (vertex, weight)						# 전체 그래프: 튜플 사용
+graph = (vertex, weight)            # 전체 그래프: 튜플 사용
 ```
 
 ```python
 # 인접 행렬에서의 가중치의 합 계산
-def weightSum(vlist, W):									# 매개변수: 정점 리스트, 인접 행렬
-    sum = 0																# 가중치의 합 초기화
-    for i in range(len(vlist)):						# 모든 정점에 대해
-        for j in range(i+1, len(vlist)):	# 하나의 행에 대해 (삼각영역)
-            if W[i][j] != None:						# 간선이 있으면
-                sum += W[i][j]						# sum에 추가
-    return sum														# 전체 가중치 합을 반환
+def weightSum(vlist, W):                  # 매개변수: 정점 리스트, 인접 행렬
+    sum = 0                               # 가중치의 합 초기화
+    for i in range(len(vlist)):           # 모든 정점에 대해
+        for j in range(i+1, len(vlist)):  # 하나의 행에 대해 (삼각영역)
+            if W[i][j] != None:           # 간선이 있으면
+                sum += W[i][j]            # sum에 추가
+    return sum                            # 전체 가중치 합을 반환
 ```
 
 ```python
@@ -83,7 +83,7 @@ def weightSum(graph):
     for v in graph:
         for e in graph[v]:
             sum += e[1]
-    return sum//2						# 하나의 간선이 두 번 더해지므로 2로 나눔
+    return sum//2           # 하나의 간선이 두 번 더해지므로 2로 나눔
 ```
 
 ```python

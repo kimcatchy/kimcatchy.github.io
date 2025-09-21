@@ -1,0 +1,1034 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DiscreteMath on BURROW</title><link>https://kimcatchy.github.io/tags/discretemath/</link><description>Recent content in DiscreteMath on BURROW</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><lastBuildDate>Sun, 21 Sep 2025 16:21:00 +0900</lastBuildDate><atom:link href="https://kimcatchy.github.io/tags/discretemath/index.xml" rel="self" type="application/rss+xml"/><item><title>Proof</title><link>https://kimcatchy.github.io/p/proof/</link><pubDate>Sun, 21 Sep 2025 16:21:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/proof/</guid><description>&lt;h2 id="증명의-이해"&gt;증명의 이해
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;증명을 위해서 참(T)인 전제들이 주어져야 함&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이 전제들의 결론 역시 참(T)이 되어 유효추론이 성립되면 정확한 증명이라고 할 수 있음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;유효추론&lt;/strong&gt;: 주어진 전제를 이용해 유도된 결론이 정확한 추론, 전제가 참일 때 결론이 모두 참인 추론&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="공리-axiom"&gt;공리 (Axiom)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;별도의 증명 없이 항상 참으로 이용되는 명제&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;e.g. 어떤 자연수 n에 대해, (n+1)이 존재한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="정의-definition"&gt;정의 (Definition)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;논의의 대상을 보편화하기 위해 사용하는 용어 또는 기호의 의미를 확실하게 규정한 문장이나 식&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ex) 명제는 객관적인 기준으로 진릿값을 판별할 수 있는 문장이나 수식이다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="정리-theorem"&gt;정리 (Theorem)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;공리와 정의를 통해 참으로 확인된 명제&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;e.g. 피타고라스의 정리, 이항정리, 나머지정리 등&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="증명-proof"&gt;증명 (Proof)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;하나의 명제가 참임을 확인하는 과정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="직접증명법"&gt;직접증명법
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;명제의 변형 없이 공리·정의·정리를 이용하여 증명하는 방법&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;조건명제 &lt;code&gt;p→q&lt;/code&gt;가 참임을 증명하기 위해 전제 p를 참으로 가정했을 때 결론 q도 참임을 증명하는 방법&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="직접증명법의-특징"&gt;직접증명법의 특징
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;논리적 연결&lt;/strong&gt;: 공리, 정의, 그리고 이미 증명된 정리를 논리적으로 직접 연결하여 증명&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;변형 없음&lt;/strong&gt;: 명제를 다른 형태로 변형하지 않고 그대로 증명&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;연역적 접근&lt;/strong&gt;: 직접증명법은 연역(deduction)이라고도 불리며, 주어진 사실들과 공리들에 입각하여 추론을 통해 새로운 사실을 도출&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="간접증명법"&gt;간접증명법
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;증명하고자 하는 명제의 결론을 직접 증명하는 대신, 그 명제의 부정이나 대우를 이용하여 간접적으로 증명하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="대우증명법"&gt;대우증명법
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;조건명제 &lt;code&gt;p → q&lt;/code&gt;와 그의 대우 &lt;code&gt;¬q → ¬p&lt;/code&gt;가 동치임을 이용하여 증명하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[object Promise] 1. 대우 명제: &amp;ldquo;&lt;code&gt;x&lt;/code&gt;가 짝수도 아니고 홀수도 아니면, &lt;code&gt;x²-x&lt;/code&gt;는 홀수이다.&amp;rdquo;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. 논리학에서 전제가 거짓인 조건문은 항상 참(공허참)
+1. 대우 명제가 참이므로 원래의 명제도 참
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="모순증명법-귀류법"&gt;모순증명법 (귀류법)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;조건명제 &lt;code&gt;p → q&lt;/code&gt;와 &lt;code&gt;¬(p∧¬q)&lt;/code&gt;가 동치임을 이용하여 &lt;code&gt;p∧¬q&lt;/code&gt;가 거짓임을 보여 증명하는 방법&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;아래의 두 예시는 귀류법으로만 증명이 가능&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[object Promise] 1. 가정: &lt;code&gt;√2 = a/b&lt;/code&gt; (a, b는 정수, b ≠ 0, a/b는 하한항)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. 양변에 제곱: `[2 = a²/b²] &amp;gt; [2b² = a²]`
+1. `2b²`은 짝수이므로 `a²`도 짝수이고 `a`도 짝수
+1. `[a = 2k] &amp;gt; [4k² = a² = 2b²] &amp;gt; [b² = 2k²]` 이므로 `b`는 짝수
+1. `a`와 `b`가 모두 짝수이므로 `a/b`는 하한항이 아니게 됨
+1. 따라서 √2가 하한항인 유리수라는 것은 거짓
+1. `a/b`가 하한항인 유리수라는 가정이 모순되므로 √2는 무리수
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;[object Promise] 1. &lt;code&gt;p&lt;/code&gt;: √5는 무리수이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. `¬q`: √3+√5는 무리수가 아니다. (유리수)
+1. `p∧¬q`: √5는 무리수이고 √3+√5는 유리수이다.
+1. 가정: `√3+√5 = a` (a ∈ 유리수, a ≠ 0)
+1. `[√3 = a - √5] &amp;gt; [3 = a² - 2a√5 + 5] &amp;gt; [(a²+2)/2a = √5]`
+1. a는 유리수라고 가정했으므로 `[(a²+2)/2a = √5]`의 좌변은 유리수이지만 우변이 √5이므로 가정이 성립하지 않음
+1. 따라서 `p∧¬q`인 &amp;quot;√5는 무리수이고 √3+√5는 유리수이다.&amp;quot;가 거짓이므로 `p → q`는 참
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="존재증명법"&gt;존재증명법
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;주어진 명제가 참이 되는 예를 찾아서 증명하는 방법&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;∃xP(x)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="반례증명법"&gt;반례증명법
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;주어진 명제에 모순이 되는 예를 찾아서 증명하는 방법&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;∃x¬P(x)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="수학적-귀납법"&gt;수학적 귀납법
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;0과 자연수에 대해 일정한 규칙을 나타내는 명제 P(n)이 성립하는 것을 증명하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;구분&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;특징&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;기본가정&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;명제의 논의영역의 첫 번째 값 a에 대해 P(a)가 참임을 보인다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;귀납가정&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;논의영역에 속하는 임의의 값 k에 대해 P(k)가 참이라고 가정한다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;귀납증명&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;기본가정과 귀납가정을 이용해 (k+1)에 대해 P(k+1)이 참인지 증명한다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description></item><item><title>Flip-Flop</title><link>https://kimcatchy.github.io/p/flip-flop/</link><pubDate>Sun, 21 Sep 2025 16:12:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/flip-flop/</guid><description>&lt;h2 id="플립플롭"&gt;플립플롭
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1비트의 정보를 기억할 수 있는 회로로 컴퓨터의 캐시 메모리·레지스터를 구성하는 기본 회로&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;전원이 있을 때만 기억이 유지되며, 전원이 차단되면 정보는 사라지는 휘발성 기억 소자&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="래치latch"&gt;래치(Latch)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;수동적 또는 전자적 조작으로 상태를 바꾸지 않는 한 그 상태를 유지해 주는 장치 또는 회로&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;주어진 상태를 보관 유지할 수 있도록 NAND 게이트 또는 NOR 게이트를 이용하여 회로를 구성&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;논리 회로로 구성되었기 때문에 논리회로에 준하는 빠른 동작속도를 얻을 수 있고 플립플롭으로 활용&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="기본적인-플립플롭"&gt;기본적인 플립플롭
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;플립플롭과 래치는 두 개의 안정된 상태 중 하나를 가지는 1비트 기억 소자&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;플립플롭과 래치도 게이트로 구성되지만 조합논리회로와 달리 궤환(feedback)이 있음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;래치회로는 근본적으로는 플립플롭과 유사한 기능을 수행&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="nor-게이트로-구성된-s-r-래치"&gt;NOR 게이트로 구성된 S-R 래치
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://kimcatchy.github.io/p/flip-flop/image1.png"
+width="185"
+height="134"
+srcset="https://kimcatchy.github.io/p/flip-flop/image1_hu_1460b329b0583ec6.png 480w, https://kimcatchy.github.io/p/flip-flop/image1_hu_625a6e74d1eb2506.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="138"
+data-flex-basis="331px"
+&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;S&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;R&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Q&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Q&amp;rsquo;&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;불변&lt;/td&gt;
+&lt;td&gt;불변&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;불능&lt;/td&gt;
+&lt;td&gt;불능&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="d-플립플롭"&gt;D 플립플롭
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://kimcatchy.github.io/p/flip-flop/image2.png"
+width="325"
+height="160"
+srcset="https://kimcatchy.github.io/p/flip-flop/image2_hu_82701356e33a0dae.png 480w, https://kimcatchy.github.io/p/flip-flop/image2_hu_2c29ce5ec240b77c.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="203"
+data-flex-basis="487px"
+&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;CP&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;D&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Q&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Q&amp;rsquo;&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;입력 단자 R과 S에 동시에 1이 입력되어 불능이 되는 것을 회로적으로 차단&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;입력신호 D가 클럭펄스(CP)에 의해 변화 없이 그대로 출력에 전달되는 특성을 가지고 있어, 데이터(Data)를 전달하는 것과 지연(Delay)을 의미하는 D 플립플롭이라고 함&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="j-k-플립플롭"&gt;J-K 플립플롭
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://kimcatchy.github.io/p/flip-flop/image3.png"
+width="265"
+height="181"
+srcset="https://kimcatchy.github.io/p/flip-flop/image3_hu_97d6394c967d1bce.png 480w, https://kimcatchy.github.io/p/flip-flop/image3_hu_3a60533d5fa2a8bc.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="146"
+data-flex-basis="351px"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;R-S 플립플롭에서 R과 S에 동시에 1이 입력되어 불능 상태가 되는 것을 해결한 논리회로&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;J는 S에, K는 R에 대응하는 입력으로 J와 K의 입력이 동시에 1이 입력되면 플립플롭의 출력은 이전 출력의 보수 상태로 변화&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="t-플립플롭"&gt;T 플립플롭
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://kimcatchy.github.io/p/flip-flop/image4.png"
+width="298"
+height="182"
+srcset="https://kimcatchy.github.io/p/flip-flop/image4_hu_9432ee082e6f77bb.png 480w, https://kimcatchy.github.io/p/flip-flop/image4_hu_88e6cbd76de157b8.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="163"
+data-flex-basis="392px"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;J-K 플립플롭의 J와 K 입력을 묶어서 하나의 입력 신호 T로 동작시키는 플립플롭&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;입력이 0이 되면 이전 상태의 값이 그대로 출력되고, 입력이 1이 되면 이전 상태의 보수 값이 출력되게 되는 플립플롭&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Proposition &amp; Argument</title><link>https://kimcatchy.github.io/p/proposition-and-argument/</link><pubDate>Sun, 21 Sep 2025 15:58:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/proposition-and-argument/</guid><description>&lt;h2 id="명제"&gt;명제
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;명제&lt;/strong&gt;: 객관적인 기준으로 참/거짓을 구분할 수 있는 문장이나 수식&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;논증&lt;/strong&gt;: 전제와 결론으로 이루어져 어떤 주장이 옳다는 것을 보이기 위한 명제들의 나열&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;결론: 논증의 마지막&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;전제: 그 앞의 명제들&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;진릿값&lt;/strong&gt;: 참이나 거짓을 가리키는 값&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;합성명제&lt;/strong&gt;: 하나 이상의 명제가 결합되는 것, &lt;strong&gt;부정&lt;/strong&gt;·&lt;strong&gt;논리곱&lt;/strong&gt;·&lt;strong&gt;논리합&lt;/strong&gt;·&lt;strong&gt;배타적 논리합&lt;/strong&gt;과 같은 논리연산자를 이용&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="논리연산자"&gt;논리연산자
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;부정(&lt;strong&gt;NOT&lt;/strong&gt;): &lt;strong&gt;~p&lt;/strong&gt; 또는 &lt;strong&gt;¬p&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;논리곱(&lt;strong&gt;AND&lt;/strong&gt;): &lt;strong&gt;p∧q&lt;/strong&gt;, 두 명제가 모두 참(1)일 때만 참&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;논리합(&lt;strong&gt;OR&lt;/strong&gt;): &lt;strong&gt;p∨q&lt;/strong&gt;, 두 명제 중 하나라도 참이라면 참&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;배타적 논리합(&lt;strong&gt;XOR&lt;/strong&gt;): &lt;strong&gt;p⊻q&lt;/strong&gt; 또는 &lt;strong&gt;p⊕q&lt;/strong&gt;, 두 명제 중 하나만 참일 때만 참&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="합성명제"&gt;합성명제
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;우선순위: ① &lt;strong&gt;()&lt;/strong&gt;, ② &lt;strong&gt;¬&lt;/strong&gt;, ③ &lt;strong&gt;∧&lt;/strong&gt;, ④ &lt;strong&gt;∨&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;항진명제: 합성명제를 구성하는 단일명제들의 진리값에 관계없이 항상 참인 합성명제&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;모순명제: 합성명제를 구성하는 단일명제들의 진리값에 관계없이 항상 거짓인 합성명제&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;사건명제: 항진명제도 모순명제도 아닌 합성명제&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="조건명제"&gt;조건명제
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;문장 p, q가 명제일 때, p가 가정 또는 전제이고, q가 결론 또는 결과가 되는 명제 (p → q)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;p가 참이고 q가 거짓일 때만 거짓 = ~p∨q와 &lt;strong&gt;논리적 동치&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="쌍방조건명제"&gt;쌍방조건명제
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;p ↔ q = (p → q) ∧ (q → p)&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;문장 p, q가 명제일 때, p와 q가 가정이면서 동시에 결론인 명제&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;p, q가 모두 참이거나 거짓일 때만 참&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="역-이-대우"&gt;역, 이, 대우
+&lt;/h3&gt;&lt;p&gt;&lt;img src="https://kimcatchy.github.io/p/proposition-and-argument/image1.png"
+width="1280"
+height="530"
+srcset="https://kimcatchy.github.io/p/proposition-and-argument/image1_hu_781e1584c92931db.png 480w, https://kimcatchy.github.io/p/proposition-and-argument/image1_hu_b0287bfdad92a6e.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="241"
+data-flex-basis="579px"
+&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;p&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;q&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;조건명제&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;역&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;이&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;대우&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;p → q&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;q → p&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;~p → ~q&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;~q → ~p&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;원 명제가 참이면 그 대우 명제도 반드시 참이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="논리적-동치"&gt;논리적 동치
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;P = Q&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;두 개의 합성명제 P와 Q의 진릿값이 서로 같은 경우&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;논리적 등치&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;법칙&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;p∧T ≡ p&lt;/td&gt;
+&lt;td&gt;p∨F ≡ p&lt;/td&gt;
+&lt;td&gt;항등법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p∧F ≡ F&lt;/td&gt;
+&lt;td&gt;p∨T ≡ T&lt;/td&gt;
+&lt;td&gt;지배법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p∧¬p ≡ F&lt;/td&gt;
+&lt;td&gt;p∨¬p ≡ T&lt;/td&gt;
+&lt;td&gt;부정법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;¬(¬p) ≡ p&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;이중부정법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p∧p ≡ p&lt;/td&gt;
+&lt;td&gt;p∨p ≡ p&lt;/td&gt;
+&lt;td&gt;멱등법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p∧q ≡ q∧p&lt;/td&gt;
+&lt;td&gt;p∨q ≡ q∨p&lt;/td&gt;
+&lt;td&gt;교환법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(p∧q)∧r ≡ p∧(q∧r)&lt;/td&gt;
+&lt;td&gt;(p∨q)∨r ≡ p∨(q∨r)&lt;/td&gt;
+&lt;td&gt;결합법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p∨(q∧r) ≡ (p∨q)∧(q∨r)&lt;/td&gt;
+&lt;td&gt;p∧(q∨r) ≡ (p∧q)∨(q∧r)&lt;/td&gt;
+&lt;td&gt;분배법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;¬(p∧q) ≡ ¬p∨¬q&lt;/td&gt;
+&lt;td&gt;¬(p∨q) ≡ ¬p∧¬q&lt;/td&gt;
+&lt;td&gt;드모르간의 법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p∧(p∨q) ≡ p&lt;/td&gt;
+&lt;td&gt;p∨(p∧q) ≡ p&lt;/td&gt;
+&lt;td&gt;흡수법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p → q ≡ ¬p∨q&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;함축법칙&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="명제함수"&gt;명제함수
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;P(x)&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;논의영역이 주어진 변수 x를 포함하여 진릿값을 판별할 수 있는 문장이나 수식&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;논의영역&lt;/strong&gt;(D): 명제함수에 포함된 변수 x의 범위나 값&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="전체한정자전칭한정자-"&gt;전체한정자(전칭한정자) ∀
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;논의영역의 모든 값&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;논의영역 D에 속하는 모든 x에 대한 명제, P(x) : ∀xP(x)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;전체한정자로 범위가 정해진 명제함수는 논의영역에 포함되는 모든 원소에 대해 그 명제가 참이면 명제 함수도 참&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;논의영역에 포함되는 원소 중 하나라도 명제가 거짓이면 그 명제함수는 거짓&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[object Promise]### 존재한정자 ∃&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;논의영역 중 어떤 값&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;논의영역 D에 속하는 원소 중 어떤 x에 대한 명제, P(x) : ∃xP(x)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[object Promise]### 한정자와 부정연산자&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;명제함수도 명제이기 때문에 논리연산이 가능&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;한정자와 AND, OR에 대한 정리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;∀x(P(x)∧Q(x)) ≡ ∀xP(x)∧∀xQ(x)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;∃x(P(x)∨Q(x)) ≡ ∃xP(x)∨∃xQ(x)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;한정자와 NOT에 대한 정리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;¬(∀x(P(x)) ≡ ∃x(¬P(x))&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;¬(∃x(P(x)) ≡ ∀x(¬P(x))&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="추론논증"&gt;추론(논증)
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;참인 명제를 근거로 하여 다른 명제가 참임을 유도하는 방식&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;전제(가정)&lt;/strong&gt;: 결론의 근거가 되는 최종 결론을 제외한 명제, 진릿값이 참으로 간주되는 명제&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;결론&lt;/strong&gt;: 주어진 전제에 의해 유도된 명제&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;유효추론&lt;/strong&gt;: 주어진 전제를 이용해 유도된 결론이 정확한 추론 = 전제가 참일 때 결론이 모두 참인 추론&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;허위추론&lt;/strong&gt;: 주어진 전제를 이용해 유도된 결론이 틀린 추론 = 전제가 참인 경우 결론이 거짓인 경우가 하나라도 있는 추론&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Complex</title><link>https://kimcatchy.github.io/p/complex/</link><pubDate>Sun, 21 Sep 2025 15:48:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/complex/</guid><description>&lt;h2 id="복소수"&gt;복소수
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;수학에서 실수와 허수의 합으로 표현되는 수&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;일반적인 형태는 &lt;code&gt;a + bi&lt;/code&gt;, a는 실수부, b는 허수부, i는 허수 단위로 정의되어 i² = -1을 만족&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="기초-개념"&gt;기초 개념
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;실수부와 허수부&lt;/strong&gt;: 복소수 &lt;code&gt;z = a + bi&lt;/code&gt;에서 a는 실수부, b는 허수부&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;실수부는 복소평면의 x축에 해당&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;허수부는 y축에 해당&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;복소평면&lt;/strong&gt;: 복소수는 복소평면(또는 아르간 평면)에서 점으로 나타낼 수 있음&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;이 평면에서 실수 축은 x축, 허수 축은 y축으로 구성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="복소수의-연산"&gt;복소수의 연산
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;덧셈과 뺄셈&lt;/strong&gt;: 두 복소수를 더하거나 빼려면 각각의 실수부끼리, 허수부끼리 연산&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;e.g. &lt;code&gt;(a + bi) + (c + di) = (a + c) + (b + d)i&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;e.g. &lt;code&gt;(a + bi) - (c + di) = (a - c) + (b - d)i&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;곱셈&lt;/strong&gt;: 두 복소수를 곱할 때는 분배법칙을 사용하며, i² = -1 임을 고려&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;e.g. &lt;code&gt;(a + bi)(c + di) = (ac - bd) + (ad + bc)i&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;나눗셈&lt;/strong&gt;: 나눗셈은 분모의 켤레복소수를 이용하여 계산&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;e.g. &lt;code&gt;(a + bi) / (c + di) × {c - di) / (c - di) = {(ac + bd) + (bc - ad)i} / (c² + d²)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="복소수의-기하학적-해석"&gt;복소수의 기하학적 해석
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;절댓값&lt;/strong&gt;: 복소수 &lt;code&gt;z = a + bi&lt;/code&gt;의 절댓값(크기)은 원점에서 해당 점까지의 거리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;|z| = √(a² + b²)&lt;/code&gt; 로 정의&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;편각&lt;/strong&gt;: 복소평면에서 실수축과 이루는 각도(편각)는 &lt;code&gt;θ = tan^(-1)(b/a)&lt;/code&gt; 로 구할 수 있음&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="오일러-공식과-극형태"&gt;오일러 공식과 극형태
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;오일러 공식&lt;/strong&gt;: 복소수를 지수 함수와 삼각 함수로 연결하는 중요한 공식&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;eⁱˣ = cos(x) + i·sin(x)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;이를 통해 복소수를 지수 형태로 표현할 수 있음&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;극형태&lt;/strong&gt;: 복소수를 극형태로 표현하면 &lt;code&gt;z = r(cosθ + i·sinθ)&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;r은 절댓값, θ는 편각&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;극형태를 사용하면 곱셈과 나눗셈이 더욱 간단해짐&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Complement</title><link>https://kimcatchy.github.io/p/complement/</link><pubDate>Sat, 20 Sep 2025 01:37:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/complement/</guid><description>&lt;h2 id="보수의-정의"&gt;보수의 정의
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;상호 보완하는 수로, 임의의 수를 보완해주는 다른 임의의 수&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;컴퓨터에서 보수는 음수를 표현하는 데 사용&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;r진법에서 정의되는 보수 → (r-1)의 보수, r의 보수&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;(r-1)의 보수: (r^n - 1) - N, A라는 수에 B라는 수를 더한 결과값의 각 자리가 (r-1)이 될 때, B를 A에 대한 (r-1)의 보수라고 정의&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;r의 보수: r^n - N, A라는 수에 B라는 수를 더해서 각 자리마다 자리올림이 발생하고 해당 자리는 0이 될 때, B를 A에 대한 r의 보수라고 정의&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;부호가 없는 10진수의 뺄셈 연산에서 보수의 활용&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;컴퓨터에서 뺄셈 연산은 보수를 이용하는 것이 효율적임&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;부호를 표시하지 않는 10진수에서 보수를 이용한 뺄셈 연산으로, 임의의 수를 보완해주는 다른 임의의 수&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;컴퓨터에서 보수는 음수를 표현하는 데 사용&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;r진법에서 정의되는 보수 → (r-1)의 보수, r의 보수&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(r-1)의 보수: (r^n - 1) - N, A라는 수에 B라는 수를 더한 결과값의 각 자리가 (r-1)이 될 때, B를 A에 대한 (r-1)의 보수라고 정의&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;r의 보수: r^n - N, A라는 수에 B라는 수를 더해서 각 자리마다 자리올림이 발생하고 해당 자리는 0이 될 때, B를 A에 대한 r의 보수라고 정의&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="데이터의-2진수-표현"&gt;데이터의 2진수 표현
+&lt;/h2&gt;&lt;h3 id="부호가-있는-2진-정수의-표현"&gt;부호가 있는 2진 정수의 표현
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;① &lt;strong&gt;부호화 - 크기 표현&lt;/strong&gt;: n비트로 구성된 2진수에서, 최상위 비트는 부호비트(signed bit)이고 나머지 n-1개의 비트들은 수의 절대 크기(magnitude)를 나타냄&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;② &lt;strong&gt;1의 보수 표현&lt;/strong&gt;: 모든 비트를 반전 (0→1, 1→0)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;③ &lt;strong&gt;2의 보수 표현&lt;/strong&gt;: 모든 비트들을 반전하고, 결과값에 1을 더함&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;보수를 이용하면 부호 비트가 자연스럽게 변경되고, 그 크기도 적절한 형태로 변경&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2의 보수는 0에 대한 표현이 하나만 있으며 산술 연산이 용이&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2의 보수는 가장 효율적이기 때문에 컴퓨터를 비롯한 디지털 장치에 부호를 갖는 2진수를 표현하는데 사용&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2진수의-표현-범위"&gt;2진수의 표현 범위
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;-2ⁿ⁻¹ ≤ N ≤ -2ⁿ⁻¹ -1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;n비트 데이터의 경우로 일반화 했을 때의 수의 범위&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="비트-확장"&gt;비트 확장
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;부호가 존재하는 데이터의 비트 수를 늘리는 연산을 비트확장이라고 함&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;부호화 - 크기 표현의 비트 확장&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;부호 비트를 확장되는 최상위 자리로 이동시키고, 나머지 새로 확장되는 크기 비트들은 0으로 채움&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2의 보수로 표현된 2진수의 비트 확장(부호 비트 확장)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;확장되는 상위 비트들을 부호 비트와 동일한 값으로 채움&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="소수의-표현"&gt;소수의 표현
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;소수를 포함하는 10진수의 2진수 표현&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;① 정수 부분과 소수 부분을 분리&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;② 정수 부분의 10진수를 2진수로 변환&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;③ 소수 부분의 10진수를 2진수로 변환(2로 연속적인 곱셈을 수행하면서 생기는 자리 올림수)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;④ 얻어진 정수와 소수의 2진수를 합함&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;소수점을 포함하고 있는 2진수를 10진수로 변환&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;정수 부분은 2의 지수 승, 소수 부분은 2의 (-)지수 승을 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="부동소수점의-표현"&gt;부동소수점의 표현
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Floating-point&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;고정소수점 표현&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;소수가 고정된 소수점을 통해서 구분하여 표현된 방식&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;표현 범위의 한계가 있어 아주 큰 값과 매우 작은 값을 표현하는 것이 불가능&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;부동소수점 표현&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;지수를 사용, 소수점의 위치를 이동하여 수의 표현 범위를 확대&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;±M × B^±E&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;M: 가수 / B: 기수 / E: 지수&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2진 부동소수점 수 표현&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;단일-정밀도 부동소수점 수: 32비트로 표현&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;부호 필드는 1비트로 0이면 양수이고 1이면 음수&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;지수 필드(8비트)는 지수 값을 저장하는 곳&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;가수 필드는 23비트로 표현, 고정소수점 수와 비교해서 표현할 수 있는 수의 넓이가 훨씬 넓음&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;복수-정밀도 부동소수점 수: 64비트로 표현&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;각 필드의 비트 할당 문제는 표현하는 수의 범위와 정밀도를 결정&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;지수 필드의 비트 수가 늘어나면 표현 가능한 수의 범위가 확장&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;가수 필드의 비트가 늘어나면 2진수로 표현할 수 있는 수가 많아져 정밀도가 증가&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="바이어스된-지수값"&gt;바이어스된 지수값
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;정규화된 표현에서 소수점 우측의 첫 번째 비트는 항상 1로 생략 가능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;가수 필드 23비트를 이용하여 생략된 소수점 아래 첫 번째 1을 포함하여 24자리의 수까지 표현 가능하게 되어 1비트를 더 표현 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;지수의 바이어스된 수(biased number)로 표현&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;지수 필드의 지수는 양의 값뿐만 아니라 음의 값을 가지므로 부호에 대한 표현이 필요함&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;지수를 바이어스된 수로 표현하면, 음수의 표현뿐만 아니라 0에 대한 표현에서 모든 비트가 0이 되게 함&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="ieee-754-표준"&gt;IEEE 754 표준
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;국제 표준: ±1.bbbb&amp;hellip;bbb × 2^±E&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;단일 정밀도 형식&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;지수: 8비트&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;바이어스: 127&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;가수: 23비트&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;표현 영역: 10⁻³⁸ ~ 10³⁸&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;복수 정밀도 형식&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;지수: 11비트&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;바이어스: 1023&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;가수: 52비트&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;표현 영역: 10⁻³⁰⁸ ~ 10³⁰⁸&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;지수(E) 필드의 비트 수가 늘어나면 표현 가능한 수의 범위가 확장&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;가수(M) 필드의 비트 수가 늘어나면 정밀도 증가&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="2진수의-연산"&gt;2진수의 연산
+&lt;/h2&gt;&lt;h3 id="산술-연산"&gt;산술 연산
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;덧셈은 특별한 게 없음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;뺄셈의 경우 빼는 수의 2의 보수를 구하고 뺄 수와 더하여 연산&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;곱셈과 나눗셈도 10진수와 다를 게 없음&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="논리-연산"&gt;논리 연산
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;주어진 명제에 대하여 참과 거짓을 결정하는 연산&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;컴퓨터와 같은 디지털 장치에서는 많은 산술 연산 뿐만 아니라 다양한 논리 연산을 지원&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AND: 모든 입력이 1일 때 1을 출력하고 아닌 경우 0 출력&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;OR: 입력 중 하나라도 1이면 1을 출력하고 아닌 경우 0 출력&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;XOR: 입력이 모두 동일할 경우 0을 출력하고 아닌 경우 1 출력&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;NOT: 입력의 반대를 출력&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="응용-논리-연산"&gt;응용 논리 연산
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;선택적 세트 연산: 2진수의 특정 비트를 선택하여서 1로 세트시키는 연산, 세트할 비트들에 &lt;strong&gt;OR 연산&lt;/strong&gt;으로 세트&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;선택적 보수 연산: 특정 부분만 비트를 반전, 반전할 비트들에 &lt;strong&gt;XOR 연산&lt;/strong&gt;으로 반전&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;마스크 연산: 원하는 비트들을 선택적으로 clear(0)하는데 사용하는 연산, clear할 부분에 &lt;strong&gt;AND 연산&lt;/strong&gt;으로 clear&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;삽입 연산: 특정 위치에 새로운 비트 값들을 삽입, &lt;strong&gt;마스크 연산&lt;/strong&gt;으로 clear 후 새로 삽입할 비트들로 &lt;strong&gt;OR 연산&lt;/strong&gt; 수행&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;비교 연산: 두 데이터를 비교하는 연산, &lt;strong&gt;XOR 연산&lt;/strong&gt;을 통해 비교&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;순환 이동: 최상위 또는 최하위에 있는 비트가 반대편 끝에 있는 비트 위치로 이동해서 비트가 회전&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;순환 좌측 이동: 최상위 비트가 최하위 비트 위치로 이동&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;순환 우측 이동: 촤하위 비트가 최상위 비트 위치로 이동&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;산술적 이동: 이동 과정에서 부호 비트는 유지하고 수의 크기를 나타내는 비트들만 이동&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="문자-데이터의-표현"&gt;문자 데이터의 표현
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;패리티 비트: 전송 과정에서 1비트 오류를 검출하기 위한 비트&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;표준 BCD 코드&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;이진화 십진 코드&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;기본적으로 6비트의 길이를 갖는 코드이지만 좀 더 효율적으로 사용하기 위해서 존 비트와 숫자 비트로 분리하고 이를 조합해서 코드를 생성&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;패리티 비트(1) + 존 비트(2) + 숫자 비트(4) → 64가지의 문자, 숫자, 특수문자의 정보를 표현&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;아스키 코드&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;미국 국립 표준 연구소(ANSI)가 제정한 정보 교환용 미국 표준 코드&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;코드의 길이는 7비트와 패리티 비트가 추가된 두 종류의 8비트 코드가 있으며 128(=2⁷)가지의 정보를 표현 가능&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;패리티 비트(1) + 존 비트(3) + 숫자 비트(4)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

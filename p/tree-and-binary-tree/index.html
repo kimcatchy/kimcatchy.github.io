@@ -1,0 +1,364 @@
+<!doctype html><html lang=ko-KR dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="자료구조"><title>Tree & Binary Tree</title><link rel=canonical href=https://kimcatchy.github.io/p/tree-and-binary-tree/><link rel=stylesheet href=/scss/style.min.0fa023a8ccb14000d6c70e3d7e989aac36ecf8eed2283bb5199f4765a7fd1b7b.css><meta property='og:title' content="Tree & Binary Tree"><meta property='og:description' content="자료구조"><meta property='og:url' content='https://kimcatchy.github.io/p/tree-and-binary-tree/'><meta property='og:site_name' content='BURROW'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='DataStructure'><meta property='article:tag' content='Python'><meta property='article:published_time' content='2025-09-19T20:16:00+09:00'><meta property='article:modified_time' content='2025-09-19T20:16:00+09:00'><meta name=twitter:title content="Tree & Binary Tree"><meta name=twitter:description content="자료구조"><link rel="shortcut icon" href=/favicon.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_287d83a7554f1e9f.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🐿️</span></figure><div class=site-meta><h1 class=site-name><a href=/>BURROW</a></h1><h2 class=site-description>Just Chillin</h2></div></header><ol class=menu-social><li><a href=https://github.com/kimcatchy target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://gitlab.com/kimcatchy target=_blank title=GitLab rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gitlab"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 14l-9 7-9-7L6 3l3 7h6l3-7z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/projects/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Projects</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">목차</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#트리>트리</a></li><li><a href=#이진트리>이진트리</a><ol><li><a href=#이진트리의-분류>이진트리의 분류</a></li><li><a href=#이진트리의-성질>이진트리의 성질</a></li><li><a href=#이진트리의-표현>이진트리의 표현</a></li></ol></li><li><a href=#순회>순회</a><ol><li><a href=#전위-순회>전위 순회</a></li><li><a href=#중위-순회>중위 순회</a></li><li><a href=#후위-순회>후위 순회</a></li><li><a href=#레벨-순회>레벨 순회</a></li><li><a href=#이진트리-연산>이진트리 연산</a><ol><li><a href=#노드-개수>노드 개수</a></li><li><a href=#단말-노드의-수>단말 노드의 수</a></li><li><a href=#트리-높이>트리 높이</a></li></ol></li><li><a href=#테스트-프로그램>테스트 프로그램</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/study/>Study</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/tree-and-binary-tree/>Tree & Binary Tree</a></h2><h3 class=article-subtitle>자료구조</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>9월 19, 2025</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>4 minute read</time></div></footer></div></header><section class=article-content><h2 id=트리>트리</h2><ul><li><p>계층적인 자료의 표현에 적합한 자료 구조</p></li><li><p>트리의 모든 노드는 자신의 서브트리의 루트 노드</p></li><li><p>연결된 위 레벨의 노드는 부모 노드, 아래 레벨의 노드는 자식 노드</p></li><li><p><strong>단말 노드</strong>: 자손이 없는 노드, 자손이 있으면 비단말 노드</p></li><li><p><strong>차수</strong>: 해당 노드의 자식 노드의 수</p></li><li><p><strong>트리의 차수</strong>: 트리를 구성하고 있는 각 노드의 차수 중 가장 높은 차수</p></li></ul><h2 id=이진트리>이진트리</h2><ul><li><p><strong>모든 노드가 2개의 서브 트리를 갖는 트리</strong></p></li><li><p>공집합이거나 루트와 왼쪽/오른쪽 서브 트리로 구성된 노드들의 집합</p></li><li><p>순환적으로 정의됨</p></li><li><p>서브트리는 공집합일 수 있음</p></li><li><p>이진트리의 서브 트리들은 모두 이진트리이어야 함</p></li></ul><h3 id=이진트리의-분류>이진트리의 분류</h3><ul><li><p>포화 이진트리 (Full Binary Tree)</p><ul><li>트리의 각 레벨에 노드가 꽉 차 있는 이진트리</li></ul></li><li><p>완전 이진트리 (Complete Binary Tree)</p><ul><li><p>높이가 h일 때 레벨 1부터 h-1까지는 노드가 모두 채워짐</p></li><li><p>마지막 레벨 h에서는 노드가 순서대로 채워짐</p></li></ul></li><li><p>경사 이진트리</p><ul><li>왼쪽으로만 자식 노드가 일렬로 늘어 놓인 이진트리</li></ul></li></ul><h3 id=이진트리의-성질>이진트리의 성질</h3><ul><li><p>노드의 개수가 n개이면 간선의 개수는 n-1 (루트 노드는 부모가 없음)</p></li><li><p>높이가 h이면 h ~ 2ʰ-1개의 노드를 가짐 (각 레벨에 최소 하나의 노드가 있어야 함)</p></li><li><p>n개 노드의 이진트리 높이 =</p>\[log₂ (n+1)\]<p>~ n</p></li></ul><h3 id=이진트리의-표현>이진트리의 표현</h3><ul><li><p><strong>배열 표현법</strong>: 높이가 K일 때 필요한 배열의 길이 = 2ᵏ-1</p><ul><li><p>높이 i의 부모 노드 인덱스 = i//2 (정수 나눗셈)</p></li><li><p>노드 i의 왼쪽 자식 노드 인덱스 = 2i</p></li><li><p>노드 i의 오른쪽 자식 노드 인덱스 wi+1</p></li></ul></li><li><p><strong>링크 표현법</strong>: 데이터의 왼쪽과 오른쪽에 각각 자식노드의 링크</p><ul><li><p>링크 2개만 있으면 표현이 가능함</p></li><li><p>경사 이진트리에서 화살표가 없는 링크는 None을 가짐</p></li></ul></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Tnode</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>data</span><span class=p>,</span> <span class=n>left</span><span class=p>,</span> <span class=n>right</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>data</span> <span class=o>=</span> <span class=n>data</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>left</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>right</span></span></span></code></pre></td></tr></table></div></div></div></div><h2 id=순회>순회</h2><ul><li><p>Traversal</p></li><li><p>트리에 속하는 모든 노드를 한 번씩 방문하는 것</p></li><li><p>선형 자료구조는 순회가 단순</p></li><li><p>트리는 다양한 방법이 있음</p></li><li><p>이진트리의 기본 순회 (루트 노드가 <code>V</code>, 왼쪽 서브트리가 <code>L</code>, 오른쪽 서브트리가 <code>R</code>)</p><ul><li><p><strong>전위 순회</strong>(Preorder Traversal): <code>VLR</code></p></li><li><p><strong>중위 순회</strong>(Inorder Traversal): <code>LVR</code></p></li><li><p><strong>후위 순회</strong>(Postorder Traversal): <code>LRV</code></p></li></ul></li></ul><h3 id=전위-순회>전위 순회</h3><ul><li><p>Preorder Traversal</p></li><li><p>루트 → 왼쪽 서브트리 → 오른쪽 서브트리</p></li><li><p>응용 예: 노드의 레벨 계산, 구조화된 문서 출력</p></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>preorder</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>data</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><p><img src=/p/tree-and-binary-tree/image1.png width=918 height=615 srcset="/p/tree-and-binary-tree/image1_hu_cc8ce2c10cc3cf6a.png 480w, /p/tree-and-binary-tree/image1_hu_4099bd9387332795.png 1024w" loading=lazy class=gallery-image data-flex-grow=149 data-flex-basis=358px></p><h3 id=중위-순회>중위 순회</h3><ul><li><p>Inorder Traversal</p></li><li><p>왼쪽 서브트리 → 루트 → 오른쪽 서브트리</p></li><li><p>응용 예: 정렬</p></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>inorder</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>data</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><p><img src=/p/tree-and-binary-tree/image2.png width=911 height=605 srcset="/p/tree-and-binary-tree/image2_hu_7974915d3477d105.png 480w, /p/tree-and-binary-tree/image2_hu_5ccc393e13d24fa.png 1024w" loading=lazy class=gallery-image data-flex-grow=150 data-flex-basis=361px></p><h3 id=후위-순회>후위 순회</h3><ul><li><p>Postorder Traversal</p></li><li><p>왼쪽 서브트리 → 오른쪽 서브트리 → 루트</p></li><li><p>응용 예: 폴더 용량 계산</p></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>postorder</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>data</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><p><img src=/p/tree-and-binary-tree/image3.png width=910 height=608 srcset="/p/tree-and-binary-tree/image3_hu_6bcb2ae125406c05.png 480w, /p/tree-and-binary-tree/image3_hu_cfd1e34181686776.png 1024w" loading=lazy class=gallery-image data-flex-grow=149 data-flex-basis=359px></p><h3 id=레벨-순회>레벨 순회</h3><ul><li><p>노드를 레벨 순으로 검사하는 순회 방법</p></li><li><p>큐를 사용해 구현</p></li><li><p>순환을 사용하지 않음</p></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>levelorder</span><span class=p>(</span><span class=n>root</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>queue</span> <span class=o>=</span> <span class=n>CircularQueue</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>queue</span><span class=o>.</span><span class=n>enqueue</span><span class=p>(</span><span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=ow>not</span> <span class=n>queue</span><span class=o>.</span><span class=n>isEmpty</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>        <span class=n>n</span> <span class=o>=</span> <span class=n>queue</span><span class=o>.</span><span class=n>dequeue</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>data</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>queue</span><span class=o>.</span><span class=n>enqueue</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>queue</span><span class=o>.</span><span class=n>enqueue</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><p><img src=/p/tree-and-binary-tree/image4.png width=909 height=613 srcset="/p/tree-and-binary-tree/image4_hu_7e30d6984fad85da.png 480w, /p/tree-and-binary-tree/image4_hu_9de85ad5d278b390.png 1024w" loading=lazy class=gallery-image data-flex-grow=148 data-flex-basis=355px></p><h3 id=이진트리-연산>이진트리 연산</h3><h4 id=노드-개수>노드 개수</h4><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>count_node</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>	<span class=c1># 순환을 이용해 트리의 노드 수를 계산하는 함수</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>	<span class=c1># n이 None이면 공백 트리 → 0을 반환</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>		<span class=c1># 좌우 서브트리의 노드수의 합+1을 반환 (순환이용)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>1</span> <span class=o>+</span> <span class=n>count_node</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span> <span class=o>+</span> <span class=n>count_node</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><h4 id=단말-노드의-수>단말 노드의 수</h4><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>count_leaf</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>	<span class=c1># 공백 트리 → 0을 반환</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>n</span><span class=o>.</span><span class=n>left</span> <span class=ow>is</span> <span class=kc>None</span> <span class=ow>and</span> <span class=n>n</span><span class=o>.</span><span class=n>right</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>	<span class=c1># 단말 노드 → 1을 반환</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>		<span class=c1># 비단말 노드 → 좌우 서브트리의 결과 합을 반환</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>count_leaf</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span> <span class=o>+</span> <span class=n>count_leaf</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><h4 id=트리-높이>트리 높이</h4><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>calc_height</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>			<span class=c1># 공백 트리 → 0을 반환</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=n>hLeft</span> <span class=o>=</span> <span class=n>calc_height</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>		<span class=c1># 왼쪽 트리의 높이</span>
+</span></span><span class=line><span class=cl>    <span class=n>hRight</span> <span class=o>=</span> <span class=n>calc_height</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>	<span class=c1># 오른쪽 트리의 높이</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>hLeft</span> <span class=o>&gt;</span> <span class=n>hRight</span><span class=p>):</span>		<span class=c1># 더 높은 높이에 1을 더해 반환</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>hLeft</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>hRight</span> <span class=o>+</span> <span class=mi>1</span></span></span></code></pre></td></tr></table></div></div></div></div><h3 id=테스트-프로그램>테스트 프로그램</h3><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>queue</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>CircularQueue</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>q</span> <span class=o>=</span> <span class=n>queue</span><span class=o>.</span><span class=n>Queue</span><span class=p>(</span><span class=n>maxsize</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>front</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>rear</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>isEmpty</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>q</span><span class=o>.</span><span class=n>empty</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>isFull</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>q</span><span class=o>.</span><span class=n>full</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>clear</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>q</span> <span class=o>=</span> <span class=n>queue</span><span class=o>.</span><span class=n>Queue</span><span class=p>(</span><span class=n>maxsize</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>front</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>rear</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>enqueue</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>item</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=bp>self</span><span class=o>.</span><span class=n>isFull</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>q</span><span class=o>.</span><span class=n>put</span><span class=p>(</span><span class=n>item</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>rear</span> <span class=o>=</span> <span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>rear</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span> <span class=o>%</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>dequeue</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=bp>self</span><span class=o>.</span><span class=n>isEmpty</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=n>item</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>q</span><span class=o>.</span><span class=n>get</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>front</span> <span class=o>=</span> <span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>front</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span> <span class=o>%</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>item</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>peek</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=bp>self</span><span class=o>.</span><span class=n>isEmpty</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=nb>list</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>q</span><span class=o>.</span><span class=n>queue</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>size</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>self</span><span class=o>.</span><span class=n>q</span><span class=o>.</span><span class=n>qsize</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>display</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>items</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>q</span><span class=o>.</span><span class=n>queue</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;[f=</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>front</span><span class=si>}</span><span class=s1>, r=</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>rear</span><span class=si>}</span><span class=s1>] ==&gt; &#39;</span><span class=p>,</span> <span class=n>items</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Tnode</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>data</span><span class=p>,</span> <span class=n>left</span><span class=p>,</span> <span class=n>right</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>data</span> <span class=o>=</span> <span class=n>data</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>left</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>right</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>preorder</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>data</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>inorder</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>data</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>postorder</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>preorder</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>data</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>levelorder</span><span class=p>(</span><span class=n>root</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>queue</span> <span class=o>=</span> <span class=n>CircularQueue</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>queue</span><span class=o>.</span><span class=n>enqueue</span><span class=p>(</span><span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=ow>not</span> <span class=n>queue</span><span class=o>.</span><span class=n>isEmpty</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>        <span class=n>n</span> <span class=o>=</span> <span class=n>queue</span><span class=o>.</span><span class=n>dequeue</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>data</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>queue</span><span class=o>.</span><span class=n>enqueue</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>queue</span><span class=o>.</span><span class=n>enqueue</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>count_node</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>1</span> <span class=o>+</span> <span class=n>count_node</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span> <span class=o>+</span> <span class=n>count_node</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>count_leaf</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>n</span><span class=o>.</span><span class=n>left</span> <span class=ow>is</span> <span class=kc>None</span> <span class=ow>and</span> <span class=n>n</span><span class=o>.</span><span class=n>right</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>count_leaf</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span> <span class=o>+</span> <span class=n>count_leaf</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>calc_height</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=n>hLeft</span> <span class=o>=</span> <span class=n>calc_height</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>hRight</span> <span class=o>=</span> <span class=n>calc_height</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>hLeft</span> <span class=o>&gt;</span> <span class=n>hRight</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>hLeft</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>hRight</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>d</span> <span class=o>=</span> <span class=n>Tnode</span><span class=p>(</span><span class=s1>&#39;D&#39;</span><span class=p>,</span> <span class=kc>None</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>e</span> <span class=o>=</span> <span class=n>Tnode</span><span class=p>(</span><span class=s1>&#39;E&#39;</span><span class=p>,</span> <span class=kc>None</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>b</span> <span class=o>=</span> <span class=n>Tnode</span><span class=p>(</span><span class=s1>&#39;B&#39;</span><span class=p>,</span> <span class=n>d</span><span class=p>,</span> <span class=n>e</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>f</span> <span class=o>=</span> <span class=n>Tnode</span><span class=p>(</span><span class=s1>&#39;F&#39;</span><span class=p>,</span> <span class=kc>None</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>c</span> <span class=o>=</span> <span class=n>Tnode</span><span class=p>(</span><span class=s1>&#39;C&#39;</span><span class=p>,</span> <span class=n>f</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>root</span> <span class=o>=</span> <span class=n>Tnode</span><span class=p>(</span><span class=s1>&#39;A&#39;</span><span class=p>,</span> <span class=n>b</span><span class=p>,</span> <span class=n>c</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\\</span><span class=s1>n In-Order: &#39;</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>inorder</span><span class=p>(</span><span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\\</span><span class=s1>n Pre-Order: &#39;</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>preorder</span><span class=p>(</span><span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\\</span><span class=s1>n Post-Order: &#39;</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>postorder</span><span class=p>(</span><span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\\</span><span class=s1>n Level-Order: &#39;</span><span class=p>,</span> <span class=n>end</span><span class=o>=</span><span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>levelorder</span><span class=p>(</span><span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\\</span><span class=s2>n노드의 개수 = </span><span class=si>%d</span><span class=s2>개&#34;</span> <span class=o>%</span> <span class=n>count_node</span><span class=p>(</span><span class=n>root</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;단말의 개수 = </span><span class=si>%d</span><span class=s2>개&#34;</span> <span class=o>%</span> <span class=n>count_leaf</span><span class=p>(</span><span class=n>root</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;트리의 높이 = </span><span class=si>%d</span><span class=s2>&#34;</span> <span class=o>%</span> <span class=n>calc_height</span><span class=p>(</span><span class=n>root</span><span class=p>))</span></span></span></code></pre></td></tr></table></div></div></div></div><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>bash</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl> In-Order: BDEACF
+</span></span><span class=line><span class=cl> Pre-Order: ABDECF
+</span></span><span class=line><span class=cl> Post-Order: BDECFA
+</span></span><span class=line><span class=cl> Level-Order: ABCDEF
+</span></span><span class=line><span class=cl>노드의 <span class=nv>개수</span> <span class=o>=</span> 6개
+</span></span><span class=line><span class=cl>단말의 <span class=nv>개수</span> <span class=o>=</span> 3개
+</span></span><span class=line><span class=cl>트리의 <span class=nv>높이</span> <span class=o>=</span> <span class=m>3</span></span></span></code></pre></td></tr></table></div></div></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/datastructure/>DataStructure</a>
+<a href=/tags/python/>Python</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>관련 글</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/shortest-path-algorithm/><div class=article-details><h2 class=article-title>Shortest Path Algorithm</h2></div></a></article><article><a href=/p/weighted-graph-and-minimum-cost/><div class=article-details><h2 class=article-title>가중치 그래프의 표현 & 최소비용</h2></div></a></article><article><a href=/p/ds-graph/><div class=article-details><h2 class=article-title>Graph</h2></div></a></article><article><a href=/p/search-tree/><div class=article-details><h2 class=article-title>Search Tree</h2></div></a></article><article><a href=/p/ds-heap/><div class=article-details><h2 class=article-title>Heap</h2></div></a></article></div></div></aside><script src=https://utteranc.es/client.js repo=kimcatchy/utterances issue-term=pathname label=comments crossorigin=anonymous async></script><style>.utterances{max-width:unset}</style><script>let utterancesLoaded=!1;function setUtterancesTheme(e){let t=document.querySelector(".utterances iframe");t&&t.contentWindow.postMessage({type:"set-theme",theme:`github-${e}`},"https://utteranc.es")}addEventListener("message",e=>{if(e.origin!=="https://utteranc.es")return;utterancesLoaded=!0,setUtterancesTheme(document.documentElement.dataset.scheme)}),window.addEventListener("onColorSchemeChange",e=>{if(!utterancesLoaded)return;setUtterancesTheme(e.detail)})</script><footer class=site-footer><section class=copyright>&copy;
+2025 BURROW</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.31.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><a href=# id=back-to-top title="Back to top"></a><style>#back-to-top{display:none;position:fixed;bottom:5px;right:15px;width:40px;height:40px;border-radius:50%;background-color:var(--body-background);box-shadow:var(--shadow-l2);font-size:20px;text-align:center;line-height:38px;cursor:pointer;transition:transform .3s ease,background-color .3s ease;z-index:999}#back-to-top:before{content:"";display:inline-block;position:relative;transform:rotate(135deg);height:8px;width:8px;border-width:0 0 2px 2px;border-color:var(--accent-color);border-style:solid}#back-to-top:hover{transform:scale(1.1);background-color:var(--accent-background)}@media screen and (max-width:768px){#back-to-top{bottom:5px;right:var(--container-padding);width:30px;height:30px;font-size:16px;line-height:32px}}</style><script>document.addEventListener("DOMContentLoaded",function(){const e=document.getElementById("back-to-top");function n(){document.documentElement.scrollIntoView({behavior:"smooth"})}function t(){const t=document.documentElement.scrollTop||document.body.scrollTop;t>200?e.style.display="inline":e.style.display="none"}e&&(e.addEventListener("click",function(e){e.preventDefault(),n()}),window.addEventListener("scroll",t),t())}),function(){const e=document.createElement("script");e.src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js",e.integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg",e.crossOrigin="anonymous",e.onload=function(){const e=document.createElement("link");if(e.rel="stylesheet",e.href="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css",e.integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE",e.crossOrigin="anonymous",document.head.appendChild(e),typeof NProgress!="undefined"){let e=!1,o=!1;function n(){e||(NProgress.start(),e=!0,o=!1)}function t(){e&&!o&&(NProgress.done(),o=!0,e=!1)}document.readyState==="loading"&&n();function s(){return document.readyState==="complete"&&(t(),!0)}document.addEventListener("readystatechange",function(){document.readyState==="interactive"?e&&NProgress.inc(.8):document.readyState==="complete"&&setTimeout(t,100)}),window.addEventListener("load",function(){setTimeout(t,200)}),setTimeout(function(){o||(console.log("NProgress 강제 완료"),t())},1e4),document.readyState==="complete"&&setTimeout(t,100)}},document.head.appendChild(e)}()</script></body></html>

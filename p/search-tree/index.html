@@ -1,0 +1,367 @@
+<!doctype html><html lang=ko-KR dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="자료구조"><title>Search Tree</title><link rel=canonical href=https://kimcatchy.github.io/p/search-tree/><link rel=stylesheet href=/scss/style.min.0fa023a8ccb14000d6c70e3d7e989aac36ecf8eed2283bb5199f4765a7fd1b7b.css><meta property='og:title' content="Search Tree"><meta property='og:description' content="자료구조"><meta property='og:url' content='https://kimcatchy.github.io/p/search-tree/'><meta property='og:site_name' content='BURROW'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='DataStructure'><meta property='article:tag' content='Python'><meta property='article:published_time' content='2025-09-19T23:17:00+09:00'><meta property='article:modified_time' content='2025-09-19T23:17:00+09:00'><meta name=twitter:title content="Search Tree"><meta name=twitter:description content="자료구조"><link rel="shortcut icon" href=/favicon.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_287d83a7554f1e9f.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🐿️</span></figure><div class=site-meta><h1 class=site-name><a href=/>BURROW</a></h1><h2 class=site-description>Just Chillin</h2></div></header><ol class=menu-social><li><a href=https://github.com/kimcatchy target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://gitlab.com/kimcatchy target=_blank title=GitLab rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-gitlab"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 14l-9 7-9-7L6 3l3 7h6l3-7z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/projects/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Projects</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">목차</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#이진탐색트리>이진탐색트리</a><ol><li><a href=#이진탐색트리의-연산>이진탐색트리의 연산</a><ol><li><a href=#노드의-구조>노드의 구조</a></li><li><a href=#탐색-연산>탐색 연산</a></li><li><a href=#삽입-연산>삽입 연산</a></li><li><a href=#삭제-연산>삭제 연산</a></li></ol></li><li><a href=#이진탐색트리의-성능>이진탐색트리의 성능</a></li></ol></li><li><a href=#avl-트리>AVL 트리</a><ol><li><a href=#avl-트리의-연산>AVL 트리의 연산</a><ol><li><a href=#삽입-연산-1>삽입 연산</a></li><li><a href=#재균형-함수>재균형 함수</a></li><li><a href=#avl-트리의-삽입-함수>AVL 트리의 삽입 함수</a></li></ol></li><li><a href=#avl-트리의-균형>AVL 트리의 균형</a><ol><li><a href=#자체-조정-트리를-만드는-방법>자체 조정 트리를 만드는 방법</a></li><li><a href=#스플레이-기법>스플레이 기법</a></li></ol></li></ol></li><li><a href=#references>References</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/study/>Study</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/search-tree/>Search Tree</a></h2><h3 class=article-subtitle>자료구조</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>9월 19, 2025</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>5 minute read</time></div></footer></div></header><section class=article-content><h2 id=이진탐색트리>이진탐색트리</h2><ul><li><p>효율적인 탐색을 위한 이진트리 기반의 자료구조</p></li><li><p>삽입, 삭제, 탐색: O(log n)</p></li><li><p>모든 노드는 유일한 키를 가짐</p><ul><li><p>왼쪽 서브트리의 키들은 루트의 키보다 작음</p></li><li><p>오른쪽 서브트리의 키들은 루트의 키보다 큼</p></li><li><p>왼쪽과 오른쪽 서브트리도 이진 탐색트리</p></li></ul></li></ul><h3 id=이진탐색트리의-연산>이진탐색트리의 연산</h3><h4 id=노드의-구조>노드의 구조</h4><ul><li>탐색키, 키에 대한 값의 형태</li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>BSTNode</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>key</span><span class=p>,</span> <span class=n>value</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>key</span> <span class=o>=</span> <span class=n>key</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>value</span> <span class=o>=</span> <span class=n>value</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=kc>None</span></span></span></code></pre></td></tr></table></div></div></div></div><h4 id=탐색-연산>탐색 연산</h4><ul><li><p>키를 이용한 탐색</p><ul><li><p>루트를 기준으로 작으면 왼쪽 자식부터, 크면 오른쪽 자식부터 다시 탐색</p></li><li><p>과정을 반복하며 탐색키와 동일한 키를 찾을 경우 탐색 성공, 못 찾으면 탐색 실패</p></li></ul></li><li><p>순환 구조와 반복 구조로 구현할 수 있음</p></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 이진트리탐색 탐색연산 (순환 함수)</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>search_bst</span><span class=p>(</span><span class=n>n</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span> <span class=o>==</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>key</span> <span class=o>==</span> <span class=n>n</span><span class=o>.</span><span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>n</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>key</span> <span class=o>&lt;</span> <span class=n>n</span><span class=o>.</span><span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>search_bst</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>left</span><span class=p>,</span> <span class=n>key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>search_bs</span><span class=p>(</span><span class=n>n</span><span class=o>.</span><span class=n>right</span><span class=p>,</span> <span class=n>key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 이진트리탐색 탐색연산 (반복 함수)</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>search_bst_iter</span><span class=p>(</span><span class=n>n</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=n>n</span> <span class=o>!=</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>key</span> <span class=o>==</span> <span class=n>n</span><span class=o>.</span><span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>n</span>
+</span></span><span class=line><span class=cl>        <span class=k>elif</span> <span class=n>key</span> <span class=o>&lt;</span> <span class=n>n</span><span class=o>.</span><span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>n</span> <span class=o>=</span> <span class=n>n</span><span class=o>.</span><span class=n>left</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>n</span> <span class=o>=</span> <span class=n>n</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=kc>None</span></span></span></code></pre></td></tr></table></div></div></div></div><ul><li><p>값을 이용한 탐색일 경우 모든 노드를 검사해야 함</p></li><li><p>최대/최소 값의 노드 탐색</p></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>search_max_bst</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=n>n</span> <span class=o>!=</span> <span class=kc>None</span> <span class=ow>and</span> <span class=n>n</span><span class=o>.</span><span class=n>right</span> <span class=o>!=</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>n</span> <span class=o>=</span> <span class=n>n</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>n</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>search_min_bst</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=n>n</span> <span class=o>!=</span> <span class=kc>None</span> <span class=ow>and</span> <span class=n>n</span><span class=o>.</span><span class=n>left</span> <span class=o>!=</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>n</span> <span class=o>=</span> <span class=n>n</span><span class=o>.</span><span class=n>left</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>n</span></span></span></code></pre></td></tr></table></div></div></div></div><h4 id=삽입-연산>삽입 연산</h4><ul><li>탐색에 실패한 위치 = 노드를 삽입해야 하는 위치</li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 이진탐색트리 삽입연산 (노드 삽입): 순환구조 이용</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>insert_bst</span><span class=p>(</span><span class=n>r</span><span class=p>,</span> <span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 삽입할 노드의 키가 루트보다 작으면</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>n</span><span class=o>.</span><span class=n>key</span> <span class=o>&lt;</span> <span class=n>r</span><span class=o>.</span><span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 루트의 왼쪽 자식이 없으면 n은 루트의 왼쪽 자식이 됨</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>r</span><span class=o>.</span><span class=n>left</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>r</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>n</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 왼쪽 자식이 있으면 왼쪽 자식에게 삽입</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>insert_bst</span><span class=p>(</span><span class=n>r</span><span class=o>.</span><span class=n>left</span><span class=p>,</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 삽입할 노드의 키가 루트보다 크면</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>n</span><span class=o>.</span><span class=n>key</span> <span class=o>&gt;</span> <span class=n>r</span><span class=o>.</span><span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 루트의 오른쪽 자식이 없으면 n은 루트의 오른쪽 자식이 됨</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>r</span><span class=o>.</span><span class=n>right</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>r</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>n</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 오른쪽 자식이 있으면 오른쪽 자식에게 삽입</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>insert_bst</span><span class=p>(</span><span class=n>r</span><span class=o>.</span><span class=n>right</span><span class=p>,</span> <span class=n>n</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 키가 중복되면 삽입하지 않음</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>retrun</span> <span class=n>false</span></span></span></code></pre></td></tr></table></div></div></div></div><h4 id=삭제-연산>삭제 연산</h4><ul><li>삭제하려는 노드가 단말 노드일 경우</li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>delete_bst_case1</span><span class=p>(</span><span class=n>parent</span><span class=p>,</span> <span class=n>node</span><span class=p>,</span> <span class=n>root</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>parent</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>root</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>parent</span><span class=o>.</span><span class=n>left</span> <span class=o>==</span> <span class=n>node</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=c1># root가 변경될 수도 있으므로 반환</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>root</span></span></span></code></pre></td></tr></table></div></div></div></div><ul><li>삭제하려는 노드가 하나의 왼쪽이나 오른쪽 서브 트리 중 하나만 가지고 있는 경우</li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>delete_bst_case2</span><span class=p>(</span><span class=n>parent</span><span class=p>,</span> <span class=n>node</span><span class=p>,</span> <span class=n>root</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>node</span><span class=o>.</span><span class=n>left</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>child</span> <span class=o>=</span> <span class=n>node</span><span class=o>.</span><span class=n>left</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>child</span> <span class=o>=</span> <span class=n>node</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>node</span> <span class=o>==</span> <span class=n>root</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>root</span> <span class=o>=</span> <span class=n>child</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>node</span> <span class=ow>is</span> <span class=n>parent</span><span class=o>.</span><span class=n>left</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>child</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>child</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>root</span></span></span></code></pre></td></tr></table></div></div></div></div><ul><li><p>삭제하려는 노드가 두 개의 서브 트리를 모두 가지고 있는 경우</p><ul><li><p>가장 비슷한 값을 가진 노드를 삭제 위치로 가져옴</p><ul><li>삭제할 위치에 왼쪽 서브트리의 가장 큰 노드나 오른쪽 서브트리의 가장 작은 노드가 들어가면 이진탐색트리의 조건을 계속 만족함</li></ul></li><li><p>후계 노드의 선택</p></li></ul></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>delete_bst_case3</span><span class=p>(</span><span class=n>parent</span><span class=p>,</span> <span class=n>node</span><span class=p>,</span> <span class=n>root</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>succp</span> <span class=o>=</span> <span class=n>node</span>
+</span></span><span class=line><span class=cl>    <span class=n>succ</span> <span class=o>=</span> <span class=n>node</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=p>(</span><span class=n>succ</span><span class=o>.</span><span class=n>left</span> <span class=o>!=</span> <span class=kc>None</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>succp</span> <span class=o>=</span> <span class=n>succ</span>
+</span></span><span class=line><span class=cl>        <span class=n>succ</span> <span class=o>=</span> <span class=n>succ</span><span class=o>.</span><span class=n>left</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>succp</span><span class=o>.</span><span class=n>left</span> <span class=o>==</span> <span class=n>succ</span><span class=p>):</span> <span class=n>succp</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>succ</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span> <span class=n>succp</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>succ</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=n>node</span><span class=o>.</span><span class=n>key</span> <span class=o>-</span> <span class=n>succ</span><span class=o>.</span><span class=n>key</span>
+</span></span><span class=line><span class=cl>    <span class=n>node</span><span class=o>.</span><span class=n>value</span> <span class=o>=</span> <span class=n>succ</span><span class=o>.</span><span class=n>value</span>
+</span></span><span class=line><span class=cl>    <span class=n>node</span> <span class=o>=</span> <span class=n>succ</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>root</span></span></span></code></pre></td></tr></table></div></div></div></div><ul><li>삭제 연산 전체 코드</li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>delete_bst</span><span class=p>(</span><span class=n>root</span><span class=p>,</span> <span class=n>key</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>root</span> <span class=o>==</span> <span class=kc>None</span><span class=p>:</span> <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>parent</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=n>node</span> <span class=o>=</span> <span class=n>root</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=n>node</span> <span class=o>!=</span> <span class=kc>None</span> <span class=ow>and</span> <span class=n>node</span><span class=o>.</span><span class=n>key</span> <span class=o>!=</span> <span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>parent</span> <span class=o>=</span> <span class=n>node</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>key</span> <span class=o>&lt;</span> <span class=n>node</span><span class=o>.</span><span class=n>key</span><span class=p>:</span> <span class=n>node</span> <span class=o>=</span> <span class=n>node</span><span class=o>.</span><span class=n>left</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span> <span class=n>node</span> <span class=o>=</span> <span class=n>node</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>node</span> <span class=o>==</span> <span class=kc>None</span><span class=p>:</span> <span class=k>return</span> <span class=kc>None</span>	<span class=c1># 삭제할 노드가 없으면 None</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>node</span><span class=o>.</span><span class=n>left</span> <span class=o>==</span> <span class=kc>None</span> <span class=ow>and</span> <span class=n>node</span><span class=o>.</span><span class=n>right</span> <span class=o>==</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>root</span> <span class=o>=</span> <span class=n>delete_bst_case1</span><span class=p>(</span><span class=n>parent</span><span class=p>,</span> <span class=n>node</span><span class=p>,</span> <span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>node</span><span class=o>.</span><span class=n>left</span> <span class=o>==</span> <span class=kc>None</span> <span class=ow>or</span> <span class=n>node</span><span class=o>.</span><span class=n>right</span> <span class=o>==</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>root</span> <span class=o>=</span> <span class=n>delete_bst_case2</span><span class=p>(</span><span class=n>parent</span><span class=p>,</span> <span class=n>node</span><span class=p>,</span> <span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>root</span> <span class=o>=</span> <span class=n>delete_bst_case3</span><span class=p>(</span><span class=n>parent</span><span class=p>,</span> <span class=n>node</span><span class=p>,</span> <span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>root</span></span></span></code></pre></td></tr></table></div></div></div></div><h3 id=이진탐색트리의-성능>이진탐색트리의 성능</h3><ul><li>탐색, 삽입, 삭제 연산의 시간 트리의 높이에 비례</li></ul><div class=table-wrapper><table><thead><tr><th><strong>연산</strong></th><th><strong>함수</strong></th><th><strong>최선의 경우 (균형)</strong></th><th><strong>최악의 경우 (경사)</strong></th></tr></thead><tbody><tr><td><strong>키를 이용한 탐색</strong></td><td>search_bst()</td><td></td><td></td></tr><tr><td>search_bst_iter()</td><td>O(log₂n)</td><td>O(n)</td><td></td></tr><tr><td><strong>값을 이용한 탐색</strong></td><td>search_value_bst()</td><td>O(n)</td><td>O(n)</td></tr><tr><td><strong>최대/최소 노드 탐색</strong></td><td>search_max_bst()</td><td></td><td></td></tr><tr><td>search_min_bst()</td><td>O(log₂n)</td><td>O(n)</td><td></td></tr><tr><td><strong>삽입</strong></td><td>insert_bst()</td><td>O(log₂n)</td><td>O(n)</td></tr><tr><td><strong>삭제</strong></td><td>delete_bst()</td><td>O(log₂n)</td><td>O(n)</td></tr></tbody></table></div><h2 id=avl-트리>AVL 트리</h2><ul><li><p>모든 노드에서 왼쪽 서브트리와 오른쪽 서브트리의 높이 차가 1을 넘지 않는 이진탐색</p><ul><li><p>모든 노드의 균형 인수는 0이나 ±1이 되어야 함</p></li><li><p>균형 인수: 왼쪽 서브트리 높이 - 오른쪽 서브트리 높이</p></li></ul></li><li><p>평균, 최선, 최악 시간 복잡도: O(log n) 보장</p></li></ul><h3 id=avl-트리의-연산>AVL 트리의 연산</h3><ul><li><p>탐색 연산은 이진탐색트리와 동일</p></li><li><p>삽입과 삭제 시 균형 상태가 깨질 수 있음</p></li></ul><h4 id=삽입-연산-1>삽입 연산</h4><ul><li><p>삽입 위치에서 루트까지의 경로에 있는 조상 노드들의 균형 인수에 영향을 미침</p></li><li><p>삽입 후에 불균형 상태로 변한 가장 가까운 조상 노드(균형 인수가 ±2가 된 가장 가까운 조상 노드)의 서브 트리들에 대하여 다시 재균형</p></li><li><p>삽입 노드부터 균형 인수가 ±2가 된 가장 가까운 조상 노드까지 회전</p></li></ul><p><img src=/p/search-tree/image1.png width=250 height=250 srcset="/p/search-tree/image1_hu_7c5d681dc0efb17.png 480w, /p/search-tree/image1_hu_81bcbcf13296d84f.png 1024w" loading=lazy class=gallery-image data-flex-grow=100 data-flex-basis=240px></p><ul><li><p>균형이 깨지는 4가지 경우: LL, LR, RR, RL 타입</p><ul><li>새로 삽입된 노드 N으로부터 가장 가까우면서 균형인수가 ±2가 된 조상 노드를 A라고 할 때</li></ul></li></ul><p><img src=/p/search-tree/image2.png width=1280 height=905 srcset="/p/search-tree/image2_hu_78e9b19ff7a14818.png 480w, /p/search-tree/image2_hu_69ef9cac8276d1b6.png 1024w" loading=lazy class=gallery-image data-flex-grow=141 data-flex-basis=339px></p><ul><li><p>단순 회전</p><ul><li><p>LL 타입</p><ul><li><p>불균형 노드의 왼쪽 서브트리의 왼쪽 서브트리의 높이 증가</p></li><li><p>N이 A의 왼쪽 자식의 왼쪽 서브 트리에 삽입됨</p></li></ul></li><li><p>LR 타입</p><ul><li><p>불균형 노드의 왼쪽 서브트리의 오른쪽 서브트리의 높이 증가</p></li><li><p>N이 A의 왼쪽 자식의 오른쪽 서브 트리에 삽입됨</p></li></ul></li></ul></li><li><p>이중 회전</p><ul><li><p>RR 타입</p><ul><li><p>불균형 노드의 오른쪽 서브트리의 왼쪽 서브트리의 높이 증가</p></li><li><p>N이 A의 오른쪽 자식의 오른쪽 서브 트리에 삽입됨</p></li></ul></li><li><p>RL 타입</p><ul><li><p>불균형 노드의 오른쪽 서브트리의 오른쪽 서브트리의 높이 증가</p></li><li><p>N이 A의 오른쪽 자식의 왼쪽 서브 트리에 삽입됨</p></li></ul></li></ul></li><li><p>탐색 순서를 유지하면서 부모와 자식의 위치를 교환</p></li></ul><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># LL 회전</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>rotateLL</span><span class=p>(</span><span class=n>A</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>B</span> <span class=o>=</span> <span class=n>A</span><span class=o>.</span><span class=n>left</span>
+</span></span><span class=line><span class=cl>    <span class=n>A</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>B</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=n>B</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>A</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 새로운 루트 B를 반환</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>B</span></span></span></code></pre></td></tr></table></div></div></div></div><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># RR 회전</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>rotateRR</span><span class=p>(</span><span class=n>A</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>B</span> <span class=o>=</span> <span class=n>A</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=n>A</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>B</span><span class=o>.</span><span class=n>left</span>
+</span></span><span class=line><span class=cl>    <span class=n>B</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>A</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>B</span></span></span></code></pre></td></tr></table></div></div></div></div><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># RL 회전</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>rotateRL</span><span class=p>(</span><span class=n>A</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>B</span> <span class=o>=</span> <span class=n>A</span><span class=o>.</span><span class=n>right</span>
+</span></span><span class=line><span class=cl>    <span class=n>A</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>rotateLL</span><span class=p>(</span><span class=n>B</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>rotateRR</span><span class=p>(</span><span class=n>A</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># LR 회전</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>rotateLR</span><span class=p>(</span><span class=n>A</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>B</span> <span class=o>=</span> <span class=n>A</span><span class=o>.</span><span class=n>left</span>
+</span></span><span class=line><span class=cl>    <span class=n>A</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>rotateRR</span><span class=p>(</span><span class=n>B</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>rotateLL</span><span class=p>(</span><span class=n>A</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><h4 id=재균형-함수>재균형 함수</h4><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>reBalance</span><span class=p>(</span><span class=n>parent</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>hDiff</span> <span class=o>=</span> <span class=n>calc_height_diff</span><span class=p>(</span><span class=n>parent</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>hDiff</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>calc_height_diff</span><span class=p>(</span><span class=n>parent</span><span class=o>.</span><span class=n>left</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span> <span class=o>=</span> <span class=n>rotateLL</span><span class=p>(</span><span class=n>parent</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span> <span class=o>=</span> <span class=n>rotateLR</span><span class=p>(</span><span class=n>parent</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>hDiff</span> <span class=o>&lt;</span> <span class=o>-</span><span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>calc_height_diff</span><span class=p>(</span><span class=n>parent</span><span class=o>.</span><span class=n>right</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span> <span class=o>=</span> <span class=n>rotateRR</span><span class=p>(</span><span class=n>parent</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span> <span class=o>=</span> <span class=n>rotateRL</span><span class=p>(</span><span class=n>parent</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>parent</span></span></span></code></pre></td></tr></table></div></div></div></div><h4 id=avl-트리의-삽입-함수>AVL 트리의 삽입 함수</h4><div class=code-block-wrapper><div class=code-block-header><div class=code-block-dots><span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span></div><div class=code-block-language>python</div></div><div class=code-block-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>insert_avl</span><span class=p>(</span><span class=n>parent</span><span class=p>,</span> <span class=n>node</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>node</span><span class=o>.</span><span class=n>key</span> <span class=o>&lt;</span> <span class=n>parent</span><span class=o>.</span><span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>parent</span><span class=o>.</span><span class=n>left</span> <span class=o>!=</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>insert_avl</span><span class=p>(</span><span class=n>parent</span><span class=o>.</span><span class=n>left</span><span class=p>,</span> <span class=n>node</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span><span class=o>.</span><span class=n>left</span> <span class=o>=</span> <span class=n>node</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>reBalance</span><span class=p>(</span><span class=n>parent</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>node</span><span class=o>.</span><span class=n>key</span> <span class=o>&gt;</span> <span class=n>parent</span><span class=o>.</span><span class=n>key</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>parent</span><span class=o>.</span><span class=n>right</span> <span class=o>!=</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>insert_avl</span><span class=p>(</span><span class=n>parent</span><span class=o>.</span><span class=n>right</span><span class=p>,</span> <span class=n>node</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>parent</span><span class=o>.</span><span class=n>right</span> <span class=o>=</span> <span class=n>node</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>reBalance</span><span class=p>(</span><span class=n>parent</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;중복된 키 에러&#34;</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div></div></div><h3 id=avl-트리의-균형>AVL 트리의 균형</h3><ul><li><p>장점: 탐색 효율 O(log n)을 보장해줌</p></li><li><p>단점: 삽입/삭제 될 때마다 균형 파괴 여부 검사(균형 인수 값을 구하는 시간) 필요, 트리를 재구성하는 시간 필요</p></li><li><p>균형 트리</p><ul><li><p>Balanced Tree</p></li><li><p>탐색 효율 O(log n)을 보장</p></li><li><p>루트로부터 리프까지 가는 경로를 최소화</p></li></ul></li><li><p>자체 조정 트리</p><ul><li>무조건 균형보다는 자주 탐색되는 노드는 또 탐색될 확률이 높으므로 루트 근처에 위치시킴</li></ul></li></ul><h4 id=자체-조정-트리를-만드는-방법>자체 조정 트리를 만드는 방법</h4><ul><li><p>조정 방법 ①: 어떤 노드가 탐색될 때마다 그 노드를 바로 위 부모 노드로 올리는 방법 (한 번의 회전)</p></li><li><p>조정 방법 ②:어떤 노드가 탐색될 때마다 전체 트리의 루트로 올리는 방법 (연속된 회전 필요)</p></li><li><p>문제점: 조정 방법 ②의 한계로 트리의 균형 면에서 불리함</p></li></ul><h4 id=스플레이-기법>스플레이 기법</h4><ul><li><p>스플레이(Splay): 조정 방법 ②를 개선하여 탐색된 노드를 루트로 올리되, 한 번에 두 레벨 씩 위로 올림</p></li><li><p>자체 조정 트리에서 어떤 노드가 탐색되면 그 노드를 아예 전체 트리의 루트로 올리는 방법</p></li><li><p>지그재그 LL/RR: 올리고자 하는 노드가 그보다 두 레벨 위의 노드로부터 LR/RL 경로로 따라 내려올 때</p><ul><li>AVL의 LR/RL 회전과 완전히 동일</li></ul></li></ul><h2 id=references>References</h2><ul><li><a class=link href=https://en.wikipedia.org/wiki/Tree_rotation target=_blank rel=noopener>Tree rotation</a>
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentColor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentColor"/></span></li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/datastructure/>DataStructure</a>
+<a href=/tags/python/>Python</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>관련 글</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/shortest-path-algorithm/><div class=article-details><h2 class=article-title>Shortest Path Algorithm</h2></div></a></article><article><a href=/p/weighted-graph-and-minimum-cost/><div class=article-details><h2 class=article-title>가중치 그래프의 표현 & 최소비용</h2></div></a></article><article><a href=/p/ds-graph/><div class=article-details><h2 class=article-title>Graph</h2></div></a></article><article><a href=/p/ds-heap/><div class=article-details><h2 class=article-title>Heap</h2></div></a></article><article><a href=/p/tree-and-binary-tree/><div class=article-details><h2 class=article-title>Tree & Binary Tree</h2></div></a></article></div></div></aside><script src=https://utteranc.es/client.js repo=kimcatchy/utterances issue-term=pathname label=comments crossorigin=anonymous async></script><style>.utterances{max-width:unset}</style><script>let utterancesLoaded=!1;function setUtterancesTheme(e){let t=document.querySelector(".utterances iframe");t&&t.contentWindow.postMessage({type:"set-theme",theme:`github-${e}`},"https://utteranc.es")}addEventListener("message",e=>{if(e.origin!=="https://utteranc.es")return;utterancesLoaded=!0,setUtterancesTheme(document.documentElement.dataset.scheme)}),window.addEventListener("onColorSchemeChange",e=>{if(!utterancesLoaded)return;setUtterancesTheme(e.detail)})</script><footer class=site-footer><section class=copyright>&copy;
+2025 BURROW</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.31.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><a href=# id=back-to-top title="Back to top"></a><style>#back-to-top{display:none;position:fixed;bottom:5px;right:15px;width:40px;height:40px;border-radius:50%;background-color:var(--body-background);box-shadow:var(--shadow-l2);font-size:20px;text-align:center;line-height:38px;cursor:pointer;transition:transform .3s ease,background-color .3s ease;z-index:999}#back-to-top:before{content:"";display:inline-block;position:relative;transform:rotate(135deg);height:8px;width:8px;border-width:0 0 2px 2px;border-color:var(--accent-color);border-style:solid}#back-to-top:hover{transform:scale(1.1);background-color:var(--accent-background)}@media screen and (max-width:768px){#back-to-top{bottom:5px;right:var(--container-padding);width:30px;height:30px;font-size:16px;line-height:32px}}</style><script>document.addEventListener("DOMContentLoaded",function(){const e=document.getElementById("back-to-top");function n(){document.documentElement.scrollIntoView({behavior:"smooth"})}function t(){const t=document.documentElement.scrollTop||document.body.scrollTop;t>200?e.style.display="inline":e.style.display="none"}e&&(e.addEventListener("click",function(e){e.preventDefault(),n()}),window.addEventListener("scroll",t),t())}),function(){const e=document.createElement("script");e.src="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js",e.integrity="sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg",e.crossOrigin="anonymous",e.onload=function(){const e=document.createElement("link");if(e.rel="stylesheet",e.href="https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css",e.integrity="sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE",e.crossOrigin="anonymous",document.head.appendChild(e),typeof NProgress!="undefined"){let e=!1,o=!1;function n(){e||(NProgress.start(),e=!0,o=!1)}function t(){e&&!o&&(NProgress.done(),o=!0,e=!1)}document.readyState==="loading"&&n();function s(){return document.readyState==="complete"&&(t(),!0)}document.addEventListener("readystatechange",function(){document.readyState==="interactive"?e&&NProgress.inc(.8):document.readyState==="complete"&&setTimeout(t,100)}),window.addEventListener("load",function(){setTimeout(t,200)}),setTimeout(function(){o||(console.log("NProgress 강제 완료"),t())},1e4),document.readyState==="complete"&&setTimeout(t,100)}},document.head.appendChild(e)}()</script></body></html>

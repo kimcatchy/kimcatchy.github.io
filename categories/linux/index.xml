@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on BURROW</title><link>https://kimcatchy.github.io/categories/linux/</link><description>Recent content in Linux on BURROW</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><lastBuildDate>Fri, 19 Sep 2025 05:05:00 +0900</lastBuildDate><atom:link href="https://kimcatchy.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Oracle Cloud SSH 포트 변경</title><link>https://kimcatchy.github.io/p/oci-ssh-port/</link><pubDate>Fri, 19 Sep 2025 05:05:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/oci-ssh-port/</guid><description>&lt;h2 id="ssh-포트-추가"&gt;SSH 포트 추가
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;오라클 클라우드 VCN 설정에서 변경할 포트 추가&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;기존에 SSH 포트로 사용 중이던 22 포트는 바로 삭제해도 되지만, 문제가 생길 수 있으니 변경이 완료된 후에 삭제&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 포트 설정을 변경하기 전에 아래의 명령어로 현재 사용 중인 포트를 확인&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /etc/ssh/sshd_config &lt;span class="p"&gt;|&lt;/span&gt; egrep ^&lt;span class="se"&gt;\#&lt;/span&gt;?Port
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;#Port 22&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 확인 후 ssh 설정 파일 열기&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo nano /etc/ssh/sshd_config&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 기본값이 22 포트이기 때문에 port 설정에 주석 처리가 되어있는데, 아래와 같이 입력&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;#Port 22&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Port &lt;span class="m"&gt;22&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Port &lt;span class="m"&gt;21212&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 저장하고 다시 한번 사용 가능한 포트 확인&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /etc/ssh/sshd_config &lt;span class="p"&gt;|&lt;/span&gt; egrep ^&lt;span class="se"&gt;\#&lt;/span&gt;?Port
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;#Port 22&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Port &lt;span class="m"&gt;22&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Port &lt;span class="m"&gt;21212&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 제대로 추가됐다면 ssh 재시작 후 확인&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo systemctl restart ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo netstat -tnlp &lt;span class="p"&gt;|&lt;/span&gt; grep sshd
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tcp &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; 0.0.0.0:22 0.0.0.0:* LISTEN 10785/sshd: /usr/sb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tcp &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; 0.0.0.0:21212 0.0.0.0:* LISTEN 10785/sshd: /usr/sb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tcp6 &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; :::22 :::* LISTEN 10785/sshd: /usr/sb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tcp6 &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; :::21212 :::* LISTEN 10785/sshd: /usr/sb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="기존-포트-제거"&gt;기존 포트 제거
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;포트를 추가한 방법과 반대로 진행&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;완료 후 오라클 클라우드 VCN 설정에서도 포트 제거&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo nano /etc/ssh/sshd_config&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;#Port 22 (주석 처리가 되지 않은 22 포트 제거)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Port &lt;span class="m"&gt;21212&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 저장 후 다시 포트 확인&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /etc/ssh/sshd_config &lt;span class="p"&gt;|&lt;/span&gt; egrep ^&lt;span class="se"&gt;\#&lt;/span&gt;?Port
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;#Port 22&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Port &lt;span class="m"&gt;21212&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# SSH 재시작 후 확인&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo systemctl restart ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo netstat -tnlp &lt;span class="p"&gt;|&lt;/span&gt; grep sshd
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tcp &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; 0.0.0.0:21212 0.0.0.0:* LISTEN 10785/sshd: /usr/sb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tcp6 &lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt; :::21212 :::* LISTEN 10785/sshd: /usr/sb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>PM2</title><link>https://kimcatchy.github.io/p/pm2/</link><pubDate>Fri, 19 Sep 2025 02:29:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/pm2/</guid><description>&lt;h2 id="pm2란"&gt;PM2란?
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Node.js 애플리케이션을 백그라운드에서 안정적으로 실행하는 프로세스 관리자&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;재시작, 로그 관리, 무중단 재시작까지 지원&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;전역 설치: &lt;code&gt;npm install pm2@latest -g&lt;/code&gt;로 설치, 설치 후 &lt;code&gt;pm2 -v&lt;/code&gt;로 버전 확인&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="프로세스-관리"&gt;프로세스 관리
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;기본 실행: &lt;code&gt;pm2 start app.js&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="관리-명령어"&gt;관리 명령어
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;프로세스 목록: &lt;code&gt;pm2 list&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;프로세스 상태: &lt;code&gt;pm2 status&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;정지/재시작/삭제: &lt;code&gt;pm2 stop &amp;lt;이름|id&amp;gt;&lt;/code&gt; / &lt;code&gt;pm2 restart &amp;lt;이름|id&amp;gt;&lt;/code&gt; / &lt;code&gt;pm2 delete &amp;lt;이름|id&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="자주-쓰는-옵션"&gt;자주 쓰는 옵션
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;프로세스 이름 지정: &amp;ndash;name &amp;lt;이름&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;파일 변경 시 자동 재시작: &amp;ndash;watch&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;메모리 제한 초과 시 재시작: &amp;ndash;max-memory-restart &amp;lt;용량&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="로그"&gt;로그
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;실시간 확인: &lt;code&gt;pm2 logs&lt;/code&gt;, 출력 로그와 에러 로그 동시에 출력&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pm2 log &amp;lt;이름|id&amp;gt;&lt;/code&gt;로 특정 프로세스 지정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;로그 저장 위치: 기본 로그 파일은 &lt;code&gt;$HOME/.pm2/logs&lt;/code&gt;에 저장, 각 앱별 out/err 로그 파일로 분리&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="부팅-시-자동-시작"&gt;부팅 시 자동 시작
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;프로세스 목록 저장: &lt;code&gt;pm2 save&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;부팅 시 자동 복원 활성화: &lt;code&gt;pm2 startup&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;활성화 전 목록 저장 필수&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;수동 복원: &lt;code&gt;pm2 resurrect&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;재부팅 후 자동 복원이 안 될 경우 수동으로 복원&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="예시"&gt;예시
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;pm2 start app.js --name myApp --watch&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;pm2 start &amp;quot;npm run dev&amp;quot; --name myApp&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;pm2 start npm --name &amp;quot;myApp&amp;quot; -- run dev&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Cron</title><link>https://kimcatchy.github.io/p/cron/</link><pubDate>Thu, 18 Sep 2025 23:26:00 +0900</pubDate><guid>https://kimcatchy.github.io/p/cron/</guid><description>&lt;h2 id="cron이란"&gt;Cron이란?
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;반복 작업을 자동으로 실행해 주는 스케줄러&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;e.g. 매일 새벽 백업, 10분마다 로그 정리, 서버 부팅 시 한 번 실행 등&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="사용법"&gt;사용법
+&lt;/h2&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;작동 테스트: &lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /home/ubuntu/cron_test.log&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;간단한 셸 스크립트를 작성하고, 예를 들어 &lt;code&gt;/home/ubuntu/test.sh&lt;/code&gt;라면 아래의 명령어로 실행 권한 부여&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod +x /home/ubuntu/test.sh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;실행 권한 부여 후에는 아래 명령어로 사용자 cron을 편집&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;crontab -e&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="표현식"&gt;표현식
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;간단 요약: &lt;code&gt;분 시 일 월 요일 명령&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;e.g. &lt;code&gt;30 4 1 * * /home/ubuntu/test.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;요일의 경우 0(일) - 6(토)을 사용해도 되고, SUN - SAT도 가능&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;일(일자)과 요일을 동시에 제한하면 OR로 동작&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="특수-기호"&gt;특수 기호
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;별표(*) = 모든 값 매칭&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;쉼표(,) = 여러 값 지정&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;하이픈(-) = 범위&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;슬래시(/) = 간격(*/10 → 10분 간격)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="특수-문자열"&gt;&lt;strong&gt;특수 문자열&lt;/strong&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;@reboot → 부팅(크론 데몬 시작) 시 1회 실행&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;@hourly → 매시 정각(0분)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;@daily 또는 @midnight → 매일 00:00&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;@weekly → 매주 일요일 00:00&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;@monthly → 매월 1일 00:00&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;@yearly 또는 @annually → 매년 1월 1일 00:00&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="사용-예시"&gt;사용 예시
+&lt;/h2&gt;
+&lt;div class="code-block-wrapper"&gt;
+&lt;div class="code-block-header"&gt;
+&lt;div class="code-block-dots"&gt;
+&lt;span class="dot red"&gt;&lt;/span&gt;
+&lt;span class="dot yellow"&gt;&lt;/span&gt;
+&lt;span class="dot green"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="code-block-language"&gt;bash&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="code-block-content"&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 매분 실행&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;* * * * * /home/ubuntu/test.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 10분마다&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;*/10 * * * * /home/ubuntu/test.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 매일 04:30&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="m"&gt;30&lt;/span&gt; &lt;span class="m"&gt;4&lt;/span&gt; * * * /home/ubuntu/test.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 부팅 시 실행&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;@reboot /home/ubuntu/test.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 작업 별로 로그 남기기&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;*/10 * * * * /home/ubuntu/test.sh &amp;gt;&amp;gt; /home/ubuntu/test.log 2&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="자주-겪는-문제-해결-방법"&gt;자주 겪는 문제 해결 방법
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;실행이 안 될 때&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;스크립트 권한 확인&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;절대 경로로 수정&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PATH 지정&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;명령 앞에 셸 지정 시도&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;터미널에선 되는데 크론에서만 실패&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;환경 변수 차이가 원인인 경우가 많음&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;스크립트 맨 위에 필요한 변수(PATH 등)를 선언하거나 명령을 절대 경로로 변경&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;메일 폭탄이 날아옴..&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;최상단에 &lt;code&gt;MAILTO=&amp;quot;&amp;quot;&lt;/code&gt; 작성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

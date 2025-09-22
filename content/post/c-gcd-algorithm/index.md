@@ -6,7 +6,7 @@ tags:
 description: "Euclidean algorithm"
 categories:
   - Code
-update: "2025-09-20 00:15:00+0900"
+update: "2025-09-21 17:09:00+0900"
 date: "2025-09-19 18:22:00+0900"
 상태: "Ready"
 title: "기약분수 알고리즘"

@@ -3,11 +3,11 @@ IDX: "27"
 slug: "selection-sort"
 tags:
   - C
-description: "C언어I"
+description: "C언어"
 categories:
   - Code
   - Study
-update: "2025-09-20 00:15:00+0900"
+update: "2026-03-27 02:08:00+0900"
 date: "2025-09-19 17:37:00+0900"
 상태: "Ready"
 title: "선택 정렬 알고리즘"

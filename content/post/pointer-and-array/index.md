@@ -3,10 +3,10 @@ IDX: "33"
 slug: "pointer-and-array"
 tags:
   - C
-description: "C언어I"
+description: "C언어"
 categories:
   - Study
-update: "2025-09-20 00:15:00+0900"
+update: "2026-03-27 02:08:00+0900"
 date: "2025-09-19 18:29:00+0900"
 상태: "Ready"
 title: "포인터와 배열"

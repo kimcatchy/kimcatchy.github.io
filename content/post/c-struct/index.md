@@ -3,10 +3,10 @@ IDX: "40"
 slug: "c-struct"
 tags:
   - C
-description: "C언어I"
+description: "C언어"
 categories:
   - Study
-update: "2025-09-20 00:15:00+0900"
+update: "2026-03-27 02:08:00+0900"
 date: "2025-09-19 19:10:00+0900"
 상태: "Ready"
 title: "구조체"

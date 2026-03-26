@@ -3,10 +3,10 @@ IDX: "42"
 slug: "preprocesing-and-derived-data-type"
 tags:
   - C
-description: "C언어I"
+description: "C언어"
 categories:
   - Study
-update: "2025-09-20 00:15:00+0900"
+update: "2026-03-27 02:08:00+0900"
 date: "2025-09-19 19:22:00+0900"
 상태: "Ready"
 title: "전처리 & 유도 자료형"

@@ -1,0 +1,58 @@
+---
+import TwoColumnLayout from '../../layouts/TwoColumnLayout.astro';
+import { getCollection } from 'astro:content';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+
+const posts = await getCollection('blog');
+const allTags = posts.flatMap(post => post.data.tags || []);
+// Count occurrences of each tag
+const tagCounts = allTags.reduce((acc, tag) => {
+	acc[tag] = (acc[tag] || 0) + 1;
+	return acc;
+}, {} as Record<string, number>);
+
+const uniqueTags = Object.keys(tagCounts).sort();
+
+// Calculate scaling for tag cloud
+const maxCount = Math.max(...Object.values(tagCounts), 1);
+const minCount = Math.min(...Object.values(tagCounts), 1);
+
+function getFontSize(count: number) {
+	if (maxCount === minCount) return 'text-sm';
+	const ratio = (count - minCount) / (maxCount - minCount);
+	// scale from text-xs to text-2xl depending on frequency
+	if (ratio < 0.25) return 'text-xs';
+	if (ratio < 0.5) return 'text-sm';
+	if (ratio < 0.75) return 'text-lg';
+	return 'text-xl';
+}
+---
+
+<TwoColumnLayout title="Tags Cloud">
+	<!-- Breadcrumbs -->
+	<nav class="mb-6 flex items-center gap-2 text-xs font-black uppercase text-muted-foreground/60 tracking-tight">
+		<a href={import.meta.env.BASE_URL} class="hover:text-primary transition-colors">Home</a>
+		<span class="opacity-30">/</span>
+		<span class="text-foreground/40">Tags</span>
+	</nav>
+
+	<div class="bg-card border border-border/50 rounded-md p-8 md:p-12 shadow-sm">
+		<div class="flex flex-wrap gap-x-4 gap-y-6 items-center justify-center">
+			{uniqueTags.map(tag => {
+				const count = tagCounts[tag];
+				return (
+					<a href={`${import.meta.env.BASE_URL}tags/${tag}`} class={`inline-flex items-center gap-1.5 font-bold text-muted-foreground hover:text-primary transition-colors ${getFontSize(count)}`}>
+						<span class="opacity-50">#</span>{tag}
+						<span class="text-xs font-black bg-secondary text-secondary-foreground px-1.5 py-0.5 rounded-md opacity-70">
+							{count}
+						</span>
+					</a>
+				);
+			})}
+			
+			{uniqueTags.length === 0 && (
+				<p class="text-muted-foreground font-medium">No tags found.</p>
+			)}
+		</div>
+	</div>
+</TwoColumnLayout>

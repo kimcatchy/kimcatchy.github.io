@@ -1,0 +1,140 @@
+---
+import { Image } from 'astro:assets';
+import { Badge } from '@/components/ui/badge';
+import { CalendarDays, Pen, Clock } from 'lucide-react';
+import FormattedDate from '../FormattedDate.astro';
+import readingTime from 'reading-time';
+import type { CollectionEntry } from 'astro:content';
+
+import p1 from '../../assets/blog-placeholder-1.jpg';
+import p2 from '../../assets/blog-placeholder-2.jpg';
+import p3 from '../../assets/blog-placeholder-3.jpg';
+import p4 from '../../assets/blog-placeholder-4.jpg';
+
+interface Props {
+  post: CollectionEntry<'blog' | 'project'>;
+  index: number;
+}
+
+const { post, index } = Astro.props;
+
+const isProject = post.collection === 'project';
+const postUrl = isProject ? `${import.meta.env.BASE_URL}projects/${post.id}/` : `${import.meta.env.BASE_URL}blog/${post.id}/`;
+const itemTags = isProject ? post.data.techStack : post.data.tags;
+
+// Calculate reading time
+const readState = readingTime(post.body || '');
+
+// Helper to resolve local assets
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif,webp}');
+
+// Extract first image outside of code blocks
+const bodyWithoutCode = (post.body || '')
+  .replace(/```[\s\S]*?```/g, '') // Fenced code blocks
+  .replace(/`[^`\n]+`/g, '')      // Inline code
+  .replace(/<(pre|code)[\s\S]*?<\/\1>/gi, ''); // HTML code tags
+
+const match = bodyWithoutCode.match(/!\[.*?\]\((.*?)\)/);
+let firstImage: any = null;
+
+if (match) {
+  const rawPath = match[1];
+  if (rawPath.startsWith('http')) {
+    firstImage = rawPath;
+  } else {
+    // Resolve relative paths like ../../assets/notion/blog-61/img.jpg to /src/assets/notion/blog-61/img.jpg
+    let assetPath = rawPath;
+    if (rawPath.includes('../assets/')) {
+      assetPath = rawPath.replace(/^.*?\.\.\/assets\//, '/src/assets/');
+    } else {
+      const fileName = rawPath.split('/').pop();
+      assetPath = `/src/assets/${fileName}`;
+    }
+    
+    if (images[assetPath]) {
+      const module = await images[assetPath]();
+      firstImage = module.default;
+    }
+  }
+}
+
+const placeholders = [p1, p2, p3, p4];
+const placeholder = placeholders[index % placeholders.length];
+---
+
+<article class="group relative flex flex-col md:flex-row bg-card rounded-md shadow-sm border border-border/60 overflow-hidden hover:shadow-md transition-all duration-300 hover:-translate-y-1 bg-gradient-start h-auto md:h-44">
+  
+  <!-- Full card click overlay (z-20 to cover content but stay below tags) -->
+  <a href={postUrl} class="absolute inset-0 z-20 cursor-pointer" aria-label={`Read ${post.data.title}`}></a>
+
+  <!-- Image Side (Fixed 3:2 Ratio) -->
+  <div class="w-full md:w-[240px] lg:w-[260px] h-48 md:h-full overflow-hidden relative shrink-0 z-10 border-b md:border-b-0 md:border-r border-border/40">
+    {firstImage ? (
+      typeof firstImage === 'string' ? (
+        <img 
+          src={firstImage} 
+          alt={post.data.title}
+          class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" 
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <Image 
+          width={400} 
+          height={266} 
+          src={firstImage} 
+          alt={post.data.title}
+          class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" 
+        />
+      )
+    ) : (
+      <Image 
+        width={400} 
+        height={266} 
+        src={placeholder} 
+        alt={post.data.title}
+        class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" 
+      />
+    )}
+    <!-- Subtle overlay -->
+    <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+  </div>
+
+  <!-- Content Side -->
+  <div class="flex-1 flex flex-col p-4 relative z-10">
+    
+    <!-- Meta Info -->
+    <div class="flex items-center justify-between text-xs font-black text-muted-foreground mb-2 uppercase tracking-tight">
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1.5"><CalendarDays size={12} className="text-primary/70" /> <FormattedDate date={post.data.pubDate} /></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1.5"><Pen size={12} className="text-primary/70" /> {readState.words} words</span>
+        <span class="flex items-center gap-1.5 hidden sm:flex"><Clock size={12} className="text-primary/70" /> {Math.ceil(readState.minutes)} min</span>
+      </div>
+    </div>
+
+    <!-- Title & Description -->
+    <div class="mb-1.5 block">
+      <h3 class="text-lg md:text-xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors line-clamp-1 leading-tight">
+        {post.data.title}
+      </h3>
+    </div>
+    <p class="text-xs font-medium text-muted-foreground/80 line-clamp-2 mb-3 leading-relaxed flex-1">
+      {post.data.description}
+    </p>
+
+    <!-- Tags (z-30 to be clickable over the overlay) -->
+    <div class="mt-auto relative z-30">
+      <div class="flex items-center gap-2 flex-wrap">
+        {itemTags?.slice(0, 3).map((tag: string) => (
+          <a href={`${import.meta.env.BASE_URL}tags/${tag}`} class="inline-block relative z-30">
+            <Badge variant="outline" className="text-xs uppercase font-black px-2 py-0 hover:bg-primary hover:text-primary-foreground transition-colors border-border/50 rounded-md bg-secondary/50">
+              {tag}
+            </Badge>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</article>

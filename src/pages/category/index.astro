@@ -1,0 +1,36 @@
+---
+import TwoColumnLayout from '../../layouts/TwoColumnLayout.astro';
+import { getCollection } from 'astro:content';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+
+const posts = await getCollection('blog');
+const allCategories = posts.map(post => post.data.category || 'Uncategorized');
+const uniqueCategories = [...new Set(allCategories)].sort();
+---
+
+<TwoColumnLayout title="Categories">
+	<!-- Breadcrumbs -->
+	<Breadcrumb className="mb-6">
+		<BreadcrumbList className="text-xs font-black uppercase text-muted-foreground/60 tracking-tight">
+			<BreadcrumbItem>
+				<BreadcrumbLink href={import.meta.env.BASE_URL} className="hover:text-primary transition-colors">Home</BreadcrumbLink>
+			</BreadcrumbItem>
+			<BreadcrumbSeparator className="opacity-30" />
+			<BreadcrumbItem>
+				<BreadcrumbPage className="text-foreground/40">Categories</BreadcrumbPage>
+			</BreadcrumbItem>
+		</BreadcrumbList>
+	</Breadcrumb>
+
+	<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+		{uniqueCategories.map(category => {
+			const count = allCategories.filter(c => c === category).length;
+			return (
+				<a href={`${import.meta.env.BASE_URL}category/${category}`} class="flex items-center justify-between p-6 rounded-md border border-border/50 bg-card hover:bg-primary/5 hover:border-primary/30 transition-all group shadow-sm">
+					<span class="font-bold text-foreground group-hover:text-primary transition-colors">{category}</span>
+					<span class="bg-secondary text-secondary-foreground text-xs font-black px-2.5 py-1 rounded-md">{count}</span>
+				</a>
+			);
+		})}
+	</div>
+</TwoColumnLayout>

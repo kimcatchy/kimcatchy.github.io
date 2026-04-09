@@ -1,0 +1,96 @@
+---
+import {
+  Pagination as PaginationContainer,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+interface Props {
+  page: any; // Astro Page object
+  baseUrl: string;
+}
+
+const { page, baseUrl } = Astro.props;
+
+// Ensure baseUrl ends with a slash if it's not empty and doesn't have one
+const normalizedBaseUrl = baseUrl ? (baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`) : '';
+
+// Helper to generate the correct URL for a page number
+const getPageUrl = (pageNum: number) => {
+  if (pageNum === 1) return normalizedBaseUrl;
+  return `${normalizedBaseUrl}${pageNum}/`;
+};
+
+// Calculate range of page numbers to show
+const maxVisiblePages = 5;
+let startPage = Math.max(1, page.currentPage - Math.floor(maxVisiblePages / 2));
+let endPage = Math.min(page.lastPage, startPage + maxVisiblePages - 1);
+
+if (endPage - startPage + 1 < maxVisiblePages) {
+  startPage = Math.max(1, endPage - maxVisiblePages + 1);
+}
+
+const pages = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+
+const showLeftEllipsis = startPage > 1;
+const showRightEllipsis = endPage < page.lastPage;
+---
+
+{page.lastPage > 1 && (
+  <PaginationContainer className="mt-12">
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious 
+          href={page.url.prev || "#"} 
+          aria-disabled={!page.url.prev}
+          className={!page.url.prev ? "pointer-events-none opacity-50" : ""}
+        />
+      </PaginationItem>
+
+      {showLeftEllipsis && (
+        <>
+          <PaginationItem>
+            <PaginationLink href={getPageUrl(1)}>1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        </>
+      )}
+
+      {pages.map((p) => (
+        <PaginationItem>
+          <PaginationLink 
+            href={getPageUrl(p)} 
+            isActive={p === page.currentPage}
+          >
+            {p}
+          </PaginationLink>
+        </PaginationItem>
+      ))}
+
+      {showRightEllipsis && (
+        <>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href={getPageUrl(page.lastPage)}>{page.lastPage}</PaginationLink>
+          </PaginationItem>
+        </>
+      )}
+
+      <PaginationItem>
+        <PaginationNext 
+          href={page.url.next || "#"} 
+          aria-disabled={!page.url.next}
+          className={!page.url.next ? "pointer-events-none opacity-50" : ""}
+        />
+      </PaginationItem>
+    </PaginationContent>
+  </PaginationContainer>
+)}

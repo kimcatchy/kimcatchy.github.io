@@ -1,0 +1,57 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { LayoutWrapper } from '../components/layout-wrapper';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: any;
+}
+
+const { 
+	title = SITE_TITLE, 
+	description = SITE_DESCRIPTION,
+	image
+} = Astro.props;
+
+// Fetch data for the sidebar
+const posts = await getCollection('blog');
+const recentPosts = posts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5)
+  .map(post => ({
+    id: post.id,
+    title: post.data.title,
+    date: post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  }));
+
+const allTags = posts.flatMap(post => post.data.tags || []);
+const uniqueTags = [...new Set(allTags)].length;
+const allCategories = posts.map(post => post.data.category || 'Uncategorized');
+const uniqueCategories = [...new Set(allCategories)].sort();
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+	<head>
+		<BaseHead title={title} description={description} image={image} />
+		<ClientRouter />
+	</head>
+	<body class="flex min-h-screen flex-col antialiased bg-background selection:bg-primary selection:text-primary-foreground">
+		<LayoutWrapper 
+			client:load 
+			title={SITE_TITLE}
+			postCount={posts.length}
+			categoryCount={uniqueCategories.length}
+			tagCount={uniqueTags}
+			recentPosts={recentPosts}
+		>
+			<slot />
+			<Footer slot="footer" />
+		</LayoutWrapper>
+	</body>
+</html>

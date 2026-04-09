@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+import { SITE_TITLE } from '../consts';
+import * as About from '../../README.md';
+
+const AboutContent = About.Content;
+const headings = About.getHeadings?.() || [];
+
+const title = 'About';
+---
+
+<Layout
+	title={title}
+	description={`Learn more about ${SITE_TITLE} blog`}
+	pubDate={new Date('April 04 2026')}
+	category="General"
+	tags={[]}
+	headings={headings}
+>
+	<AboutContent />
+</Layout>

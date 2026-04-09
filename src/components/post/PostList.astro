@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PostItemCard from './PostItemCard.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog' | 'project'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts && posts.length > 0 ? (
+  <div class="flex flex-col gap-6">
+    {posts.map((post, index) => (
+      <PostItemCard post={post} index={index} />
+    ))}
+  </div>
+) : (
+  <div class="text-foreground/30 flex flex-col items-center justify-center gap-4 py-16">
+    <div class="text-4xl">📭</div>
+    <span class="text-sm font-bold uppercase tracking-tight text-muted-foreground/50">No posts found</span>
+  </div>
+)}

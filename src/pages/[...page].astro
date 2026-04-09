@@ -1,0 +1,57 @@
+---
+import TwoColumnLayout from '../layouts/TwoColumnLayout.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+import { Separator } from "@/components/ui/separator";
+import PostList from '../components/post/PostList.astro';
+import PostItemCard from '../components/post/PostItemCard.astro';
+import Pagination from '../components/post/Pagination.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+  return paginate(posts, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+const posts = page.data;
+
+const pinnedPosts = posts.filter(post => post.data.pinned);
+const regularPosts = posts;
+
+const isFirstPage = page.currentPage === 1;
+---
+
+<TwoColumnLayout>
+	<div class="space-y-10">
+		{isFirstPage && pinnedPosts.length > 0 && (
+			<section class="space-y-6">
+				<div class="flex items-center gap-4 group">
+					<h2 class="text-xs font-black uppercase text-muted-foreground group-hover:text-primary transition-colors tracking-tight">Pinned Posts</h2>
+					<Separator className="flex-1 opacity-20" />
+				</div>
+
+				<div class="grid grid-cols-1 gap-6">
+					{pinnedPosts.map((post, index) => (
+						<PostItemCard post={post} index={index} />
+					))}
+				</div>
+			</section>
+		)}
+
+		<section class="space-y-6 pt-2">
+			<div class="flex items-center gap-4 group">
+				<h2 class="text-xs font-black uppercase text-muted-foreground group-hover:text-primary transition-colors tracking-tight">
+          {isFirstPage ? "Recent Feed" : `All Posts - Page ${page.currentPage}`}
+        </h2>
+				<Separator className="flex-1 opacity-20" />
+			</div>
+
+			<PostList posts={regularPosts} />
+      
+      <Pagination page={page} baseUrl={import.meta.env.BASE_URL} />
+		</section>
+	</div>
+</TwoColumnLayout>

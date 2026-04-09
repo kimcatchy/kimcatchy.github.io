@@ -1,0 +1,60 @@
+---
+import TwoColumnLayout from '../../layouts/TwoColumnLayout.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { Image } from 'astro:assets';
+import { Separator } from "@/components/ui/separator";
+import PostList from '../../components/post/PostList.astro';
+import PostItemCard from '../../components/post/PostItemCard.astro';
+import Pagination from '../../components/post/Pagination.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const rawProjects = (await getCollection('project')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+  return paginate(rawProjects, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+const projects = page.data;
+
+const pinnedProjects = projects.filter(p => p.data.pinned);
+const regularProjects = projects;
+
+const isFirstPage = page.currentPage === 1;
+---
+
+<TwoColumnLayout title="Projects">
+
+	<div class="space-y-10">
+		<!-- Pinned Projects Section -->
+		{isFirstPage && pinnedProjects.length > 0 && (
+			<section class="space-y-6">
+				<div class="flex items-center gap-4 group">
+					<h2 class="text-xs font-black uppercase text-muted-foreground group-hover:text-primary transition-colors tracking-tight">Pinned Projects</h2>
+					<Separator className="flex-1 opacity-20" />
+				</div>
+
+				<div class="grid grid-cols-1 gap-6">
+					{pinnedProjects.map((project, index) => (
+						<PostItemCard post={project} index={index} />
+					))}
+				</div>
+			</section>
+		)}
+
+		<!-- Regular Feed -->
+		<section class="space-y-6 pt-2">
+			<div class="flex items-center gap-4 group">
+				<h2 class="text-xs font-black uppercase text-muted-foreground group-hover:text-primary transition-colors tracking-tight">
+          {isFirstPage ? "All Projects" : `All Projects - Page ${page.currentPage}`}
+        </h2>
+				<Separator className="flex-1 opacity-20" />
+			</div>
+
+			<PostList posts={regularProjects} />
+
+      <Pagination page={page} baseUrl={`${import.meta.env.BASE_URL}projects/`} />
+		</section>
+	</div>
+</TwoColumnLayout>

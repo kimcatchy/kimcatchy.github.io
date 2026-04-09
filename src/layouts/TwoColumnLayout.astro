@@ -1,0 +1,22 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: any;
+  showSider?: boolean;
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<Layout title={title} description={description} image={image}>
+  <!-- Main Content Area (Wider and Centered) -->
+  <div class="flex-1 w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col gap-6 items-start pt-6 pb-0">
+    <!-- Content Column -->
+    <main class="flex-1 min-w-0 w-full space-y-8">
+      <slot />
+    </main>
+  </div>
+</Layout>

@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import TwoColumnLayout from '../../../layouts/TwoColumnLayout.astro';
+import PostList from '../../../components/post/PostList.astro';
+import Pagination from '../../../components/post/Pagination.astro';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+
+export async function getStaticPaths({ paginate }) {
+	const posts = await getCollection('blog');
+	const uniqueCategories = [...new Set(posts.map((post) => post.data.category))];
+
+	return uniqueCategories.flatMap((category) => {
+		const categoryPosts = posts.filter((post) => post.data.category === category)
+			.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+		return paginate(categoryPosts, {
+      params: { category },
+      pageSize: 10
+    });
+	});
+}
+
+const { category } = Astro.params;
+const { page } = Astro.props;
+---
+
+<TwoColumnLayout title={`Category: ${category}`}>
+	<!-- Breadcrumbs -->
+	<Breadcrumb className="mb-6">
+		<BreadcrumbList className="text-xs font-black uppercase text-muted-foreground/60 tracking-tight">
+			<BreadcrumbItem>
+				<BreadcrumbLink href={import.meta.env.BASE_URL} className="hover:text-primary transition-colors">Home</BreadcrumbLink>
+			</BreadcrumbItem>
+			<BreadcrumbSeparator className="opacity-30" />
+			<BreadcrumbItem>
+				<BreadcrumbLink href={`${import.meta.env.BASE_URL}category`} className="hover:text-primary transition-colors">Categories</BreadcrumbLink>
+			</BreadcrumbItem>
+			<BreadcrumbSeparator className="opacity-30" />
+			<BreadcrumbItem>
+				<BreadcrumbPage className="text-foreground/40">{category} {page.currentPage > 1 && `(Page ${page.currentPage})`}</BreadcrumbPage>
+			</BreadcrumbItem>
+		</BreadcrumbList>
+	</Breadcrumb>
+
+	<div class="mb-8">
+		<h1 class="text-3xl font-black tracking-tight text-foreground mb-2 flex items-center gap-3">
+			<span class="w-2 h-8 bg-primary rounded-full"></span>
+			{category}
+		</h1>
+		<p class="text-base text-muted-foreground font-medium">Browsing all posts in the <span class="text-primary font-bold">{category}</span> category.</p>
+	</div>
+
+	<PostList posts={page.data} />
+
+  <Pagination page={page} baseUrl={`${import.meta.env.BASE_URL}category/${category}/`} />
+</TwoColumnLayout>

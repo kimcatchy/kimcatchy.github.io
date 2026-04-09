@@ -1,0 +1,22 @@
+---
+interface Props {
+	date: Date;
+	showTime?: boolean;
+}
+
+const { date, showTime = false } = Astro.props;
+
+// Format: YYYY-MM-DD
+const datePart = date.toISOString().split('T')[0];
+
+// Format: HH:mm
+const timePart = date.toLocaleTimeString('en-GB', {
+	hour: '2-digit',
+	minute: '2-digit',
+	hour12: false,
+});
+---
+
+<time datetime={date.toISOString()}>
+	{datePart}{showTime && ` ${timePart}`}
+</time>

@@ -1,0 +1,178 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --radius-xl: 0.375rem;
+  --radius-lg: 0.375rem;
+  --radius-md: 0.375rem;
+  --radius-sm: 0.25rem;
+
+  /* Tailwind v4 Theme Variables */
+  --color-background: hsl(0 0% 8%);
+  --color-foreground: hsl(0 0% 95%);
+  
+  --color-card: hsl(0 0% 12%);
+  --color-card-foreground: hsl(0 0% 95%);
+  
+  --color-popover: hsl(0 0% 12%);
+  --color-popover-foreground: hsl(0 0% 95%);
+  
+  --color-primary: hsl(45 100% 50%);
+  --color-primary-foreground: hsl(0 0% 10%);
+  
+  --color-secondary: hsl(0 0% 20%);
+  --color-secondary-foreground: hsl(0 0% 95%);
+  
+  --color-muted: hsl(0 0% 20%);
+  --color-muted-foreground: hsl(0 0% 65%);
+  
+  --color-accent: hsl(45 100% 50%);
+  --color-accent-foreground: hsl(0 0% 10%);
+  
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  
+  --color-border: hsl(0 0% 20%);
+  --color-input: hsl(0 0% 20%);
+  --color-ring: hsl(45 100% 50%);
+
+  /* Sidebar variables */
+  --color-sidebar: hsl(0 0% 8%);
+  --color-sidebar-foreground: hsl(0 0% 95%);
+  --color-sidebar-primary: hsl(45 100% 50%);
+  --color-sidebar-primary-foreground: hsl(0 0% 10%);
+  --color-sidebar-accent: hsl(0 0% 12%);
+  --color-sidebar-accent-foreground: hsl(0 0% 95%);
+  --color-sidebar-border: hsl(0 0% 20%);
+  --color-sidebar-ring: hsl(45 100% 50%);
+
+  /* Koharu patterns */
+  --color-box-bg-shadow: rgba(0, 0, 0, 0.5);
+  --color-gradient-bg-start: hsl(0 0% 12%);
+  --color-gradient-bg-end: hsl(0 0% 8%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scrollbar-gutter: stable;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Atkinson", sans-serif;
+  }
+}
+
+@layer components {
+  /* Table Wrapper: Handles outer border and vertical clipping */
+  .prose .table-wrapper {
+    @apply my-6 rounded-md border border-border overflow-x-auto shadow-sm;
+    width: fit-content;
+    max-width: 100%;
+    line-height: 0; /* Eliminate vertical ghost space */
+  }
+
+  /* Standard Table: Perfectly aligned to wrapper edges */
+  .prose table {
+    @apply text-left border-separate border-spacing-0;
+    display: table !important;
+    width: max-content !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    line-height: normal; /* Restore line-height for cell content */
+    vertical-align: top;
+  }
+
+  .prose thead {
+    @apply bg-muted/40;
+  }
+
+  .prose th,
+  .prose td {
+    @apply border-r border-b border-border;
+    padding: 0.35rem 0.6rem !important;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    vertical-align: middle;
+  }
+
+  /* Remove borders that would double with the wrapper border */
+  .prose th:last-child,
+  .prose td:last-child {
+    border-right: none !important;
+  }
+  .prose tr:last-child td {
+    border-bottom: none !important;
+  }
+
+  .prose th {
+    @apply text-xs font-black uppercase text-muted-foreground bg-muted/20;
+    white-space: nowrap;
+  }
+
+  .prose td {
+    @apply text-sm text-muted-foreground/90;
+    max-width: 22rem;
+  }
+
+  /* Override prose's default first-column padding */
+  .prose table :is(th, td):first-child {
+    padding-left: 0.6rem !important;
+  }
+
+  .prose tr:nth-child(even) {
+    @apply bg-muted/5;
+  }
+
+  .prose tr:hover td {
+    @apply bg-muted/10 transition-colors;
+  }
+
+  /* Webkit custom scrollbar for tables */
+  .table-wrapper::-webkit-scrollbar {
+    height: 5px;
+  }
+  .table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .table-wrapper::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--color-primary), transparent 80%);
+    border-radius: 20px;
+  }
+  .table-wrapper:hover::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--color-primary), transparent 60%);
+  }
+}
+
+@utility shadow-box {
+  box-shadow: 0px 50px 50px -50px var(--color-box-bg-shadow);
+}
+
+@utility bg-gradient-start {
+  background: linear-gradient(180deg, var(--color-gradient-bg-start) 10%, var(--color-gradient-bg-end) 100%);
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--color-primary), transparent 80%) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--color-primary), transparent 80%);
+    border-radius: 20px;
+    transition: background-color 0.2s;
+  }
+  .scrollbar-thin:hover::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--color-primary), transparent 60%);
+  }
+}

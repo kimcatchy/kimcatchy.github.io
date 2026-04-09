@@ -1,0 +1,92 @@
+---
+import { ExternalLink } from "lucide-react";
+
+interface Props {
+  url: string;
+  label?: string;
+}
+
+const { url, label } = Astro.props;
+
+let metadata = {
+  title: "",
+  description: "",
+  image: "",
+  url: url,
+  hostname: ""
+};
+
+try {
+  const parsedUrl = new URL(url);
+  metadata.hostname = parsedUrl.hostname;
+  metadata.title = metadata.hostname;
+
+  // We fetch with a browser-like User-Agent to avoid being blocked
+  // Note: This happens at build time in Astro
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    }
+  });
+
+  if (response.ok) {
+    const html = await response.text();
+    
+    // Improved Regex for OG tags - handling both property/content and content/property order
+    const getMeta = (prop: string) => {
+      const reg1 = new RegExp(`<meta[^>]*property=["']${prop}["'][^>]*content=["']([^"']+)["']`, 'i');
+      const reg2 = new RegExp(`<meta[^>]*content=["']([^"']+)["'][^>]*property=["']${prop}["']`, 'i');
+      const reg3 = new RegExp(`<meta[^>]*name=["']${prop}["'][^>]*content=["']([^"']+)["']`, 'i');
+      const reg4 = new RegExp(`<meta[^>]*content=["']([^"']+)["'][^>]*name=["']${prop}["']`, 'i');
+      return html.match(reg1)?.[1] || html.match(reg2)?.[1] || html.match(reg3)?.[1] || html.match(reg4)?.[1];
+    };
+
+    const ogTitle = getMeta('og:title');
+    const ogDescription = getMeta('og:description') || getMeta('description');
+    const ogImage = getMeta('og:image');
+    const titleMatch = html.match(/<title>([^<]+)<\/title>/i)?.[1];
+
+    metadata.title = ogTitle || titleMatch || metadata.hostname;
+    metadata.description = ogDescription || "";
+    metadata.image = ogImage || "";
+  }
+} catch (e) {
+  // Fallback to basic hostname info if fetch fails
+  try {
+     metadata.hostname = new URL(url).hostname;
+     metadata.title = metadata.hostname;
+  } catch(err) {}
+}
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" class="block group no-underline my-4">
+  <div class="flex flex-col sm:flex-row rounded-md border border-border/40 bg-card hover:bg-secondary/10 transition-all duration-300 hover:shadow-md hover:border-primary/40 overflow-hidden h-auto sm:h-32 shadow-sm">
+    {metadata.image && (
+      <div class="w-full sm:w-48 h-32 sm:h-full shrink-0 overflow-hidden border-b sm:border-b-0 sm:border-r border-border/20">
+        <img 
+          src={metadata.image} 
+          alt={metadata.title} 
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onerror="this.style.display='none'"
+        />
+      </div>
+    )}
+    <div class="flex-1 p-4 flex flex-col justify-center min-w-0">
+      <div class="flex items-center gap-1.5 text-[10px] font-black uppercase text-primary mb-1.5">
+        <ExternalLink size={10} strokeWidth={3} />
+        {label || metadata.hostname}
+      </div>
+      <h4 class="text-base font-black text-foreground group-hover:text-primary transition-colors line-clamp-1 leading-tight tracking-tight mb-1">
+        {metadata.title}
+      </h4>
+      {metadata.description && (
+        <p class="text-xs text-muted-foreground/70 line-clamp-2 leading-relaxed font-medium">
+          {metadata.description}
+        </p>
+      )}
+      <div class="mt-auto pt-1 text-[10px] text-muted-foreground/40 font-mono truncate">
+        {url}
+      </div>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,57 @@
+---
+import { List } from 'lucide-react';
+
+interface Heading {
+  depth: number;
+  text: string;
+  slug: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+
+// Filter headings if necessary (e.g. only H2 and H3)
+const filteredHeadings = headings.filter((h) => h.depth > 1 && h.depth <= 4);
+---
+
+{filteredHeadings.length > 0 && (
+  <nav class="toc-nav sticky top-6 h-fit max-h-[calc(100vh-120px)] overflow-y-auto vertical-scrollbar bg-card border border-border/60 rounded-md shadow-sm p-4 bg-gradient-start">
+    <div class="flex items-center gap-2 mb-4">
+      <List size={14} className="text-primary/70" />
+      <span class="text-xs font-black uppercase text-muted-foreground/40 tracking-tight">Table of Contents</span>
+    </div>
+    <ul class="flex flex-col gap-1.5">
+      {filteredHeadings.map((heading) => (
+        <li class="group">
+          <a
+            href={`#${heading.slug}`}
+            class:list={[
+              "block text-xs font-medium leading-relaxed transition-all hover:text-primary tracking-tight",
+              heading.depth === 2 && "text-foreground/60",
+              heading.depth === 3 && "pl-4 text-muted-foreground/50",
+              heading.depth === 4 && "pl-8 text-muted-foreground/40",
+            ]}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .vertical-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
+  .vertical-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .vertical-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 10px;
+  }
+</style>

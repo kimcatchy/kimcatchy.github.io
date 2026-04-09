@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import TwoColumnLayout from '../../../layouts/TwoColumnLayout.astro';
+import PostList from '../../../components/post/PostList.astro';
+import Pagination from '../../../components/post/Pagination.astro';
+
+export async function getStaticPaths({ paginate }) {
+	const allPosts = await getCollection('blog');
+	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags || []).flat())];
+
+	return uniqueTags.flatMap((tag) => {
+		const filterPosts = allPosts.filter((post) => post.data.tags?.includes(tag))
+			.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+		return paginate(filterPosts, {
+      params: { tag },
+      pageSize: 10
+    });
+	});
+}
+
+const { tag } = Astro.params;
+const { page } = Astro.props;
+---
+
+<TwoColumnLayout title={`Tag: ${tag}`}>
+	<!-- Breadcrumbs -->
+	<nav class="mb-6 flex items-center gap-2 text-xs font-black uppercase text-muted-foreground/60 tracking-tight">
+		<a href={import.meta.env.BASE_URL} class="hover:text-primary transition-colors">Home</a>
+		<span class="opacity-30">/</span>
+		<a href={`${import.meta.env.BASE_URL}tags`} class="hover:text-primary transition-colors">Tags</a>
+		<span class="opacity-30">/</span>
+		<span class="text-foreground/40">{tag} {page.currentPage > 1 && `(Page ${page.currentPage})`}</span>
+	</nav>
+
+	<div class="mb-8">
+		<h1 class="text-3xl font-black tracking-tight text-foreground mb-2 flex items-center gap-3">
+			<span class="w-2 h-8 bg-primary rounded-full"></span>
+			#{tag}
+		</h1>
+		<p class="text-base text-muted-foreground font-medium">Browsing all posts tagged with <span class="text-primary font-bold">#{tag}</span>.</p>
+	</div>
+
+	<PostList posts={page.data} />
+
+  <Pagination page={page} baseUrl={`${import.meta.env.BASE_URL}tags/${tag}/`} />
+</TwoColumnLayout>

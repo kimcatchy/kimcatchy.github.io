@@ -1,0 +1,251 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import TwoColumnLayout from '../../layouts/TwoColumnLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import LinkCard from '../../components/LinkCard.astro';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('project');
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: project,
+	}));
+}
+type Props = CollectionEntry<'project'>;
+
+const project = Astro.props;
+const { title, description, pubDate, link, repository, heroImage: originalHeroImage } = project.data;
+const { Content } = await render(project);
+
+// Extract the first image from the body if heroImage is not defined
+let heroImage = originalHeroImage;
+if (!heroImage) {
+  const imageMatch = project.body?.match(/!\[.*?\]\((.*?)\)/) || project.body?.match(/<img.*?src=["'](.*?)["']/);
+  if (imageMatch && imageMatch[1]) {
+    heroImage = imageMatch[1];
+  }
+}
+---
+
+<TwoColumnLayout title={title} description={description} image={heroImage}>
+	
+	<style is:global>
+		/* Footnotes Section Styling (Synced with BlogPost.astro) */
+		.prose .footnotes,
+		.prose section[data-footnotes] {
+			margin-top: 4rem !important;
+			padding-top: 2rem !important;
+			border-top: 1px solid color-mix(in srgb, var(--color-border), transparent 60%) !important;
+			display: block !important;
+			position: relative;
+		}
+
+		.prose .footnotes hr,
+		.prose section[data-footnotes] hr {
+			display: none !important;
+		}
+
+		.prose .footnotes::before,
+		.prose section[data-footnotes]::before {
+			content: "Footnotes";
+			display: block !important;
+			font-size: 1.5rem !important;
+			line-height: 2rem !important;
+			font-weight: 900 !important;
+			letter-spacing: -0.025em !important;
+			color: var(--color-foreground) !important;
+			margin-bottom: 1.5rem !important;
+		}
+
+		@media (min-width: 768px) {
+			.prose .footnotes::before,
+			.prose section[data-footnotes]::before {
+				font-size: 1.875rem !important;
+				line-height: 2.25rem !important;
+			}
+		}
+
+		.prose .footnotes h2,
+		.prose section[data-footnotes] h2,
+		.prose [id="footnote-label"] {
+			display: none !important;
+		}
+
+		.prose .footnotes ol {
+			margin-top: 0 !important;
+			padding-left: 1.25rem !important;
+		}
+		.prose .footnotes li {
+			margin-bottom: 0.75rem !important;
+			color: color-mix(in srgb, var(--color-foreground), transparent 20%);
+			font-size: 0.875rem !important;
+		}
+
+		.prose .data-footnote-backref {
+			text-decoration: none !important;
+			color: color-mix(in srgb, var(--color-primary), transparent 40%) !important;
+			margin-left: 0.5rem;
+			transition: color 0.2s;
+			font-family: sans-serif;
+		}
+		.prose .data-footnote-backref:hover {
+			color: var(--color-primary) !important;
+		}
+
+		/* Crucial: Kill the margins on LinkCard inside the project page */
+		.project-links-list a.block {
+			margin-top: 0 !important;
+			margin-bottom: 0 !important;
+			margin-block: 0 !important;
+		}
+	</style>
+
+	<!-- Breadcrumbs -->
+	<Breadcrumb className="mb-6">
+		<BreadcrumbList className="text-xs font-black uppercase text-muted-foreground/60 tracking-tight">
+			<BreadcrumbItem>
+				<BreadcrumbLink href={import.meta.env.BASE_URL} className="hover:text-primary transition-colors">Home</BreadcrumbLink>
+			</BreadcrumbItem>
+			<BreadcrumbSeparator className="opacity-30" />
+			<BreadcrumbItem>
+				<BreadcrumbLink href={`${import.meta.env.BASE_URL}projects`} className="hover:text-primary transition-colors">Projects</BreadcrumbLink>
+			</BreadcrumbItem>
+			<BreadcrumbSeparator className="opacity-30" />
+			<BreadcrumbItem>
+				<BreadcrumbPage className="text-foreground/40 line-clamp-1">{title}</BreadcrumbPage>
+			</BreadcrumbItem>
+		</BreadcrumbList>
+	</Breadcrumb>
+
+	<article class="w-full flex flex-col gap-6">
+		<div class="bg-card border border-border/60 rounded-md shadow-sm overflow-hidden bg-gradient-start">
+			<div class="p-6 md:p-10">
+				
+				<!-- Header Info -->
+				<header class="text-center mb-10">
+					<div class="text-xs font-black text-primary mb-4 uppercase">
+						<FormattedDate date={pubDate} />
+					</div>
+					<h1 class="text-3xl md:text-5xl font-black tracking-tight text-foreground mb-6 leading-[1.1] text-balance">
+						{title}
+					</h1>
+					<hr class="w-24 mx-auto border-2 border-primary/30 rounded-full" />
+				</header>
+
+				<!-- Main Content -->
+				<div class="prose prose-invert prose-yellow max-w-none 
+					prose-headings:font-black prose-headings:tracking-tight prose-headings:text-foreground
+					[&>*:first-child]:mt-0
+					prose-h1:text-2xl md:prose-h1:text-4xl prose-h1:mt-10 prose-h1:mb-6
+					prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-10 prose-h2:mb-4
+					prose-h3:text-xl md:prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+					prose-h4:text-lg md:prose-h4:text-xl prose-h4:mt-6 prose-h4:mb-3
+					prose-h5:text-base prose-h5:mt-6 prose-h5:mb-3
+					prose-h6:text-sm prose-h6:mt-6 prose-h6:mb-3
+					prose-p:text-muted-foreground/90 prose-p:leading-normal prose-p:text-base prose-p:my-2
+					prose-li:my-0.5 prose-li:pl-1.5 prose-ul:my-2 prose-ol:my-2
+					[&_ul_ul]:pl-4 [&_ul_ol]:pl-4 [&_ol_ul]:pl-4 [&_ol_ol]:pl-4
+					prose-a:text-primary prose-a:font-black prose-a:underline-offset-4 prose-a:decoration-primary/30
+					prose-img:rounded-md prose-img:shadow-sm
+					prose-code:text-primary prose-code:bg-primary/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-code:font-bold
+					[&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:font-normal
+					prose-pre:rounded-md prose-pre:border prose-pre:border-border/50 prose-pre:bg-card prose-pre:shadow-inner prose-pre:text-sm
+					prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-primary/5 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-md prose-blockquote:text-base prose-blockquote:not-italic prose-blockquote:font-medium
+					prose-hr:border-border/50">
+					<Content />
+				</div>
+
+				<!-- Links Section -->
+				{(repository || link) && (
+					<div class="mt-12">
+						<div class="h-px w-full bg-white/20 shrink-0 mb-8"></div>
+						<div class="space-y-4">
+							<h2 class="text-2xl md:text-4xl font-black tracking-tight text-foreground leading-tight">Links</h2>
+							<div class="project-links-list flex flex-col gap-3">
+								{repository && (
+									<LinkCard url={repository} label="Repository" />
+								)}
+								{link && (
+									<LinkCard url={link} label="Live Preview" />
+								)}
+							</div>
+						</div>
+					</div>
+				)}
+			</div>
+		</div>
+
+		<!-- Code Block Enhancer Script -->
+		<script is:inline>
+			function enhanceCodeBlocks() {
+				const preBlocks = document.querySelectorAll('pre');
+				preBlocks.forEach(pre => {
+					if (pre.dataset.enhanced) return;
+					const wrapper = document.createElement('div');
+					wrapper.className = 'code-block-wrapper group relative my-6 rounded-md border border-border/50 bg-black/40 overflow-hidden';
+					const lang = pre.getAttribute('data-language') || 'text';
+					const toolbar = document.createElement('div');
+					toolbar.className = 'code-block-toolbar flex items-center justify-between px-4 py-1.5 bg-muted/30 border-b border-border/50 text-xs font-black uppercase tracking-tight text-muted-foreground/80';
+					const leftSide = document.createElement('div');
+					leftSide.className = 'flex items-center gap-2';
+					leftSide.innerHTML = `
+						<div class="flex gap-1.5">
+							<div class="w-2.5 h-2.5 rounded-full bg-red-500/30 border border-red-500/20"></div>
+							<div class="w-2.5 h-2.5 rounded-full bg-yellow-500/30 border border-yellow-500/20"></div>
+							<div class="w-2.5 h-2.5 rounded-full bg-green-500/30 border border-green-500/20"></div>
+						</div>
+						<span class="ml-2 border-l border-border/50 pl-2">${lang}</span>
+					`;
+					const copyBtn = document.createElement('button');
+					copyBtn.className = 'hover:text-primary transition-all flex items-center gap-1 opacity-60 md:opacity-0 group-hover:opacity-100 cursor-pointer active:scale-95';
+					copyBtn.innerHTML = `
+						<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+						<span>Copy</span>
+					`;
+					copyBtn.onclick = () => {
+						let code = pre.querySelector('code')?.innerText || pre.innerText;
+						if (code.startsWith('\n')) code = code.slice(1);
+						navigator.clipboard.writeText(code).then(() => {
+							const span = copyBtn.querySelector('span');
+							span.innerText = 'Copied!';
+							copyBtn.classList.add('text-primary');
+							setTimeout(() => {
+								span.innerText = 'Copy';
+								copyBtn.classList.remove('text-primary');
+							}, 2000);
+						});
+					};
+					toolbar.appendChild(leftSide);
+					toolbar.appendChild(copyBtn);
+					pre.parentNode.insertBefore(wrapper, pre);
+					wrapper.appendChild(toolbar);
+					wrapper.appendChild(pre);
+					pre.style.marginTop = '0';
+					pre.style.marginBottom = '0';
+					pre.style.padding = '1rem';
+					pre.style.paddingTop = '0.75rem';
+					pre.style.paddingBottom = '0.75rem';
+					pre.style.border = 'none';
+					pre.style.backgroundColor = 'transparent';
+					const codeTag = pre.querySelector('code');
+					if (codeTag) {
+						codeTag.style.backgroundColor = 'transparent';
+						codeTag.style.padding = '0';
+						const firstChild = codeTag.firstChild;
+						if (firstChild && firstChild.nodeType === 3 && firstChild.nodeValue.startsWith('\n')) {
+							firstChild.nodeValue = firstChild.nodeValue.slice(1);
+						}
+						const lastChild = codeTag.lastChild;
+						if (lastChild && lastChild.nodeType === 3 && lastChild.nodeValue.endsWith('\n')) {
+							lastChild.nodeValue = lastChild.nodeValue.slice(0, -1);
+						}
+					}
+					pre.dataset.enhanced = 'true';
+				});
+			}
+			enhanceCodeBlocks();
+			document.addEventListener('astro:after-swap', enhanceCodeBlocks);
+		</script>
+	</article>
+</TwoColumnLayout>

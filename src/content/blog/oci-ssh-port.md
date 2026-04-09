@@ -2,8 +2,9 @@
 id: 8
 title: "Oracle Cloud SSH 포트 변경"
 description: "VM 인스턴스 SSH 포트 변경"
-updatedDate: 2026-04-09T09:21:00.000Z
-category: "linux"
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:35:00.000Z
+category: "DevOps"
 tags: ["OCI"]
 pinned: false
 ---

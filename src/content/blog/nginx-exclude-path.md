@@ -2,8 +2,9 @@
 id: 4
 title: "Nginx 로그 특정 경로 제외"
 description: "특정 확장자의 파일들을 로그에서 제외"
-updatedDate: 2026-04-09T09:21:00.000Z
-category: "Web"
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:36:00.000Z
+category: "DevOps"
 tags: ["Nginx"]
 pinned: false
 ---

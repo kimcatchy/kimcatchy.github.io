@@ -2,8 +2,9 @@
 id: 6
 title: "Nginx Custom Error Page"
 description: "Nginx 커스텀 에러 페이지 설정으로 40x/5xx 페이지 통합"
-updatedDate: 2026-04-09T09:21:00.000Z
-category: "Web"
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:36:00.000Z
+category: "DevOps"
 tags: ["Nginx"]
 pinned: false
 ---

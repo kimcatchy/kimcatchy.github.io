@@ -2,8 +2,9 @@
 id: 28
 title: "포인터"
 description: "C언어"
-updatedDate: 2026-04-09T09:21:00.000Z
-category: "Study"
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:37:00.000Z
+category: "Fundamentals"
 tags: ["C"]
 pinned: false
 ---

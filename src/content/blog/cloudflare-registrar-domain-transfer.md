@@ -2,7 +2,8 @@
 id: 42
 title: "Cloudflare Registrar 도메인 이전"
 description: "기존 PDM에서 사용하던 서버를 DRZG로"
-updatedDate: 2026-04-09T09:21:00.000Z
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:37:00.000Z
 category: "Web"
 tags: ["Nginx"]
 pinned: false

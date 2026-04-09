@@ -2,8 +2,9 @@
 id: 1
 title: "Cron"
 description: "Cron 사용법"
-updatedDate: 2026-04-09T09:21:00.000Z
-category: "linux"
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:39:00.000Z
+category: "DevOps"
 tags: ["Ubuntu"]
 pinned: false
 ---

@@ -2,7 +2,8 @@
 id: 11
 title: "Notion to Blog"
 description: "nolog를 통한 자동 포스팅"
-updatedDate: 2026-04-09T09:21:00.000Z
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:37:00.000Z
 category: "Web"
 tags: ["Notion", "Hugo"]
 pinned: false

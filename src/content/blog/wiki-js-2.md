@@ -2,7 +2,8 @@
 id: 37
 title: "Wiki.js v2.0"
 description: "Wiki.js & Discord Auth"
-updatedDate: 2026-04-09T09:21:00.000Z
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:37:00.000Z
 category: "Web"
 tags: ["Node.js"]
 pinned: false

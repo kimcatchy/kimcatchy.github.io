@@ -2,8 +2,9 @@
 id: 34
 title: "VSCode C/C++ 컴파일 환경 세팅"
 description: "내 컴퓨터 기준!"
-updatedDate: 2026-04-09T09:21:00.000Z
-category: "Study"
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:37:00.000Z
+category: "Fundamentals"
 tags: ["C"]
 pinned: false
 ---

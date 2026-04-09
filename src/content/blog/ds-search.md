@@ -2,8 +2,9 @@
 id: 38
 title: "탐색"
 description: "자료구조"
-updatedDate: 2026-04-09T09:21:00.000Z
-category: "Study"
+pubDate: 2026-04-05T00:14:00.000Z
+updatedDate: 2026-04-09T09:34:00.000Z
+category: "Fundamentals"
 tags: ["DataStructure", "Python"]
 pinned: false
 ---

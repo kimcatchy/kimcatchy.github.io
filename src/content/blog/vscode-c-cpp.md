@@ -3,21 +3,21 @@ id: 34
 title: "VSCode C/C++ 컴파일 환경 세팅"
 description: "내 컴퓨터 기준!"
 pubDate: 2026-04-05T00:14:00.000Z
-updatedDate: 2026-04-09T09:37:00.000Z
+updatedDate: 2026-04-09T11:16:00.000Z
 category: "Fundamentals"
 tags: ["C"]
 pinned: false
 ---
 
 
-# VS Code C++ extension 설치
+## VS Code C++ extension 설치
 
 
 ![](../../assets/notion/blog-34/3395927d-b75a-81a3-bb59-c9ef988ef7b0.png)
 
 - 3개 다 설치
 
-# MinGW-w64 toolchain 설치
+## MinGW-w64 toolchain 설치
 
 
 [https://www.msys2.org/](https://www.msys2.org/)
@@ -34,7 +34,7 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 ![](../../assets/notion/blog-34/3395927d-b75a-8149-b080-d5f7cf5522c7.png)
 
 
-# tasks.json
+## tasks.json
 
 
 ```json
@@ -67,7 +67,7 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 ```
 
 
-# launch.json
+## launch.json
 
 
 ```json

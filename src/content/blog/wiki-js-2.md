@@ -3,14 +3,14 @@ id: 37
 title: "Wiki.js v2.0"
 description: "Wiki.js & Discord Auth"
 pubDate: 2026-04-05T00:14:00.000Z
-updatedDate: 2026-04-09T09:37:00.000Z
+updatedDate: 2026-04-09T11:16:00.000Z
 category: "Web"
 tags: ["Node.js"]
 pinned: false
 ---
 
 
-# 설치
+## 설치
 
 
 ```bash
@@ -65,7 +65,7 @@ sudo ufw --force enable
 ```
 
 
-# 실행
+## 실행
 
 
 ```bash
@@ -77,7 +77,7 @@ sudo docker start wiki-update-companion
 - 실행 후 Let's Encrypt 인증 전 사이트 설정을 먼저 할 것
 - 사이트 설정 시 문서 생성하기 전에 언어 설정부터 변경
 
-# Let's Encrypt
+## Let's Encrypt
 
 
 ```bash
@@ -93,7 +93,7 @@ sudo docker logs wiki
 - restart 할 때마다 자동 갱신
     - `sudo docker restart wiki`
 
-# Discord Auth
+## Discord Auth
 
 - [**Discord Developer Portal**](https://discord.com/developers/applications) > 어플리케이션 생성 > OAuth2
     - Client ID, Client Secret 복사
@@ -105,7 +105,7 @@ sudo docker logs wiki
 - 위 내용 모두 완료 후에 적용, 정상적으로 진행되는지 확인 후 관리 페이지 > 보안 > 로컬 인증 공급자 숨기기 활성화
     - 로그인 화면에서 디스코드만 뜨지만 url 뒤에 ?all이 있을 경우 로컬 로그인도 가능
 
-# 로그인 페이지 배경 이미지 변경
+## 로그인 페이지 배경 이미지 변경
 
 
 ![](../../assets/notion/blog-37/3395927d-b75a-81ea-9c47-eb79e9e944ec.png)
@@ -113,7 +113,7 @@ sudo docker logs wiki
 - 관리 페이지 > 보안 > 로그인 > 로그인 배경 이미지 URL
 - ImgBB 같은 곳에 올리고 원본 이미지 링크 사용
 
-# 사용 후기
+## 사용 후기
 
 
 node.js 기반이라 써봤는데 그냥 노션에 쓰고 말지 딱히 메리트가 있는 것 같지는 않다..

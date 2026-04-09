@@ -3,14 +3,14 @@ id: 11
 title: "Notion to Blog"
 description: "nolog를 통한 자동 포스팅"
 pubDate: 2026-04-05T00:14:00.000Z
-updatedDate: 2026-04-09T09:37:00.000Z
+updatedDate: 2026-04-09T11:16:00.000Z
 category: "Web"
 tags: ["Notion", "Hugo"]
 pinned: false
 ---
 
 
-# 노션과 블로그의 연동
+## 노션과 블로그의 연동
 
 
 엊그제 Hugo와 Stack theme을 통해 Github Pages로 블로그를 만들었다. 하지만 노션에 적은 걸 다시 vscode를 켜고 마크다운 파일로 작성하고.. 태그로 이미지를 첨부하고.. 커밋하고 푸시해서 적용을 하는 과정은 너무나도 귀찮다! 글을 쓰는 게 귀찮으면 글 쓰기가 싫어진다!
@@ -19,7 +19,7 @@ pinned: false
 그래서 [**nolog**](https://github.com/Sharknia/nolog)를 통해 노션과 블로그를 연동하기로 했다. 기본적인 적용 방법은 해당 repo의 README에 있으니 생략하고, 몇 가지 수정한 것만 기록용으로 적어본다.
 
 
-# 노션 템플릿 수정
+## 노션 템플릿 수정
 
 
 ![](../../assets/notion/blog-11/3395927d-b75a-8113-81b1-d325c18e6f57.png)
@@ -31,7 +31,7 @@ pinned: false
 - 문서를 저장할 때 `content/post/{slug}/index.md`로 저장해야 되기 때문에 slug 속성 추가
 - 선택 유형인 series 속성을 categories로 변경하고 유형을 다중 선택으로 변경
 
-# 페이지 URL 수정
+## 페이지 URL 수정
 
 
 ```typescript
@@ -45,7 +45,7 @@ pinned: false
 pageUrl에서 slug를 사용할 수 있게 수정했다. 기존에는 pageTitle을 통해 pageUrl이 결정됐는데, slug를 추가했으니 기존 코드는 지웠다. 여기서 알아서 subDir을 생성해주니까 SAVE_SUB_DIR 변수는 추가하면 안된다.
 
 
-# 데이터 추출 함수 수정
+## 데이터 추출 함수 수정
 
 
 ```typescript
@@ -89,7 +89,7 @@ private formatDateForBlog(dateString: string): string {
 파일의 아래 쪽에는 formatDateForBlog 함수를 작성했다. 기존의 `2025-09-18T05:26:00.000Z` 같은 ISOString 형식에서 `2025-09-17 07:00:00+0900` 형식으로 출력이 되게 변경했다.
 
 
-# categories 다중 선택 처리
+## categories 다중 선택 처리
 
 
 ```typescript
@@ -123,7 +123,7 @@ private formatMarkdownMetadata(): string {
 `categories`도 `tags`처럼 frontmatter에서 배열을 리스트로 변경해서 출력하도록 수정했다.
 
 
-# 워크플로우 파일 수정
+## 워크플로우 파일 수정
 
 
 ```yaml
@@ -155,7 +155,7 @@ on:
 `git remote set-url origin` 부분의 마지막에 `notion-to-markdown.git`으로 되어있어서 repo명이 다르다. `nolog.git`으로 바꿔주면 정상적으로 작동한다.
 
 
-# 결과
+## 결과
 
 
 ```markdown

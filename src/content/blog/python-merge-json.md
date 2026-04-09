@@ -3,7 +3,7 @@ id: 12
 title: "Merge JSON in subDir"
 description: "하위 폴더의 JSON 파일 병합"
 pubDate: 2026-04-05T00:14:00.000Z
-updatedDate: 2026-04-09T09:27:00.000Z
+updatedDate: 2026-04-09T11:16:00.000Z
 category: "Code"
 tags: ["Python"]
 pinned: false

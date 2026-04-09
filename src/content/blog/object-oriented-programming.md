@@ -3,14 +3,14 @@ id: 21
 title: "Object-Oriented Programming"
 description: "객체 지향 프로그래밍 기본 개념 정리"
 pubDate: 2026-04-05T00:14:00.000Z
-updatedDate: 2026-04-09T09:34:00.000Z
+updatedDate: 2026-04-09T11:16:00.000Z
 category: "Fundamentals"
 tags: ["Python"]
 pinned: false
 ---
 
 
-# 클래스와 객체
+## 클래스와 객체
 
 - **클래스**(Class): 객체를 만들기 위한 틀 또는 설계도
 - **객체**(Object): 클래스의 인스턴스, 실제로 메모리에 할당된 실체
@@ -29,7 +29,7 @@ my_car.drive()  # 출력: 빨간 테슬라 차를 운전합니다.
 ```
 
 
-# 속성과 메서드
+## 속성과 메서드
 
 - **속성**(Attribute): 객체의 특성을 나타내는 변수
 - **메서드**(Method): 객체가 수행할 수 있는 동작을 정의하는 함수
@@ -49,7 +49,7 @@ person.greet()      # 출력: 안녕하세요, 저는 김철수입니다.
 ```
 
 
-# 상속
+## 상속
 
 - Inheritance
 - 기존 클래스의 속성과 메서드를 새로운 클래스가 재사용할 수 있게 해줌
@@ -69,7 +69,7 @@ electric_car.charge() # ElectricCar 클래스의 메서드 사용
 ```
 
 
-# 캡슐화
+## 캡슐화
 
 - Encapsulation
 - 객체의 내부 데이터를 외부로부터 숨기고, 접근을 제어하는 메커니즘
@@ -93,7 +93,7 @@ print(account.get_balance())  # 출력: 1500
 ```
 
 
-# 다형성
+## 다형성
 
 - Polymorphism
 - 같은 이름의 메서드가 다른 클래스에서 다르게 동작할 수 있게 해줌

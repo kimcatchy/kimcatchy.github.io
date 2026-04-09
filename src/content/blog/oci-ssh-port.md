@@ -3,14 +3,14 @@ id: 8
 title: "Oracle Cloud SSH 포트 변경"
 description: "VM 인스턴스 SSH 포트 변경"
 pubDate: 2026-04-05T00:14:00.000Z
-updatedDate: 2026-04-09T09:35:00.000Z
+updatedDate: 2026-04-09T11:16:00.000Z
 category: "DevOps"
 tags: ["OCI"]
 pinned: false
 ---
 
 
-# SSH 포트 추가
+## SSH 포트 추가
 
 - 오라클 클라우드 VCN 설정에서 변경할 포트 추가
 - 기존에 SSH 포트로 사용 중이던 22 포트는 바로 삭제해도 되지만, 문제가 생길 수 있으니 변경이 완료된 후에 삭제
@@ -59,7 +59,7 @@ tcp6       0      0 :::21212                :::*                    LISTEN      
 ```
 
 
-# 기존 포트 제거
+## 기존 포트 제거
 
 - 포트를 추가한 방법과 반대로 진행
 - 완료 후 오라클 클라우드 VCN 설정에서도 포트 제거

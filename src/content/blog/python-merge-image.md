@@ -3,7 +3,7 @@ id: 13
 title: "Merge Image"
 description: "파이썬을 통해 이미지 병합"
 pubDate: 2026-04-05T00:14:00.000Z
-updatedDate: 2026-04-09T09:27:00.000Z
+updatedDate: 2026-04-09T11:16:00.000Z
 category: "Code"
 tags: ["Python"]
 pinned: false

@@ -3,7 +3,7 @@ id: 58
 title: "Google Drive API를 활용한 Serverless DB"
 description: "구글 드라이브를 웹사이트의 데이터베이스로 활용하는 방법"
 pubDate: 2026-04-05T00:14:00.000Z
-updatedDate: 2026-04-09T09:40:00.000Z
+updatedDate: 2026-04-09T11:16:00.000Z
 category: "Web"
 tags: ["Typescript", "Node.js", "React", "DataBase"]
 pinned: false
@@ -19,13 +19,13 @@ pinned: false
 ---
 
 
-# 구글 드라이브 데이터 저장 방식
+## 구글 드라이브 데이터 저장 방식
 
 
 저장 목적과 요구되는 Scope에 따라 두 가지 방식으로 나뉜다.
 
 
-## Application Data Folder (`drive.appdata`)
+### Application Data Folder (`drive.appdata`)
 
 
 웹사이트의 환경 설정, 브라우저 게임의 세이브 파일 등 사용자가 직접 접근하거나 수정할 필요가 없는 앱 전용 데이터 저장에 적합하다.
@@ -34,7 +34,7 @@ pinned: false
 - 권한 범위: 해당 권한을 요청하고 승인받은 웹 애플리케이션만 이 숨김 폴더에 접근하여 데이터를 읽고 쓸 수 있다.
 - 요구 Scope: [`https://www.googleapis.com/auth/drive.appdata`](https://www.googleapis.com/auth/drive.appdata)
 
-## 일반 파일 저장 (`drive.file`)
+### 일반 파일 저장 (`drive.file`)
 
 
 JSON 포맷의 백업 데이터, 작업 결과물 등 사용자가 직접 확인하고 소유권 및 관리(공유, 삭제)를 행사해야 하는 데이터 저장에 적합하다.
@@ -46,19 +46,19 @@ JSON 포맷의 백업 데이터, 작업 결과물 등 사용자가 직접 확인
 ---
 
 
-# 아키텍처 장단점
+## 아키텍처 장단점
 
 
 도입 전 프로젝트의 데이터 I/O 특성을 고려해야 한다.
 
 
-## 장점
+### 장점
 
 - 서버 및 스토리지 비용 Zero: 백엔드 DB 서버를 구축하고 유지할 필요가 없다.
 - 개인정보 보호 리스크 최소화: 서비스 제공자가 중앙 서버에 사용자 데이터를 수집하지 않는다. 데이터의 소유와 보관이 전적으로 사용자에게 위임되므로 GDPR 등 개인정보 보호 규정 준수에 매우 유리하다.
 - 디바이스 동기화: 구글 계정을 기반으로 하므로, 기기나 브라우저가 변경되어도 동일한 데이터에 접근하고 동기화할 수 있다.
 
-## 단점
+### 단점
 
 - 속도 저하: HTTP API 호출을 통해 파일을 통째로 읽고 쓰는 방식이므로, 일반적인 RDBMS나 NoSQL에 비해 응답 속도가 느리다.
 - 데이터베이스 쿼리 불가: `JOIN` 연산이나 특정 조건의 데이터만 추출하는 복잡한 쿼리가 불가능하다. 전체 데이터를 로드한 뒤 프론트엔드 메모리 상에서 직접 파싱 및 필터링을 수행해야 한다.
@@ -67,7 +67,7 @@ JSON 포맷의 백업 데이터, 작업 결과물 등 사용자가 직접 확인
 ---
 
 
-# 구현 과정
+## 구현 과정
 
 
 프론트엔드(React, Next.js, Vanilla JS 등) 환경에서 단독으로 처리할 수 있다.
@@ -79,13 +79,13 @@ JSON 포맷의 백업 데이터, 작업 결과물 등 사용자가 직접 확인
 복잡한 관계형 데이터가 필요 없고, 사용자별 설정값이나 JSON 형태의 데이터를 유지해야 하는 정적 웹사이트 혹은 클라이언트 사이드 렌더링 위주의 웹 툴에 적합한 방식이다.
 
 
-## Next.js (React) 적용 예시
+### Next.js (React) 적용 예시
 
 
 `@react-oauth/google` 라이브러리와 내장 `fetch` API를 사용하여 클라이언트 사이드에서 모든 로직을 처리하는 방법이다.
 
 
-### 패키지 설치 및 환경 설정
+#### 패키지 설치 및 환경 설정
 
 
 먼저 구글 로그인 라이브러리를 설치한다.
@@ -104,7 +104,7 @@ NEXT_PUBLIC_GOOGLE_CLIENT_ID=GOOGLE_CLIENT_ID.apps.googleusercontent.com
 ```
 
 
-### 최상위 Provider 설정 (`layout.tsx`)
+#### 최상위 Provider 설정 (`layout.tsx`)
 
 
 앱 전체에서 구글 로그인 기능을 사용할 수 있도록 `layout.tsx` (또는 `_app.tsx`)를 `GoogleOAuthProvider`로 감싸준다.
@@ -128,7 +128,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ```
 
 
-### 로그인 및 데이터 저장 컴포넌트 (`page.tsx`)
+#### 로그인 및 데이터 저장 컴포넌트 (`page.tsx`)
 
 
 사용자 버튼 클릭 시 구글 로그인을 팝업으로 띄우고, 권한(scope)을 동의받아 토큰을 획득한다. 획득한 토큰으로 구글 드라이브에 `data.json` 파일을 생성하고 데이터를 쓰는 전체 로직이다.

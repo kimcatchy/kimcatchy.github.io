@@ -3,9 +3,9 @@ id: 64
 title: "Notion to Blog (2)"
 description: "Astro Blog with Notion Sync"
 pubDate: 2026-04-09T14:00:00.000Z
-updatedDate: 2026-04-09T14:22:00.000Z
-category: "Web"
-tags: ["Notion", "Astro", "Typescript", "React"]
+updatedDate: 2026-04-09T22:13:00.000Z
+category: "Projects"
+tags: ["Notion", "Astro", "Typescript", "React", "TailwindCSS", "shadcn", "BurrowBlog"]
 pinned: false
 ---
 

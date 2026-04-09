@@ -1,0 +1,27 @@
+<section class="mt-8 border-t border-border/40 pt-8">
+  <div id="utterances-container"></div>
+
+  <script is:inline>
+    function loadUtterances() {
+      const script = document.createElement('script');
+      script.src = 'https://utteranc.es/client.js';
+      script.setAttribute('repo', 'kimcatchy/utterances');
+      script.setAttribute('issue-term', 'title');
+      script.setAttribute('theme', 'github-dark');
+      script.setAttribute('crossorigin', 'anonymous');
+      script.async = true;
+
+      const container = document.getElementById('utterances-container');
+      if (container) {
+        container.innerHTML = '';
+        container.appendChild(script);
+      }
+    }
+
+    // Initial load
+    loadUtterances();
+
+    // Re-load on Astro page transitions
+    document.addEventListener('astro:after-swap', loadUtterances);
+  </script>
+</section>

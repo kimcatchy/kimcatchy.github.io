@@ -6,6 +6,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { Badge } from '@/components/ui/badge';
 import { Tags } from 'lucide-react';
 import TableOfContents from '../components/post/TableOfContents.astro';
+import Comments from '../components/Comments.astro';
 
 interface Heading {
   depth: number;
@@ -184,6 +185,9 @@ if (!hasFootnotesInHeadings) {
 							)}
 						</div>
 					) : null}
+
+					<!-- Comments Section -->
+					<Comments />
 				</div>
 			</div>
 		</article>

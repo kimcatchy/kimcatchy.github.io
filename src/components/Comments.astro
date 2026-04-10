@@ -1,6 +1,13 @@
 <section class="w-full">
   <div id="utterances-container" class="w-full"></div>
 
+  <style is:global>
+    /* utterances가 생성하는 iframe의 기본 max-width(760px) 제한 해제 */
+    .utterances {
+      max-width: 100% !important;
+    }
+  </style>
+
   <script is:inline>
     function loadUtterances() {
       const script = document.createElement('script');

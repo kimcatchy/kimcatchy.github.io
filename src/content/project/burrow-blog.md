@@ -3,10 +3,13 @@ id: 24
 title: "Burrow Blog"
 description: "Astro archive synced from Notion"
 pubDate: 2026-04-09T22:53:00.000Z
-updatedDate: 2026-04-09T23:38:00.000Z
+updatedDate: 2026-04-09T23:43:00.000Z
 techStack: ["Typescript", "React", "Astro", "TailwindCSS", "shadcn"]
 pinned: true
 ---
+
+
+![](../../assets/notion/project-24/33d5927d-b75a-80a7-a7c7-fc346d93f371.png)
 
 
 **Burrow Blog** is a high-performance, automated digital archive and project showcase. It serves as a continuous record of growth, capturing the evolution of thoughts and technical processes through a seamless, hands-off workflow where content is managed in **Notion** and automatically synchronized to an **Astro** static site via **GitHub Actions**.

@@ -3,12 +3,15 @@ id: 23
 title: "TA-TA Switch"
 description: "Endfield Account Switcher"
 pubDate: 2026-04-09T09:43:00.000Z
-updatedDate: 2026-04-09T09:48:00.000Z
+updatedDate: 2026-04-09T23:43:00.000Z
 techStack: ["Rust"]
 link: "https://github.com/kimcatchy/TA-TA-Switch/releases/download/v1.0.0/TA-TA-Switch.exe"
 repository: "https://github.com/kimcatchy/TA-TA-Switch"
 pinned: false
 ---
+
+
+![](../../assets/notion/project-23/33d5927d-b75a-8027-9c58-e742af92762c.png)
 
 
 A lightweight, high-performance account manager for "Arknights: Endfield (Global)". This tool is designed to switch between multiple accounts with a single click by swapping locally stored session cache files, with a minimal memory footprint (< 10MB) and zero background CPU usage.

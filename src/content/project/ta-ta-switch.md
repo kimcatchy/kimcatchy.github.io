@@ -3,7 +3,7 @@ id: 23
 title: "TA-TA Switch"
 description: "Endfield Account Switcher"
 pubDate: 2026-04-09T09:43:00.000Z
-updatedDate: 2026-04-09T23:43:00.000Z
+updatedDate: 2026-04-11T15:46:00.000Z
 techStack: ["Rust"]
 link: "https://github.com/kimcatchy/TA-TA-Switch/releases/download/v1.0.0/TA-TA-Switch.exe"
 repository: "https://github.com/kimcatchy/TA-TA-Switch"
@@ -22,12 +22,12 @@ A lightweight, high-performance account manager for "Arknights: Endfield (Global
 
 ## ✨ Features
 
-- **Profile Swapping**: Instantly switch between multiple accounts by replacing session files.
-- **Memory Efficient & Native UI**: Uses native Windows Win32 API for menus and dialogs, optimized to stay under 10MB of RAM.
+- **Profile Swapping**: Instantly switch between multiple accounts by replacing session files
+- **Memory Efficient & Native UI**: Uses native Windows Win32 API for menus and dialogs, optimized to stay under 10MB of RAM
 - **Auto Detection**: Automatically finds your game installation and session folders. (Native Launcher prioritized)
-- **Secure Backups**: Keeps account session data safe in independent storage.
-- **Admin Elevation**: Automatically requests administrator privileges to modify session files.
-- **Localized**: Full support for English and Korean.
+- **Secure Backups**: Keeps account session data safe in independent storage
+- **Admin Elevation**: Automatically requests administrator privileges to modify session files
+- **Localized**: Full support for English and Korean
 
 ## 📂 Data Storage & Backups
 
@@ -41,11 +41,11 @@ Settings and backup data are stored in the user's **Documents** folder instead o
 
 ## 🚀 How to Use
 
-1. **Launch**: Run `TA-TA-Switch.exe`.
-2. **Auto Detect**: Click the tray icon and select **Auto Detect Paths**. Prioritizes installations via the native launcher; if not found, checks for the Epic Games Store path.
-3. **Save Session**: Log in to an account in-game, then select **Save Current Session** from the tray to name and save that profile.
-4. **Switch**: Close the game and select a profile from the **Select Profile** menu.
-5. **Launch Game**: Click **Launch Endfield** to start the game with the selected profile.
+1. **Launch**: Run `TA-TA-Switch.exe`
+2. **Auto Detect**: Click the tray icon and select **Auto Detect Paths**. Prioritizes installations via the native launcher; if not found, checks for the Epic Games Store path
+3. **Save Session**: Log in to an account in-game, then select **Save Current Session** from the tray to name and save that profile
+4. **Switch**: Close the game and select a profile from the **Select Profile** menu
+5. **Launch Game**: Click **Launch Endfield** to start the game with the selected profile
 
 ## 🛠️ Building from Source
 
@@ -69,16 +69,16 @@ Settings and backup data are stored in the user's **Documents** folder instead o
     cargo build --release
     ```
 
-3. The executable will be in `target/release/TA-TA-Switch.exe`.
+3. The executable will be in `target/release/TA-TA-Switch.exe`
 
 ## 🛠️ Technical Details
 
 - **Language**: Rust 2021
 - **UI Framework**: [Native Windows GUI (NWG)](https://github.com/gabdube/native-windows-gui)
 - **Tray Implementation**: [tray-icon](https://github.com/tauri-apps/tray-icon)
-- **Resource Management**: Icons and Locales are embedded directly into the binary at compile time.
+- **Resource Management**: Icons and Locales are embedded directly into the binary at compile time
 
 ## ⚠️ Disclaimer
 
-- This tool does not modify the game client; it only manages local cache files. Usage is at your own risk.
-- This tool is not affiliated with, endorsed by, or officially supported by Hypergryph, Arknights: Endfield, or the Epic Games Store.
+- This tool does not modify the game client; it only manages local cache files. Usage is at your own risk
+- This tool is not affiliated with, endorsed by, or officially supported by Hypergryph, Arknights: Endfield, or the Epic Games Store

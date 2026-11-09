@@ -1,9 +1,9 @@
 ---
 id: 74
 title: "TA-TA (1)"
-description: "명일방주: 엔드필드 팬사이트 개발 기록"
+description: "명일방주: 엔드필드 팬사이트 개발 기록 1"
 pubDate: 2026-11-05T10:36:00.000Z
-updatedDate: 2026-11-05T23:35:00.000Z
+updatedDate: 2026-11-08T14:27:00.000Z
 category: "Projects"
 tags: ["TA-TA"]
 pinned: false
